@@ -224,7 +224,7 @@
             <path fill="#fff" d="M35.7 9.5c3.2 1.1 5.4 3.8 5.5 6.9-1.2-2.4-3-4.1-6.2-5.1-.9-.3-.3-2.1.7-1.8Z" opacity=".45"/>
           </svg>
         </div>
-        <strong class="stat-number" data-value="21796">0</strong>
+        <strong class="stat-number" data-value="21796" data-daily="18">0</strong>
         <span class="stat-label">Sonuçlardan Memnun Müşteri</span>
       </article>
 
@@ -242,7 +242,7 @@
             <circle cx="24" cy="24" r="2.25" fill="#ff3d69"/>
           </svg>
         </div>
-        <strong class="stat-number" data-value="7">0</strong>
+        <strong class="stat-number" data-value="7" data-daily="0">0</strong>
         <span class="stat-label">Ortalama teslimat süresi dk</span>
       </article>
 
@@ -256,7 +256,7 @@
             <path fill="#fff" d="m34.8 5 .8 2.4 2.4.8-2.4.8-.8 2.4L34 9l-2.4-.8 2.4-.8.8-2.4Z"/>
           </svg>
         </div>
-        <strong class="stat-number" data-value="6397">0</strong>
+        <strong class="stat-number" data-value="6397" data-daily="7">0</strong>
         <span class="stat-label">Tekrarlanan siparişler.</span>
       </article>
 
@@ -269,7 +269,7 @@
             <path d="M31.3 27.4c-.9 3.2-3.3 4.8-7.3 4.8-3.7 0-6.2-1.5-7.3-4.5 5 1.2 9.8 1.1 14.6-.3Z" fill="#fff"/>
           </svg>
         </div>
-        <strong class="stat-number" data-value="96" data-suffix="%">0%</strong>
+        <strong class="stat-number" data-value="96" data-daily="0" data-suffix="%">0%</strong>
         <span class="stat-label">Müşteri Memnuniyet Oranı</span>
       </article>
 
@@ -284,7 +284,7 @@
             <path fill="#9aaaf2" d="M12.2 32h8l-1.4 7.8h-4.4L12.2 32Z"/>
           </svg>
         </div>
-        <strong class="stat-number" data-value="1235">0</strong>
+        <strong class="stat-number" data-value="1235" data-daily="3">0</strong>
         <span class="stat-label">Tavsiye Yoluyla Gelen Müşteri</span>
       </article>
     </div>
@@ -294,17 +294,37 @@
     (() => {
       const counters = document.querySelectorAll('.stat-number');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const startDay = Date.UTC(2026, 6, 16);
+
+      const getIstanbulDay = () => {
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Europe/Istanbul',
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric'
+        }).formatToParts(new Date());
+        const date = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+        return Date.UTC(Number(date.year), Number(date.month) - 1, Number(date.day));
+      };
+
+      const elapsedDays = Math.max(0, Math.floor((getIstanbulDay() - startDay) / 86400000));
 
       const format = (value) => Math.round(value).toLocaleString('en-US');
 
+      const getCurrentValue = (counter) => {
+        const baseValue = Number(counter.dataset.value || 0);
+        const dailyIncrease = Number(counter.dataset.daily || 0);
+        return baseValue + (dailyIncrease * elapsedDays);
+      };
+
       const setFinalValue = (counter) => {
-        const value = Number(counter.dataset.value || 0);
+        const value = getCurrentValue(counter);
         const suffix = counter.dataset.suffix || '';
         counter.textContent = format(value) + suffix;
       };
 
       const animateCounter = (counter) => {
-        const target = Number(counter.dataset.value || 0);
+        const target = getCurrentValue(counter);
         const suffix = counter.dataset.suffix || '';
         const duration = 1550;
         const start = performance.now();
