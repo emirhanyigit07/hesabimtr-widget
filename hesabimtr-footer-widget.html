@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>HESABIMTR Alt Bilgi</title>
+  <style>
+    :root {
+      --brand: #0aaee8;
+      --brand-dark: #0489c0;
+      --brand-soft: #eaf9ff;
+      --ink: #101820;
+      --muted: #64717d;
+      --line: #e6f1f6;
+      --surface: #ffffff;
+      --surface-soft: #f7fcff;
+      --shadow: 0 18px 50px rgba(2, 130, 179, .10);
+      --radius-lg: 24px;
+      --radius-md: 17px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: transparent;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-shell {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 3% 25%, rgba(10, 174, 232, .08), transparent 25%),
+        radial-gradient(circle at 98% 75%, rgba(10, 174, 232, .07), transparent 22%),
+        linear-gradient(180deg, #fff 0%, #fff 36%, var(--surface-soft) 100%);
+    }
+
+    .footer-shell::before {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: -35%;
+      width: 32%;
+      height: 2px;
+      content: "";
+      background: linear-gradient(90deg, transparent, var(--brand), transparent);
+      animation: topLight 5.5s ease-in-out infinite;
+    }
+
+    .glow {
+      position: absolute;
+      z-index: -1;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(10, 174, 232, .08);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .glow-one {
+      top: 120px;
+      left: -165px;
+    }
+
+    .glow-two {
+      right: -185px;
+      bottom: 60px;
+    }
+
+    .container {
+      width: min(1320px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      padding: 34px 0 30px;
+    }
+
+    .benefit-card {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 14px;
+      overflow: hidden;
+      padding: 19px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 8px 28px rgba(10, 96, 132, .045);
+      animation: riseIn .65s both;
+      animation-delay: var(--delay);
+      transition: transform .32s cubic-bezier(.2, .8, .2, 1), border-color .32s ease, box-shadow .32s ease;
+    }
+
+    .benefit-card::after {
+      position: absolute;
+      right: -52px;
+      bottom: -76px;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(10, 174, 232, .075);
+      transition: transform .42s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(10, 174, 232, .38);
+      box-shadow: 0 18px 38px rgba(6, 143, 196, .13);
+    }
+
+    .benefit-card:hover::after {
+      transform: scale(1.35);
+    }
+
+    .benefit-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      place-items: center;
+      border: 1px solid rgba(10, 174, 232, .18);
+      border-radius: 15px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      transition: transform .32s ease, color .32s ease, background-color .32s ease;
+    }
+
+    .benefit-card:hover .benefit-icon {
+      transform: rotate(-5deg) scale(1.08);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .benefit-icon svg {
+      width: 25px;
+      height: 25px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .benefit-copy {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+    }
+
+    .benefit-copy h2 {
+      margin: 0 0 5px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+
+    .benefit-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .main-footer {
+      padding: 42px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.45fr .8fr .95fr 1fr 1.3fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -.045em;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(10, 174, 232, .25);
+      transition: transform .38s cubic-bezier(.2, .8, .2, 1), box-shadow .38s ease;
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      top: -45%;
+      left: -75%;
+      width: 42%;
+      height: 190%;
+      content: "";
+      transform: rotate(28deg);
+      background: rgba(255, 255, 255, .42);
+      transition: left .58s ease;
+    }
+
+    .brand-link:hover .brand-mark {
+      transform: translateY(-3px) rotate(-5deg);
+      box-shadow: 0 14px 30px rgba(10, 174, 232, .34);
+    }
+
+    .brand-link:hover .brand-mark::after {
+      left: 135%;
+    }
+
+    .brand-mark svg {
+      width: 27px;
+      height: 27px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.85;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .brand-word span {
+      color: var(--brand);
+    }
+
+    .brand-description {
+      max-width: 310px;
+      margin: 0 0 21px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.72;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .social-link {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      transition: transform .28s ease, color .28s ease, border-color .28s ease, background-color .28s ease, box-shadow .28s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(10, 174, 232, .24);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-column h3,
+    .support-card h3 {
+      position: relative;
+      margin: 7px 0 18px;
+      padding-bottom: 10px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: .025em;
+      text-transform: uppercase;
+    }
+
+    .footer-column h3::after,
+    .support-card h3::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      border-radius: 999px;
+      content: "";
+      background: var(--brand);
+      transition: width .3s ease;
+    }
+
+    .footer-column:hover h3::after,
+    .support-card:hover h3::after {
+      width: 48px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-links a {
+      position: relative;
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      color: #3f4a54;
+      font-size: 13px;
+      line-height: 1.35;
+      transition: color .24s ease, transform .24s ease;
+    }
+
+    .footer-links a::before {
+      width: 0;
+      margin-right: 0;
+      overflow: hidden;
+      content: "›";
+      color: var(--brand);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: .8;
+      opacity: 0;
+      transition: width .24s ease, margin-right .24s ease, opacity .24s ease;
+    }
+
+    .footer-links a::after {
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      left: 0;
+      height: 1px;
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      background: var(--brand);
+      transition: transform .3s ease;
+    }
+
+    .footer-links a:hover {
+      transform: translateX(4px);
+      color: var(--brand-dark);
+    }
+
+    .footer-links a:hover::before {
+      width: 8px;
+      margin-right: 5px;
+      opacity: 1;
+    }
+
+    .footer-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .support-card {
+      padding: 21px;
+      border: 1px solid rgba(10, 174, 232, .16);
+      border-radius: var(--radius-md);
+      background: linear-gradient(145deg, #fff, #effaff);
+      box-shadow: 0 14px 32px rgba(4, 137, 192, .07);
+      transition: transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+    }
+
+    .support-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(10, 174, 232, .36);
+      box-shadow: var(--shadow);
+    }
+
+    .support-card h3 {
+      margin-top: 0;
+    }
+
+    .support-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #30404c;
+      font-size: 12.5px;
+      font-weight: 650;
+      transition: color .24s ease, transform .24s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateX(3px);
+      color: var(--brand-dark);
+    }
+
+    .contact-icon {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      place-items: center;
+      border-radius: 9px;
+      background: #fff;
+      color: var(--brand);
+      box-shadow: 0 4px 12px rgba(4, 137, 192, .08);
+    }
+
+    .contact-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .whatsapp-button {
+      position: relative;
+      display: flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      overflow: hidden;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(16, 24, 32, .14);
+      transition: transform .28s ease, background-color .28s ease, box-shadow .28s ease;
+    }
+
+    .whatsapp-button::before {
+      position: absolute;
+      top: -75%;
+      left: -35%;
+      width: 38%;
+      height: 250%;
+      content: "";
+      transform: rotate(24deg);
+      background: rgba(255, 255, 255, .22);
+      transition: left .58s ease;
+    }
+
+    .whatsapp-button:hover {
+      transform: translateY(-2px);
+      background: #18a957;
+      box-shadow: 0 12px 25px rgba(24, 169, 87, .24);
+    }
+
+    .whatsapp-button:hover::before {
+      left: 120%;
+    }
+
+    .whatsapp-button svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .copyright strong {
+      color: var(--ink);
+    }
+
+    .payment-badges {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .payment-badge {
+      display: inline-flex;
+      height: 29px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #18212a;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+    }
+
+    .payment-badge:hover {
+      transform: translateY(-2px);
+      border-color: rgba(10, 174, 232, .35);
+      box-shadow: 0 6px 16px rgba(4, 137, 192, .09);
+    }
+
+    .mastercard {
+      gap: 0;
+      min-width: 48px;
+    }
+
+    .mastercard i {
+      display: block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+
+    .mastercard i:first-child {
+      margin-right: -4px;
+      background: #eb001b;
+    }
+
+    .mastercard i:last-child {
+      background: #f79e1b;
+      mix-blend-mode: multiply;
+    }
+
+    @keyframes riseIn {
+      from {
+        transform: translateY(18px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes topLight {
+      0%, 12% { left: -35%; opacity: 0; }
+      28% { opacity: 1; }
+      70% { opacity: 1; }
+      88%, 100% { left: 104%; opacity: 0; }
+    }
+
+    @media (max-width: 1120px) {
+      .benefits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.35fr .8fr .95fr 1.15fr;
+      }
+
+      .footer-column.popular {
+        display: none;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(100% - 28px, 680px);
+      }
+
+      .benefits {
+        gap: 10px;
+        padding-block: 24px;
+      }
+
+      .benefit-card {
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .benefit-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+        border-radius: 13px;
+      }
+
+      .benefit-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .main-footer {
+        padding-top: 31px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 31px 28px;
+      }
+
+      .brand-area,
+      .support-card {
+        grid-column: 1 / -1;
+      }
+
+      .brand-description {
+        max-width: 560px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(100% - 22px, 480px);
+      }
+
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-card {
+        min-height: 88px;
+      }
+
+      .footer-grid {
+        gap: 28px 20px;
+      }
+
+      .brand-link {
+        font-size: 21px;
+      }
+
+      .support-card {
+        padding: 18px;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .payment-badges {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <footer class="footer-shell" aria-label="HESABIMTR alt bilgi">
+    <span class="glow glow-one" aria-hidden="true"></span>
+    <span class="glow glow-two" aria-hidden="true"></span>
+
+    <section class="container benefits" aria-label="Alışveriş avantajları">
+      <article class="benefit-card" style="--delay: .04s">
+        <span class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.2 1-1.6 3-1.6 3s2-.4 3-1.6c.6-.7.6-1.8-.1-2.4-.6-.6-1.7-.5-2.3 1Z"/><path d="M9 15 6 12s2.1-4.7 6.9-7.2c2.2-1.2 5.4-1.1 6.3-.9.2.9.3 4.1-.9 6.3C15.8 15 11 17 11 17l-2-2Z"/><circle cx="15" cy="8" r="1.5"/><path d="m8 11 5 5"/></svg>
+        </span>
+        <div class="benefit-copy">
+          <h2>Hızlı Teslimat</h2>
+          <p>Kod ve hazır hesap bilgileri sipariş sonrasında hızlıca teslim edilir.</p>
+        </div>
+      </article>
+
+      <article class="benefit-card" style="--delay: .12s">
+        <span class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 2.7 8.2 7 10 4.3-1.8 7-5.5 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <div class="benefit-copy">
+          <h2>Güvenli Alışveriş</h2>
+          <p>3D Secure ve SSL destekli ödeme altyapısıyla güvenle alışveriş yapın.</p>
+        </div>
+      </article>
+
+      <article class="benefit-card" style="--delay: .20s">
+        <span class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 13 13 20a2 2 0 0 1-2.8 0L4 13.8V4h9.8L20 10.2a2 2 0 0 1 0 2.8Z"/><circle cx="9" cy="9" r="1.5"/></svg>
+        </span>
+        <div class="benefit-copy">
+          <h2>Uygun Fiyat</h2>
+          <p>İndirimli ürünler ve avantajlı seçeneklerle bütçenizi koruyun.</p>
+        </div>
+      </article>
+
+      <article class="benefit-card" style="--delay: .28s">
+        <span class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"/><path d="M4 13a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 2v1ZM20 13a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2v1Z"/><path d="M17 16c0 2-1.5 3-4 3h-1"/></svg>
+        </span>
+        <div class="benefit-copy">
+          <h2>Müşteri Desteği</h2>
+          <p>Satın alma öncesi ve sonrasında 09.00–02.00 arasında yanınızdayız.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="main-footer">
+      <div class="container footer-grid">
+        <div class="brand-area">
+          <a class="brand-link" href="https://hesabimtr.shop/" target="_top" aria-label="HESABIMTR ana sayfa">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8.2 7h7.6a5 5 0 0 1 4.8 3.6l1.2 4.2a2.8 2.8 0 0 1-4.7 2.8l-1.8-1.7H8.7l-1.8 1.7a2.8 2.8 0 0 1-4.7-2.8l1.2-4.2A5 5 0 0 1 8.2 7Z"/><path d="M7 11v4M5 13h4M16.5 12.2h.01M18.5 14.2h.01"/></svg>
+            </span>
+            <span class="brand-word">HESABIM<span>TR</span></span>
+          </a>
+          <p class="brand-description">Zula, Valorant ve PUBG Mobile için hesap, oyun içi para ve dijital ürünleri hızlı, güvenli ve avantajlı fiyatlarla keşfedin.</p>
+          <nav class="socials" aria-label="Sosyal medya bağlantıları">
+            <a class="social-link" href="https://www.instagram.com/hesabimturkish/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="social-link" href="https://www.youtube.com/@furkanyigithd" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M21 12s0-4-1-5c-1-1-8-1-8-1s-7 0-8 1-1 5-1 5 0 4 1 5 8 1 8 1 7 0 8-1 1-5 1-5Z"/><path d="m10 9 5 3-5 3V9Z"/></svg>
+            </a>
+            <a class="social-link" href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M20 11.6A8 8 0 0 1 8.1 18.5L4 20l1.5-4A8 8 0 1 1 20 11.6Z"/><path d="M9 8.5c.3 2.6 2 4.3 4.5 5 .5.1 1-.5 1.4-1l1.5.7c-.2 1.5-1.2 2.3-2.5 2.2-3.8-.5-6.6-3.3-7.2-7-.1-1.2.7-2.2 2.1-2.5L9.5 7c-.5.5-.6 1-.5 1.5Z"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <nav class="footer-column" aria-label="HESABIMTR bağlantıları">
+          <h3>HesabımTR</h3>
+          <ul class="footer-links">
+            <li><a href="https://hesabimtr.shop/" target="_top">Ana Sayfa</a></li>
+            <li><a href="https://hesabimtr.shop/pages/sss" target="_top">Sıkça Sorulan Sorular</a></li>
+            <li><a href="https://hesabimtr.shop/iletisim" target="_top">İletişim</a></li>
+            <li><a href="https://hesabimtr.shop/" target="_top">Hesap Sat</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column" aria-label="Kurumsal bağlantılar">
+          <h3>Kurumsal</h3>
+          <ul class="footer-links">
+            <li><a href="https://hesabimtr.shop/kvkk-gizlilik-sozlesmesi" target="_top">KVKK ve Gizlilik</a></li>
+            <li><a href="https://hesabimtr.shop/mesafeli-satis-sozlesmesi" target="_top">Mesafeli Satış</a></li>
+            <li><a href="https://hesabimtr.shop/iade-politikasi" target="_top">İade Politikası</a></li>
+            <li><a href="https://hesabimtr.shop/pages/sss" target="_top">Yardım Merkezi</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-column popular" aria-label="Popüler ürünler">
+          <h3>Popüler Ürünler</h3>
+          <ul class="footer-links">
+            <li><a href="https://hesabimtr.shop/random-hesap-1" target="_top">Zula Random Hesap</a></li>
+            <li><a href="https://hesabimtr.shop/7-sinirsiz-silahlar" target="_top">+7 Sınırsız Silah</a></li>
+            <li><a href="https://hesabimtr.shop/zula-super-lig-desen" target="_top">Süper Lig Desen</a></li>
+            <li><a href="https://hesabimtr.shop/zp-1" target="_top">Zula Parası</a></li>
+            <li><a href="https://hesabimtr.shop/uc-" target="_top">PUBG Mobile UC</a></li>
+          </ul>
+        </nav>
+
+        <aside class="support-card" aria-label="Destek ve iletişim">
+          <h3>Destek ve İletişim</h3>
+          <p>Ürün, stok veya teslimatla ilgili sorularınız için destek ekibimize ulaşın.</p>
+          <div class="contact-list">
+            <a class="contact-link" href="tel:+908503077784" target="_top">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3H4.5A1.5 1.5 0 0 0 3 4.5 16.5 16.5 0 0 0 19.5 21a1.5 1.5 0 0 0 1.5-1.5V17l-4-1.5-1.2 2a13 13 0 0 1-9.3-9.3l2-1.2L7 3Z"/></svg></span>
+              0850 307 77 84
+            </a>
+            <a class="contact-link" href="mailto:destek@hesabimtr.net" target="_top">
+              <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+              destek@hesabimtr.net
+            </a>
+          </div>
+          <a class="whatsapp-button" href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.6A8 8 0 0 1 8.1 18.5L4 20l1.5-4A8 8 0 1 1 20 11.6Z"/><path d="M9 8.5c.3 2.6 2 4.3 4.5 5 .5.1 1-.5 1.4-1l1.5.7c-.2 1.5-1.2 2.3-2.5 2.2-3.8-.5-6.6-3.3-7.2-7-.1-1.2.7-2.2 2.1-2.5L9.5 7c-.5.5-.6 1-.5 1.5Z"/></svg>
+            WhatsApp’tan Yaz
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <div class="container footer-bottom">
+      <div class="copyright">© 2017–<span id="current-year">2026</span> <strong>HESABIMTR</strong>. Tüm hakları saklıdır.</div>
+      <div class="payment-badges" aria-label="Desteklenen ödeme yöntemleri">
+        <span class="payment-badge" style="color:#1434cb">VISA</span>
+        <span class="payment-badge mastercard" aria-label="Mastercard"><i></i><i></i></span>
+        <span class="payment-badge" style="color:#00a6a6">TROY</span>
+        <span class="payment-badge">3D SECURE</span>
+        <span class="payment-badge">SSL</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const year = document.getElementById('current-year');
+      if (year) year.textContent = String(new Date().getFullYear());
+
+      const reportHeight = () => {
+        const height = Math.ceil(document.documentElement.scrollHeight);
+        window.parent.postMessage({ type: 'hesabimtr-footer-height', height }, '*');
+      };
+
+      window.addEventListener('load', reportHeight);
+      window.addEventListener('resize', reportHeight);
+
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(reportHeight).observe(document.body);
+      }
+
+      setTimeout(reportHeight, 250);
+      setTimeout(reportHeight, 900);
+    })();
+  </script>
+</body>
+</html>
