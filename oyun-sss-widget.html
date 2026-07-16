@@ -262,9 +262,55 @@
       color: #677184;
       font-size: 13px;
       text-align: center;
+      flex-wrap: wrap;
     }
 
-    .support-note strong { color: var(--ink); }
+    .support-message {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 36px;
+    }
+
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 36px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: #25d366;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(37, 211, 102, .22);
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .whatsapp-link:hover {
+      background: #1fbd5a;
+      box-shadow: 0 10px 22px rgba(37, 211, 102, .30);
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-link:focus-visible {
+      outline: 3px solid rgba(37, 211, 102, .30);
+      outline-offset: 3px;
+    }
+
+    .whatsapp-arrow {
+      font-size: 16px;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .whatsapp-link:hover .whatsapp-arrow {
+      transform: translateX(2px);
+    }
 
     .status-light {
       width: 9px;
@@ -427,7 +473,22 @@
         </article>
       </section>
 
-      <p class="support-note"><span class="status-light" aria-hidden="true"></span><span>Cevabınızı bulamadınız mı? <strong>Destek ekibimiz size yardımcı olmaya hazır.</strong></span></p>
+      <p class="support-note">
+        <span class="support-message">
+          <span class="status-light" aria-hidden="true"></span>
+          <span>Cevabınızı bulamadınız mı?</span>
+        </span>
+        <a
+          class="whatsapp-link"
+          href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olurmusunuz%3F"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp üzerinden HESABIMTR destek ekibine yaz"
+        >
+          WhatsApp'tan Yaz
+          <span class="whatsapp-arrow" aria-hidden="true">→</span>
+        </a>
+      </p>
     </div>
   </main>
 
