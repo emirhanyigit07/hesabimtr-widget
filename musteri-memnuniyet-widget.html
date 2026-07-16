@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Müşteri Memnuniyet İstatistikleri</title>
+  <style>
+    :root {
+      --section-bg: #f4f7fb;
+      --card-bg: #ffffff;
+      --text: #050505;
+      --muted: #171717;
+      --radius: 9px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      overflow-x: hidden;
+      background: var(--section-bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stats-section {
+      width: 100%;
+      min-height: 300px;
+      padding: 39px 22px 38px;
+      background:
+        radial-gradient(circle at 50% -40%, rgba(255, 255, 255, .98), transparent 46%),
+        var(--section-bg);
+    }
+
+    .stats-title {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(21px, 1.8vw, 26px);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -.35px;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: title-in .6s cubic-bezier(.2, .8, .2, 1) .08s forwards;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .stat-card {
+      position: relative;
+      min-width: 0;
+      min-height: 156px;
+      padding: 22px 21px 18px;
+      overflow: hidden;
+      border: 1px solid rgba(7, 20, 40, .025);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      box-shadow: 0 5px 18px rgba(37, 55, 83, .025);
+      opacity: 0;
+      translate: 0 18px;
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+      animation: card-in .64s cubic-bezier(.2, .85, .25, 1) forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: .15s; }
+    .stat-card:nth-child(2) { animation-delay: .24s; }
+    .stat-card:nth-child(3) { animation-delay: .33s; }
+    .stat-card:nth-child(4) { animation-delay: .42s; }
+    .stat-card:nth-child(5) { animation-delay: .51s; }
+
+    .stat-card::after {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, .75) 42%, transparent 58%);
+      content: "";
+      pointer-events: none;
+      transform: translateX(-125%);
+      animation: shine 4.8s ease-in-out 1.4s infinite;
+    }
+
+    .stat-card:hover {
+      z-index: 1;
+      border-color: rgba(25, 116, 255, .11);
+      box-shadow: 0 13px 28px rgba(38, 64, 101, .10);
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 12px;
+      place-items: center;
+      transform-origin: 50% 70%;
+      animation: icon-float 3.2s ease-in-out infinite;
+    }
+
+    .stat-card:nth-child(2n) .stat-icon { animation-delay: -.9s; }
+    .stat-card:nth-child(3n) .stat-icon { animation-delay: -1.7s; }
+
+    .stat-icon svg {
+      display: block;
+      width: 43px;
+      height: 43px;
+      overflow: visible;
+    }
+
+    .stat-number {
+      display: block;
+      min-height: 29px;
+      font-size: 24px;
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: .1px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.32;
+      font-weight: 400;
+      white-space: normal;
+    }
+
+    @keyframes title-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes card-in {
+      to { opacity: 1; translate: 0 0; }
+    }
+
+    @keyframes icon-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(1.5deg); }
+    }
+
+    @keyframes shine {
+      0%, 68%, 100% { transform: translateX(-125%); }
+      82% { transform: translateX(125%); }
+    }
+
+    @media (max-width: 1000px) {
+      .stats-section {
+        min-height: 325px;
+        padding-inline: 16px;
+      }
+
+      .stats-grid {
+        grid-auto-columns: minmax(255px, 72vw);
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        gap: 14px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 4px 2px 16px;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(43, 77, 120, .25) transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .stat-card {
+        scroll-snap-align: start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stats-section {
+        min-height: 330px;
+        padding: 30px 14px 24px;
+      }
+
+      .stats-title {
+        max-width: 310px;
+        margin-inline: auto;
+      }
+
+      .stats-grid {
+        grid-auto-columns: minmax(252px, 86vw);
+        margin-top: 25px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="stats-section" aria-labelledby="stats-title">
+    <h2 class="stats-title" id="stats-title">Müşteri memnuniyet oranları ve istatistikler</h2>
+
+    <div class="stats-grid" aria-label="Müşteri memnuniyet istatistikleri">
+      <article class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path fill="#ff3d5a" d="M24 42.2 7.1 25.9C-1.6 17.4 4.5 6 14.1 6c4.8 0 8 2.7 9.9 5.6C25.9 8.7 29.1 6 33.9 6c9.6 0 15.7 11.4 7 19.9L24 42.2Z"/>
+            <path fill="#ff234a" d="M33.9 6c9.6 0 15.7 11.4 7 19.9L24 42.2V11.6C25.9 8.7 29.1 6 33.9 6Z" opacity=".78"/>
+            <path fill="#fff" d="M35.7 9.5c3.2 1.1 5.4 3.8 5.5 6.9-1.2-2.4-3-4.1-6.2-5.1-.9-.3-.3-2.1.7-1.8Z" opacity=".45"/>
+          </svg>
+        </div>
+        <strong class="stat-number" data-value="21796">0</strong>
+        <span class="stat-label">Sonuçlardan Memnun Müşteri</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <circle cx="24" cy="24" r="19" fill="#11aef1"/>
+            <circle cx="24" cy="24" r="15.5" fill="#d9e8ff"/>
+            <circle cx="24" cy="24" r="13.8" fill="#eef4ff"/>
+            <g stroke="#5683bf" stroke-linecap="round" stroke-width="1.25">
+              <path d="M24 11v3M24 34v3M11 24h3M34 24h3"/>
+            </g>
+            <path d="M24 24 18.1 16.4" fill="none" stroke="#ff3d69" stroke-linecap="round" stroke-width="2.4"/>
+            <path d="m24 24 9.2-2.1" fill="none" stroke="#ff3d69" stroke-linecap="round" stroke-width="2.4"/>
+            <circle cx="24" cy="24" r="2.25" fill="#ff3d69"/>
+          </svg>
+        </div>
+        <strong class="stat-number" data-value="7">0</strong>
+        <span class="stat-label">Ortalama teslimat süresi dk</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path fill="#07a7ec" d="m3.6 14.3 6-7.8h28.8l6 7.8L24 43 3.6 14.3Z"/>
+            <path fill="#007ee9" d="m24 43 8.5-28.7H44.4L24 43Z"/>
+            <path fill="#00c1f4" d="M3.6 14.3h12L9.6 6.5l-6 7.8Zm12 0L24 43l8.5-28.7H15.6Z" opacity=".9"/>
+            <path fill="#93ebff" d="m15.6 14.3 4.1-7.8h8.6l4.2 7.8H15.6Z" opacity=".72"/>
+            <path fill="#fff" d="m34.8 5 .8 2.4 2.4.8-2.4.8-.8 2.4L34 9l-2.4-.8 2.4-.8.8-2.4Z"/>
+          </svg>
+        </div>
+        <strong class="stat-number" data-value="6397">0</strong>
+        <span class="stat-label">Tekrarlanan siparişler.</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path fill="#ffc543" d="M24 4C12.9 4 4 11.8 4 21.4c0 7.2 5.1 13.4 12.4 16l7.4 6.1-.3-4.7H24c11.1 0 20-7.8 20-17.4S35.1 4 24 4Z"/>
+            <path d="M13.5 18.6c.7-2.3 2.2-3.5 4.3-3.5s3.6 1.2 4.3 3.5M27 18.6c.7-2.3 2.2-3.5 4.3-3.5s3.6 1.2 4.3 3.5" fill="none" stroke="#fff5b0" stroke-linecap="round" stroke-width="2.2"/>
+            <path d="M15.5 25.8c2.1 3.2 4.9 4.8 8.5 4.8s6.4-1.6 8.5-4.8" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.5"/>
+            <path d="M31.3 27.4c-.9 3.2-3.3 4.8-7.3 4.8-3.7 0-6.2-1.5-7.3-4.5 5 1.2 9.8 1.1 14.6-.3Z" fill="#fff"/>
+          </svg>
+        </div>
+        <strong class="stat-number" data-value="96" data-suffix="%">0%</strong>
+        <span class="stat-label">Müşteri Memnuniyet Oranı</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path fill="#ff3e79" d="M7.2 18.3H4.9c-1.6 0-2.9 1.3-2.9 2.9v8.1c0 1.6 1.3 2.9 2.9 2.9h2.3V18.3Z"/>
+            <path fill="#c5d0ff" d="M9 18.5h8.3l19.2-7.8v29.1L17.3 32H9V18.5Z"/>
+            <path fill="#e4e9ff" d="m17.3 18.5 19.2-7.8v14.6H17.3V18.5Z"/>
+            <path fill="#ff3e79" d="M36.5 9.1c0-1.7 1.4-3.1 3.1-3.1s3.1 1.4 3.1 3.1v32.2c0 1.7-1.4 3.1-3.1 3.1s-3.1-1.4-3.1-3.1V9.1Z"/>
+            <path fill="#ff6a93" d="M39.6 6c1.7 0 3.1 1.4 3.1 3.1v16.1h-6.2V9.1c0-1.7 1.4-3.1 3.1-3.1Z"/>
+            <path fill="#9aaaf2" d="M12.2 32h8l-1.4 7.8h-4.4L12.2 32Z"/>
+          </svg>
+        </div>
+        <strong class="stat-number" data-value="1235">0</strong>
+        <span class="stat-label">Tavsiye Yoluyla Gelen Müşteri</span>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const counters = document.querySelectorAll('.stat-number');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const format = (value) => Math.round(value).toLocaleString('en-US');
+
+      const setFinalValue = (counter) => {
+        const value = Number(counter.dataset.value || 0);
+        const suffix = counter.dataset.suffix || '';
+        counter.textContent = format(value) + suffix;
+      };
+
+      const animateCounter = (counter) => {
+        const target = Number(counter.dataset.value || 0);
+        const suffix = counter.dataset.suffix || '';
+        const duration = 1550;
+        const start = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          counter.textContent = format(target * eased) + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            setFinalValue(counter);
+          }
+        };
+
+        requestAnimationFrame(tick);
+      };
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        counters.forEach(setFinalValue);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          counters.forEach((counter, index) => {
+            window.setTimeout(() => animateCounter(counter), index * 85);
+          });
+          observer.disconnect();
+        });
+      }, { threshold: 0.35 });
+
+      observer.observe(document.querySelector('.stats-section'));
+    })();
+  </script>
+</body>
+</html>
