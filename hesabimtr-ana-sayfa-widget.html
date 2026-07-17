@@ -1,0 +1,3026 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
+  <title>HESABIMTR Ana Sayfa</title>
+  <style>
+    :root {
+      --htr-cyan: #08afe8;
+      --htr-cyan-2: #45d7ff;
+      --htr-cyan-dark: #0484bb;
+      --htr-blue: #176bff;
+      --htr-navy: #0c1724;
+      --htr-ink: #101820;
+      --htr-muted: #61707e;
+      --htr-line: #dfeef5;
+      --htr-soft: #f4fbfe;
+      --htr-white: #ffffff;
+      --htr-success: #13b879;
+      --htr-warning: #ffb018;
+      --htr-radius-xl: 34px;
+      --htr-radius-lg: 24px;
+      --htr-radius-md: 18px;
+      --htr-shadow: 0 28px 80px rgba(5, 103, 145, .12);
+      --htr-shadow-soft: 0 14px 45px rgba(5, 103, 145, .08);
+      --htr-ease: cubic-bezier(.2, .8, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: #fff;
+      color: var(--htr-ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    .htr-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .htr-home {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 2% 5%, rgba(8, 175, 232, .10), transparent 20%),
+        radial-gradient(circle at 99% 22%, rgba(23, 107, 255, .06), transparent 18%),
+        #fff;
+    }
+
+    .htr-container {
+      width: min(1240px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .htr-section {
+      position: relative;
+      padding: 80px 0;
+    }
+
+    .htr-section--soft {
+      border-block: 1px solid var(--htr-line);
+      background:
+        linear-gradient(rgba(8, 175, 232, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8, 175, 232, .025) 1px, transparent 1px),
+        var(--htr-soft);
+      background-size: 34px 34px;
+    }
+
+    .htr-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      color: var(--htr-cyan-dark);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .htr-kicker::before {
+      width: 25px;
+      height: 2px;
+      border-radius: 10px;
+      content: "";
+      background: linear-gradient(90deg, var(--htr-cyan), var(--htr-blue));
+    }
+
+    .htr-section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .htr-section-head__copy {
+      max-width: 720px;
+    }
+
+    .htr-section-head h2,
+    .htr-trust-copy h2,
+    .htr-sell-copy h2,
+    .htr-final-copy h2 {
+      margin: 0;
+      font-size: clamp(31px, 4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .htr-section-head p,
+    .htr-trust-copy > p,
+    .htr-sell-copy > p,
+    .htr-final-copy > p {
+      margin: 15px 0 0;
+      color: var(--htr-muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .htr-link-arrow {
+      display: inline-flex;
+      min-width: max-content;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 0;
+      color: var(--htr-ink);
+      font-size: 14px;
+      font-weight: 850;
+      transition: gap .25s ease, color .25s ease;
+    }
+
+    .htr-link-arrow:hover {
+      gap: 14px;
+      color: var(--htr-cyan-dark);
+    }
+
+    .htr-link-arrow svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .htr-btn {
+      position: relative;
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      overflow: hidden;
+      padding: 0 23px;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: -.01em;
+      transition: transform .28s var(--htr-ease), box-shadow .28s ease, border-color .28s ease, background-color .28s ease;
+    }
+
+    .htr-btn::after {
+      position: absolute;
+      top: -50%;
+      left: -65%;
+      width: 35%;
+      height: 200%;
+      content: "";
+      transform: rotate(25deg);
+      background: rgba(255, 255, 255, .36);
+      transition: left .55s ease;
+    }
+
+    .htr-btn:hover::after {
+      left: 125%;
+    }
+
+    .htr-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .htr-btn svg {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .htr-btn--primary {
+      background: linear-gradient(135deg, var(--htr-cyan) 0%, var(--htr-blue) 100%);
+      box-shadow: 0 16px 32px rgba(8, 151, 220, .25);
+      color: #fff;
+    }
+
+    .htr-btn--primary:hover {
+      box-shadow: 0 22px 42px rgba(8, 151, 220, .34);
+    }
+
+    .htr-btn--ghost {
+      border-color: var(--htr-line);
+      background: rgba(255, 255, 255, .82);
+      box-shadow: 0 10px 25px rgba(10, 73, 102, .06);
+      color: var(--htr-ink);
+    }
+
+    .htr-btn--ghost:hover {
+      border-color: rgba(8, 175, 232, .45);
+      background: #fff;
+    }
+
+    .htr-btn--dark {
+      background: var(--htr-navy);
+      box-shadow: 0 16px 32px rgba(3, 18, 30, .2);
+      color: #fff;
+    }
+
+    .htr-btn--whatsapp {
+      background: #17bd70;
+      box-shadow: 0 16px 32px rgba(23, 189, 112, .22);
+      color: #fff;
+    }
+
+    /* Hero */
+    .htr-hero {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      padding: 82px 0 74px;
+      border-bottom: 1px solid var(--htr-line);
+      background:
+        radial-gradient(circle at 82% 42%, rgba(69, 215, 255, .21), transparent 22%),
+        radial-gradient(circle at 68% 12%, rgba(23, 107, 255, .08), transparent 20%),
+        linear-gradient(180deg, #fff 0%, #f7fcff 100%);
+    }
+
+    .htr-hero::before {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      content: "";
+      opacity: .62;
+      background-image: radial-gradient(rgba(8, 175, 232, .22) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(90deg, transparent, #000 48%, #000 100%);
+    }
+
+    .htr-hero::after {
+      position: absolute;
+      z-index: 0;
+      top: -55%;
+      right: -20%;
+      width: 920px;
+      height: 920px;
+      border: 1px solid rgba(8, 175, 232, .12);
+      border-radius: 50%;
+      content: "";
+      box-shadow: inset 0 0 0 90px rgba(8, 175, 232, .018), inset 0 0 0 180px rgba(8, 175, 232, .018);
+    }
+
+    .htr-hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(440px, .98fr);
+      gap: 66px;
+      align-items: center;
+    }
+
+    .htr-hero-copy {
+      max-width: 680px;
+    }
+
+    .htr-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 9px 13px 9px 10px;
+      border: 1px solid rgba(8, 175, 232, .22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 9px 25px rgba(5, 105, 148, .07);
+      color: #23566d;
+      font-size: 12px;
+      font-weight: 850;
+      backdrop-filter: blur(10px);
+    }
+
+    .htr-live-dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--htr-success);
+      box-shadow: 0 0 0 5px rgba(19, 184, 121, .13);
+    }
+
+    .htr-live-dot::after {
+      position: absolute;
+      inset: -5px;
+      border: 1px solid rgba(19, 184, 121, .5);
+      border-radius: inherit;
+      content: "";
+      animation: htrPulse 2s ease-out infinite;
+    }
+
+    .htr-hero h1 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(47px, 6vw, 79px);
+      line-height: .99;
+      letter-spacing: -.065em;
+    }
+
+    .htr-hero h1 span {
+      color: transparent;
+      background: linear-gradient(100deg, var(--htr-cyan-dark), var(--htr-blue) 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .htr-hero-lead {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: var(--htr-muted);
+      font-size: 17px;
+      line-height: 1.78;
+    }
+
+    .htr-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .htr-hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px 24px;
+      margin-top: 28px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .htr-hero-trust li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #465763;
+      font-size: 12.5px;
+      font-weight: 750;
+    }
+
+    .htr-hero-trust svg {
+      width: 18px;
+      height: 18px;
+      color: var(--htr-cyan-dark);
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .htr-hero-stage {
+      position: relative;
+      min-height: 515px;
+      transform-style: preserve-3d;
+    }
+
+    .htr-stage-orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 430px;
+      height: 430px;
+      border: 1px dashed rgba(8, 175, 232, .35);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: htrSpin 32s linear infinite;
+    }
+
+    .htr-stage-orbit::before,
+    .htr-stage-orbit::after {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      content: "";
+      background: var(--htr-cyan);
+      box-shadow: 0 5px 18px rgba(8, 175, 232, .35);
+    }
+
+    .htr-stage-orbit::before {
+      top: 39px;
+      left: 68px;
+    }
+
+    .htr-stage-orbit::after {
+      right: 26px;
+      bottom: 96px;
+      background: var(--htr-blue);
+    }
+
+    .htr-main-card {
+      position: absolute;
+      z-index: 3;
+      top: 76px;
+      left: 50%;
+      width: 310px;
+      height: 355px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .8);
+      border-radius: 34px;
+      transform: translateX(-50%) rotate(-2.5deg);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(69, 215, 255, .42), transparent 32%),
+        linear-gradient(155deg, #0d2438 0%, #0b1724 55%, #092438 100%);
+      box-shadow: 0 42px 90px rgba(6, 49, 76, .28), inset 0 1px 0 rgba(255, 255, 255, .15);
+      color: #fff;
+      animation: htrFloat 6s ease-in-out infinite;
+    }
+
+    .htr-main-card::after {
+      position: absolute;
+      top: -90px;
+      right: -90px;
+      width: 230px;
+      height: 230px;
+      border: 40px solid rgba(69, 215, 255, .06);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .htr-main-card__top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 24px 0;
+    }
+
+    .htr-brand-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .htr-brand-chip img {
+      width: 37px;
+      height: 37px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+    }
+
+    .htr-card-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a9eaff;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .htr-main-card__art {
+      position: relative;
+      display: grid;
+      width: 176px;
+      height: 176px;
+      margin: 26px auto 20px;
+      place-items: center;
+      border: 1px solid rgba(69, 215, 255, .18);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(69, 215, 255, .20), rgba(69, 215, 255, .03) 62%, transparent 63%);
+      box-shadow: 0 0 70px rgba(8, 175, 232, .17);
+    }
+
+    .htr-main-card__art::before,
+    .htr-main-card__art::after {
+      position: absolute;
+      inset: 18px;
+      border: 1px dashed rgba(255, 255, 255, .13);
+      border-radius: 50%;
+      content: "";
+      animation: htrSpinLocal 18s linear infinite reverse;
+    }
+
+    .htr-main-card__art::after {
+      inset: 42px;
+      border-style: solid;
+      animation: none;
+    }
+
+    .htr-main-card__art svg {
+      position: relative;
+      z-index: 2;
+      width: 82px;
+      height: 82px;
+      fill: none;
+      stroke: #e9fbff;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+      filter: drop-shadow(0 10px 18px rgba(8, 175, 232, .25));
+    }
+
+    .htr-main-card__bottom {
+      position: relative;
+      z-index: 2;
+      padding: 0 25px;
+    }
+
+    .htr-main-card__bottom small {
+      display: block;
+      margin-bottom: 7px;
+      color: #7fdfff;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .htr-main-card__bottom strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.12;
+      letter-spacing: -.045em;
+    }
+
+    .htr-float-card {
+      position: absolute;
+      z-index: 5;
+      display: flex;
+      width: 206px;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid rgba(8, 175, 232, .18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 18px 48px rgba(8, 92, 130, .17);
+      backdrop-filter: blur(14px);
+      transition: transform .35s var(--htr-ease), box-shadow .35s ease;
+    }
+
+    .htr-float-card:hover {
+      z-index: 9;
+      transform: translateY(-7px) rotate(0deg) !important;
+      box-shadow: 0 26px 58px rgba(8, 92, 130, .22);
+    }
+
+    .htr-float-card--one {
+      top: 38px;
+      right: -8px;
+      transform: rotate(4deg);
+      animation: htrFloatMini 5.4s ease-in-out infinite .4s;
+    }
+
+    .htr-float-card--two {
+      bottom: 37px;
+      left: -10px;
+      transform: rotate(-4deg);
+      animation: htrFloatMini 6.1s ease-in-out infinite .9s;
+    }
+
+    .htr-float-thumb {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      overflow: hidden;
+      border-radius: 13px;
+      background: #dff6ff;
+    }
+
+    .htr-float-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .htr-float-copy {
+      min-width: 0;
+    }
+
+    .htr-float-copy small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--htr-cyan-dark);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .htr-float-copy strong {
+      display: -webkit-box;
+      overflow: hidden;
+      font-size: 12.5px;
+      line-height: 1.35;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .htr-secure-chip {
+      position: absolute;
+      z-index: 6;
+      right: 14px;
+      bottom: 92px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      border: 1px solid rgba(19, 184, 121, .2);
+      border-radius: 999px;
+      background: rgba(242, 255, 249, .92);
+      box-shadow: 0 13px 32px rgba(5, 98, 65, .12);
+      color: #167a56;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .htr-secure-chip svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    /* Quick links */
+    .htr-quick-wrap {
+      position: relative;
+      z-index: 5;
+      margin-top: -30px;
+    }
+
+    .htr-quick {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      overflow: hidden;
+      border: 1px solid var(--htr-line);
+      border-radius: 23px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--htr-shadow-soft);
+      backdrop-filter: blur(15px);
+    }
+
+    .htr-quick a {
+      position: relative;
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 10px;
+      border-right: 1px solid var(--htr-line);
+      color: #34444f;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-align: center;
+      transition: color .25s ease, background-color .25s ease;
+    }
+
+    .htr-quick a:last-child {
+      border-right: 0;
+    }
+
+    .htr-quick a::after {
+      position: absolute;
+      right: 22%;
+      bottom: 0;
+      left: 22%;
+      height: 3px;
+      border-radius: 10px 10px 0 0;
+      content: "";
+      transform: scaleX(0);
+      background: linear-gradient(90deg, var(--htr-cyan), var(--htr-blue));
+      transition: transform .3s var(--htr-ease);
+    }
+
+    .htr-quick a:hover {
+      background: var(--htr-soft);
+      color: var(--htr-cyan-dark);
+    }
+
+    .htr-quick a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .htr-quick svg {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 auto;
+      color: var(--htr-cyan);
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.9;
+    }
+
+    /* Games */
+    .htr-games {
+      display: grid;
+      grid-template-columns: 1.18fr .91fr .91fr;
+      gap: 18px;
+    }
+
+    .htr-game-card {
+      position: relative;
+      min-height: 350px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 29px;
+      box-shadow: 0 20px 55px rgba(8, 41, 65, .15);
+      color: #fff;
+      transition: transform .42s var(--htr-ease), box-shadow .42s ease;
+    }
+
+    .htr-game-card:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 32px 70px rgba(8, 41, 65, .23);
+    }
+
+    .htr-game-card--zula {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(69, 215, 255, .36), transparent 28%),
+        linear-gradient(145deg, #073d5b 0%, #0b1724 68%);
+    }
+
+    .htr-game-card--valorant {
+      background:
+        radial-gradient(circle at 95% 0%, rgba(255, 155, 165, .36), transparent 35%),
+        linear-gradient(145deg, #ff5264 0%, #9f243e 100%);
+    }
+
+    .htr-game-card--pubg {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255, 221, 101, .28), transparent 34%),
+        linear-gradient(145deg, #d8840c 0%, #7a3e06 100%);
+    }
+
+    .htr-game-card::before {
+      position: absolute;
+      top: -120px;
+      right: -110px;
+      width: 330px;
+      height: 330px;
+      border: 50px solid rgba(255, 255, 255, .06);
+      border-radius: 50%;
+      content: "";
+      transition: transform .6s var(--htr-ease);
+    }
+
+    .htr-game-card:hover::before {
+      transform: scale(1.18) rotate(20deg);
+    }
+
+    .htr-game-card__ghost {
+      position: absolute;
+      right: -7px;
+      bottom: -20px;
+      color: rgba(255, 255, 255, .10);
+      font-size: clamp(60px, 7vw, 104px);
+      font-weight: 950;
+      letter-spacing: -.08em;
+      line-height: .8;
+      transform: rotate(-8deg);
+      user-select: none;
+    }
+
+    .htr-game-card__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      min-height: 350px;
+      flex-direction: column;
+      padding: 28px;
+    }
+
+    .htr-game-card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .htr-game-icon {
+      display: grid;
+      width: 55px;
+      height: 55px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, .11);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+    }
+
+    .htr-game-icon svg {
+      width: 29px;
+      height: 29px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+    }
+
+    .htr-game-pill {
+      padding: 8px 11px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .1);
+      font-size: 9.5px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .htr-game-card__copy {
+      margin-top: auto;
+    }
+
+    .htr-game-card__copy small {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255, 255, 255, .72);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .htr-game-card__copy h3 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.06;
+      letter-spacing: -.045em;
+    }
+
+    .htr-game-card__copy p {
+      margin: 10px 0 20px;
+      color: rgba(255, 255, 255, .75);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .htr-game-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .htr-game-links a {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      gap: 7px;
+      padding: 0 13px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .12);
+      font-size: 11px;
+      font-weight: 850;
+      backdrop-filter: blur(7px);
+      transition: transform .25s ease, background-color .25s ease;
+    }
+
+    .htr-game-links a:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, .22);
+    }
+
+    /* Zula hub */
+    .htr-hub-layout {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .htr-category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .htr-category {
+      position: relative;
+      display: flex;
+      min-height: 157px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid var(--htr-line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: 0 10px 28px rgba(8, 89, 125, .055);
+      transition: transform .32s var(--htr-ease), border-color .32s ease, box-shadow .32s ease;
+    }
+
+    .htr-category::after {
+      position: absolute;
+      right: -34px;
+      bottom: -48px;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      content: "";
+      background: rgba(8, 175, 232, .065);
+      transition: transform .4s ease;
+    }
+
+    .htr-category:hover {
+      z-index: 3;
+      transform: translateY(-7px);
+      border-color: rgba(8, 175, 232, .38);
+      box-shadow: 0 20px 42px rgba(8, 104, 147, .13);
+    }
+
+    .htr-category:hover::after {
+      transform: scale(1.45);
+    }
+
+    .htr-category-icon {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 21px;
+      place-items: center;
+      border: 1px solid rgba(8, 175, 232, .18);
+      border-radius: 13px;
+      background: #eaf9ff;
+      color: var(--htr-cyan-dark);
+      transition: transform .32s ease, background-color .32s ease, color .32s ease;
+    }
+
+    .htr-category:hover .htr-category-icon {
+      transform: rotate(-6deg) scale(1.07);
+      background: var(--htr-cyan);
+      color: #fff;
+    }
+
+    .htr-category-icon svg {
+      width: 23px;
+      height: 23px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .htr-category-copy {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+    }
+
+    .htr-category-copy strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    .htr-category-copy span {
+      display: block;
+      margin-top: 5px;
+      color: var(--htr-muted);
+      font-size: 11.5px;
+    }
+
+    .htr-hub-feature {
+      position: relative;
+      min-height: 327px;
+      overflow: hidden;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(69, 215, 255, .32), transparent 30%),
+        linear-gradient(150deg, #0c2030, #07131f);
+      box-shadow: 0 22px 58px rgba(4, 43, 65, .2);
+      color: #fff;
+    }
+
+    .htr-hub-feature::before {
+      position: absolute;
+      top: -90px;
+      right: -90px;
+      width: 260px;
+      height: 260px;
+      border: 38px solid rgba(255, 255, 255, .045);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .htr-hub-feature__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      height: 100%;
+      min-height: 327px;
+      flex-direction: column;
+      padding: 31px;
+    }
+
+    .htr-hub-feature__tag {
+      align-self: flex-start;
+      padding: 8px 10px;
+      border: 1px solid rgba(69, 215, 255, .2);
+      border-radius: 999px;
+      background: rgba(69, 215, 255, .09);
+      color: #aeeeff;
+      font-size: 9.5px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .htr-hub-feature__copy {
+      margin-top: auto;
+    }
+
+    .htr-hub-feature__copy h3 {
+      max-width: 330px;
+      margin: 0;
+      font-size: 29px;
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+
+    .htr-hub-feature__copy p {
+      margin: 13px 0 22px;
+      color: rgba(255, 255, 255, .68);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .htr-hub-feature__copy a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .htr-hub-feature__copy a span {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--htr-cyan);
+      transition: transform .25s ease;
+    }
+
+    .htr-hub-feature__copy a:hover span {
+      transform: translateX(5px);
+    }
+
+    .htr-hub-feature__copy svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    /* Showcase */
+    .htr-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .htr-showcase-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      min-height: 182px;
+      overflow: hidden;
+      border: 1px solid var(--htr-line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 13px 38px rgba(8, 80, 112, .08);
+      transition: transform .35s var(--htr-ease), border-color .35s ease, box-shadow .35s ease;
+    }
+
+    .htr-showcase-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(8, 175, 232, .38);
+      box-shadow: 0 24px 52px rgba(8, 80, 112, .15);
+    }
+
+    .htr-showcase-media {
+      position: relative;
+      overflow: hidden;
+      background: #0d1822;
+    }
+
+    .htr-showcase-media::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(90deg, transparent 60%, rgba(255, 255, 255, .12));
+    }
+
+    .htr-showcase-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .55s var(--htr-ease);
+    }
+
+    .htr-showcase-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .htr-showcase-copy {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 21px 19px;
+    }
+
+    .htr-showcase-copy small {
+      margin-bottom: 8px;
+      color: var(--htr-cyan-dark);
+      font-size: 9.5px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .htr-showcase-copy h3 {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.4;
+      letter-spacing: -.02em;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .htr-showcase-copy span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      color: #52626e;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .htr-showcase-copy span::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      content: "";
+      background: var(--htr-success);
+      box-shadow: 0 0 0 4px rgba(19, 184, 121, .1);
+    }
+
+    /* Trust */
+    .htr-trust {
+      position: relative;
+      overflow: hidden;
+      padding: 84px 0;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(8, 175, 232, .16), transparent 28%),
+        radial-gradient(circle at 95% 80%, rgba(23, 107, 255, .13), transparent 25%),
+        var(--htr-navy);
+      color: #fff;
+    }
+
+    .htr-trust::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .07;
+      background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(90deg, #000, transparent 78%);
+    }
+
+    .htr-trust-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 74px;
+      align-items: center;
+    }
+
+    .htr-trust-copy .htr-kicker {
+      color: #70ddff;
+    }
+
+    .htr-trust-copy h2 {
+      color: #fff;
+    }
+
+    .htr-trust-copy > p {
+      color: rgba(255, 255, 255, .64);
+    }
+
+    .htr-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 31px;
+    }
+
+    .htr-stat {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .055);
+      backdrop-filter: blur(10px);
+    }
+
+    .htr-stat strong {
+      display: block;
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .htr-stat span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, .55);
+      font-size: 10.5px;
+      line-height: 1.4;
+    }
+
+    .htr-promises {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .htr-promise {
+      position: relative;
+      min-height: 182px;
+      overflow: hidden;
+      padding: 23px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .055);
+      backdrop-filter: blur(12px);
+      transition: transform .32s var(--htr-ease), background-color .32s ease, border-color .32s ease;
+    }
+
+    .htr-promise:hover {
+      transform: translateY(-6px);
+      border-color: rgba(69, 215, 255, .28);
+      background: rgba(255, 255, 255, .09);
+    }
+
+    .htr-promise::after {
+      position: absolute;
+      right: -36px;
+      bottom: -45px;
+      width: 110px;
+      height: 110px;
+      border: 18px solid rgba(69, 215, 255, .04);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .htr-promise-icon {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 18px;
+      place-items: center;
+      border: 1px solid rgba(69, 215, 255, .14);
+      border-radius: 13px;
+      background: rgba(69, 215, 255, .09);
+      color: #78e0ff;
+    }
+
+    .htr-promise-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .htr-promise h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .htr-promise p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, .57);
+      font-size: 11.5px;
+      line-height: 1.6;
+    }
+
+    /* Steps and selling */
+    .htr-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+      counter-reset: htrSteps;
+    }
+
+    .htr-step {
+      position: relative;
+      min-height: 230px;
+      overflow: hidden;
+      padding: 27px;
+      border: 1px solid var(--htr-line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 13px 38px rgba(8, 80, 112, .065);
+      counter-increment: htrSteps;
+      transition: transform .32s var(--htr-ease), box-shadow .32s ease, border-color .32s ease;
+    }
+
+    .htr-step:hover {
+      transform: translateY(-7px);
+      border-color: rgba(8, 175, 232, .35);
+      box-shadow: 0 22px 48px rgba(8, 80, 112, .12);
+    }
+
+    .htr-step::before {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      content: "0" counter(htrSteps);
+      color: rgba(8, 175, 232, .09);
+      font-size: 62px;
+      font-weight: 950;
+      letter-spacing: -.07em;
+    }
+
+    .htr-step-icon {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      width: 49px;
+      height: 49px;
+      margin-bottom: 36px;
+      place-items: center;
+      border: 1px solid rgba(8, 175, 232, .19);
+      border-radius: 15px;
+      background: #eaf9ff;
+      color: var(--htr-cyan-dark);
+    }
+
+    .htr-step-icon svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .htr-step h3 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+
+    .htr-step p {
+      position: relative;
+      z-index: 2;
+      margin: 10px 0 0;
+      color: var(--htr-muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .htr-sell {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 38px;
+      margin-top: 22px;
+      padding: 45px;
+      border: 1px solid var(--htr-line);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 95% 10%, rgba(8, 175, 232, .13), transparent 28%),
+        linear-gradient(135deg, #f9fdff, #eefaff);
+      box-shadow: var(--htr-shadow-soft);
+    }
+
+    .htr-sell-copy h2 {
+      font-size: clamp(29px, 3vw, 43px);
+    }
+
+    .htr-sell-copy > p {
+      font-size: 14px;
+    }
+
+    .htr-sell-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+      align-items: stretch;
+    }
+
+    .htr-sell-card {
+      position: relative;
+      display: flex;
+      min-height: 188px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 23px;
+      border: 1px solid rgba(8, 175, 232, .18);
+      border-radius: 21px;
+      background: rgba(255, 255, 255, .86);
+      transition: transform .32s var(--htr-ease), box-shadow .32s ease, border-color .32s ease;
+    }
+
+    .htr-sell-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(8, 175, 232, .4);
+      box-shadow: 0 18px 38px rgba(8, 80, 112, .12);
+    }
+
+    .htr-sell-card::after {
+      position: absolute;
+      top: -45px;
+      right: -45px;
+      width: 125px;
+      height: 125px;
+      border: 18px solid rgba(8, 175, 232, .04);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .htr-sell-card small {
+      color: var(--htr-cyan-dark);
+      font-size: 9.5px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .htr-sell-card strong {
+      display: block;
+      max-width: 170px;
+      margin-top: 9px;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -.025em;
+    }
+
+    .htr-sell-card span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: auto;
+      color: #3e5664;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+
+    .htr-sell-card span svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--htr-success);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    /* Reviews */
+    .htr-review-layout {
+      display: grid;
+      grid-template-columns: .62fr 1.38fr;
+      gap: 22px;
+    }
+
+    .htr-review-score {
+      position: relative;
+      display: flex;
+      min-height: 308px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 31px;
+      border-radius: 25px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(69, 215, 255, .33), transparent 32%),
+        linear-gradient(145deg, #0c2335, #0b1724);
+      box-shadow: 0 22px 54px rgba(6, 49, 76, .2);
+      color: #fff;
+    }
+
+    .htr-review-score::after {
+      position: absolute;
+      right: -65px;
+      bottom: -65px;
+      width: 190px;
+      height: 190px;
+      border: 28px solid rgba(255, 255, 255, .035);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .htr-score-stars {
+      display: flex;
+      gap: 4px;
+      color: #ffc341;
+    }
+
+    .htr-score-stars svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .htr-review-score strong {
+      display: block;
+      margin-top: auto;
+      font-size: 66px;
+      line-height: .9;
+      letter-spacing: -.07em;
+    }
+
+    .htr-review-score p {
+      max-width: 260px;
+      margin: 16px 0 0;
+      color: rgba(255, 255, 255, .64);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .htr-review-score a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: #8ce7ff;
+      font-size: 11.5px;
+      font-weight: 850;
+    }
+
+    .htr-reviews {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+    }
+
+    .htr-review {
+      position: relative;
+      display: flex;
+      min-height: 308px;
+      flex-direction: column;
+      padding: 25px;
+      border: 1px solid var(--htr-line);
+      border-radius: 23px;
+      background: #fff;
+      box-shadow: 0 12px 34px rgba(8, 80, 112, .06);
+      transition: transform .32s var(--htr-ease), box-shadow .32s ease, border-color .32s ease;
+    }
+
+    .htr-review:hover {
+      transform: translateY(-7px);
+      border-color: rgba(8, 175, 232, .34);
+      box-shadow: 0 22px 46px rgba(8, 80, 112, .12);
+    }
+
+    .htr-review-quote {
+      color: rgba(8, 175, 232, .18);
+      font: 900 65px/1 Georgia, serif;
+      height: 45px;
+    }
+
+    .htr-review blockquote {
+      margin: 12px 0 25px;
+      color: #2d3c46;
+      font-size: 13.5px;
+      font-weight: 650;
+      line-height: 1.75;
+    }
+
+    .htr-review-author {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: auto;
+    }
+
+    .htr-avatar {
+      display: grid;
+      width: 39px;
+      height: 39px;
+      flex: 0 0 39px;
+      place-items: center;
+      border: 1px solid rgba(8, 175, 232, .16);
+      border-radius: 13px;
+      background: #eaf9ff;
+      color: var(--htr-cyan-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .htr-review-author strong {
+      display: block;
+      font-size: 12.5px;
+    }
+
+    .htr-review-author span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+      color: var(--htr-muted);
+      font-size: 9.5px;
+    }
+
+    .htr-review-author span svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: var(--htr-success);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    /* FAQ */
+    .htr-faq-layout {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 66px;
+      align-items: start;
+    }
+
+    .htr-faq-intro {
+      position: sticky;
+      top: 25px;
+    }
+
+    .htr-faq-intro h2 {
+      margin: 0;
+      font-size: clamp(31px, 4vw, 49px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .htr-faq-intro p {
+      margin: 17px 0 25px;
+      color: var(--htr-muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .htr-faq-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .htr-faq-item {
+      overflow: hidden;
+      border: 1px solid var(--htr-line);
+      border-radius: 19px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(8, 80, 112, .05);
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .htr-faq-item.is-open {
+      border-color: rgba(8, 175, 232, .34);
+      box-shadow: 0 15px 34px rgba(8, 80, 112, .09);
+    }
+
+    .htr-faq-question {
+      display: flex;
+      width: 100%;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 21px;
+      border: 0;
+      background: transparent;
+      color: var(--htr-ink);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .htr-faq-question span:first-child {
+      font-size: 13.5px;
+      font-weight: 820;
+      line-height: 1.4;
+    }
+
+    .htr-faq-plus {
+      position: relative;
+      width: 29px;
+      height: 29px;
+      flex: 0 0 29px;
+      border-radius: 10px;
+      background: #eaf9ff;
+    }
+
+    .htr-faq-plus::before,
+    .htr-faq-plus::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 11px;
+      height: 2px;
+      border-radius: 5px;
+      content: "";
+      transform: translate(-50%, -50%);
+      background: var(--htr-cyan-dark);
+      transition: transform .25s ease;
+    }
+
+    .htr-faq-plus::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .htr-faq-item.is-open .htr-faq-plus::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    .htr-faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s var(--htr-ease);
+    }
+
+    .htr-faq-item.is-open .htr-faq-answer {
+      grid-template-rows: 1fr;
+    }
+
+    .htr-faq-answer > div {
+      overflow: hidden;
+    }
+
+    .htr-faq-answer p {
+      margin: 0;
+      padding: 0 21px 21px;
+      color: var(--htr-muted);
+      font-size: 12.5px;
+      line-height: 1.75;
+    }
+
+    /* Final CTA */
+    .htr-final {
+      padding: 22px 0 76px;
+    }
+
+    .htr-final-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 35px;
+      align-items: center;
+      overflow: hidden;
+      padding: 52px;
+      border: 1px solid rgba(8, 175, 232, .16);
+      border-radius: 31px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(69, 215, 255, .24), transparent 30%),
+        linear-gradient(135deg, #effbff 0%, #f8fdff 50%, #edf8ff 100%);
+      box-shadow: var(--htr-shadow);
+    }
+
+    .htr-final-card::before,
+    .htr-final-card::after {
+      position: absolute;
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .htr-final-card::before {
+      top: -155px;
+      right: 12%;
+      width: 310px;
+      height: 310px;
+      border: 40px solid rgba(8, 175, 232, .04);
+    }
+
+    .htr-final-card::after {
+      bottom: -45px;
+      left: 37%;
+      width: 90px;
+      height: 90px;
+      background: rgba(23, 107, 255, .035);
+    }
+
+    .htr-final-copy,
+    .htr-final-actions {
+      position: relative;
+      z-index: 2;
+    }
+
+    .htr-final-copy h2 {
+      font-size: clamp(31px, 4vw, 48px);
+    }
+
+    .htr-final-copy > p {
+      max-width: 690px;
+      font-size: 14px;
+    }
+
+    .htr-final-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Reveal animations */
+    .js .htr-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s var(--htr-ease);
+      transition-delay: var(--htr-delay, 0ms);
+    }
+
+    .js .htr-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes htrPulse {
+      0% { transform: scale(.65); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    @keyframes htrSpin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes htrSpinLocal {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes htrFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2.5deg); }
+      50% { transform: translateX(-50%) translateY(-11px) rotate(-1deg); }
+    }
+
+    @keyframes htrFloatMini {
+      0%, 100% { margin-top: 0; }
+      50% { margin-top: -9px; }
+    }
+
+    @media (max-width: 1100px) {
+      .htr-hero-grid {
+        grid-template-columns: 1fr 430px;
+        gap: 28px;
+      }
+
+      .htr-hero-stage {
+        transform: scale(.88);
+      }
+
+      .htr-quick {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .htr-quick a:nth-child(3) {
+        border-right: 0;
+      }
+
+      .htr-quick a:nth-child(-n+3) {
+        border-bottom: 1px solid var(--htr-line);
+      }
+
+      .htr-games {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .htr-game-card--zula {
+        grid-column: 1 / -1;
+      }
+
+      .htr-category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .htr-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .htr-showcase-card {
+        grid-template-columns: 170px 1fr;
+      }
+
+      .htr-reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .htr-review {
+        min-height: 210px;
+      }
+    }
+
+    @media (min-width: 901px) and (max-width: 1100px) {
+      .htr-quick {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .htr-quick a,
+      .htr-quick a:nth-child(3) {
+        border-right: 1px solid var(--htr-line);
+        border-bottom: 0;
+      }
+
+      .htr-quick a:last-child {
+        border-right: 0;
+      }
+
+      .htr-games {
+        grid-template-columns: 1.18fr .91fr .91fr;
+      }
+
+      .htr-game-card--zula {
+        grid-column: auto;
+      }
+
+      .htr-category-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .htr-showcase {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .htr-showcase-card {
+        grid-template-columns: 112px 1fr;
+      }
+
+      .htr-reviews {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .htr-review {
+        min-height: 308px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .htr-section {
+        padding: 72px 0;
+      }
+
+      .htr-hero {
+        min-height: auto;
+        padding-top: 62px;
+      }
+
+      .htr-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .htr-hero-copy {
+        max-width: 760px;
+      }
+
+      .htr-hero-stage {
+        width: min(520px, 100%);
+        margin: -10px auto 0;
+        transform: none;
+      }
+
+      .htr-hub-layout,
+      .htr-trust-grid,
+      .htr-sell,
+      .htr-review-layout,
+      .htr-faq-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .htr-hub-feature {
+        min-height: 280px;
+      }
+
+      .htr-hub-feature__inner {
+        min-height: 280px;
+      }
+
+      .htr-trust-grid {
+        gap: 42px;
+      }
+
+      .htr-sell {
+        gap: 25px;
+      }
+
+      .htr-review-score {
+        min-height: 255px;
+      }
+
+      .htr-review-score strong {
+        font-size: 56px;
+      }
+
+      .htr-reviews {
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+        overflow-x: auto;
+        padding: 4px 4px 18px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .htr-review {
+        min-height: 285px;
+        scroll-snap-align: start;
+      }
+
+      .htr-faq-layout {
+        gap: 34px;
+      }
+
+      .htr-faq-intro {
+        position: static;
+      }
+
+      .htr-final-card {
+        grid-template-columns: 1fr;
+      }
+
+      .htr-final-actions {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .htr-container {
+        width: min(100% - 26px, 1240px);
+      }
+
+      .htr-section {
+        padding: 36px 0;
+      }
+
+      .htr-section-head {
+        display: block;
+        margin-bottom: 25px;
+      }
+
+      .htr-section-head .htr-link-arrow {
+        margin-top: 12px;
+      }
+
+      .htr-section-head h2,
+      .htr-trust-copy h2,
+      .htr-sell-copy h2,
+      .htr-final-copy h2 {
+        font-size: 34px;
+      }
+
+      .htr-section-head p,
+      .htr-trust-copy > p,
+      .htr-sell-copy > p,
+      .htr-final-copy > p {
+        font-size: 14px;
+      }
+
+      .htr-hero {
+        padding: 44px 0 55px;
+      }
+
+      .htr-hero::after {
+        width: 590px;
+        height: 590px;
+      }
+
+      .htr-hero h1 {
+        font-size: clamp(43px, 13vw, 61px);
+      }
+
+      .htr-hero-lead {
+        font-size: 15px;
+      }
+
+      .htr-hero-actions .htr-btn {
+        flex: 1 1 170px;
+      }
+
+      .htr-hero-trust {
+        gap: 12px 16px;
+      }
+
+      .htr-hero-stage {
+        min-height: 445px;
+        transform: scale(.87);
+        transform-origin: top center;
+        margin-bottom: -58px;
+      }
+
+      .htr-float-card--one {
+        right: -14px;
+      }
+
+      .htr-float-card--two {
+        left: -14px;
+      }
+
+      .htr-secure-chip {
+        right: 2px;
+      }
+
+      .htr-quick-wrap {
+        margin-top: -22px;
+      }
+
+      .htr-quick {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-radius: 19px;
+      }
+
+      .htr-quick a {
+        min-height: 69px;
+        border-right: 1px solid var(--htr-line) !important;
+        border-bottom: 1px solid var(--htr-line);
+        font-size: 11.5px;
+      }
+
+      .htr-quick a:nth-child(even) {
+        border-right: 0 !important;
+      }
+
+      .htr-quick a:nth-last-child(-n+2) {
+        border-bottom: 0;
+      }
+
+      .htr-games {
+        grid-template-columns: repeat(3, minmax(285px, 86vw));
+        overflow-x: auto;
+        padding: 3px 3px 17px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .htr-game-card--zula {
+        grid-column: auto;
+      }
+
+      .htr-games::-webkit-scrollbar,
+      .htr-category-grid::-webkit-scrollbar,
+      .htr-promises::-webkit-scrollbar,
+      .htr-steps::-webkit-scrollbar,
+      .htr-sell-actions::-webkit-scrollbar,
+      .htr-reviews::-webkit-scrollbar {
+        display: none;
+      }
+
+      .htr-game-card,
+      .htr-game-card__inner {
+        min-height: 310px;
+        scroll-snap-align: start;
+      }
+
+      .htr-game-card__inner {
+        padding: 23px;
+      }
+
+      .htr-game-card__copy h3 {
+        font-size: 27px;
+      }
+
+      .htr-category-grid {
+        grid-template-columns: none;
+        grid-template-rows: repeat(2, 132px);
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(160px, 44vw);
+        gap: 10px;
+        overflow-x: auto;
+        padding: 3px 3px 15px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .htr-category {
+        min-height: 0;
+        padding: 17px;
+        scroll-snap-align: start;
+      }
+
+      .htr-category-icon {
+        margin-bottom: 13px;
+      }
+
+      .htr-hub-feature,
+      .htr-hub-feature__inner {
+        min-height: 250px;
+      }
+
+      .htr-hub-feature {
+        display: none;
+      }
+
+      .htr-hub-feature__inner {
+        padding: 25px;
+      }
+
+      .htr-showcase-card {
+        grid-template-columns: 112px 1fr;
+        min-height: 154px;
+      }
+
+      .htr-showcase-head,
+      .htr-showcase {
+        display: none;
+      }
+
+      .htr-showcase-copy {
+        padding: 17px 15px;
+      }
+
+      .htr-trust {
+        padding: 52px 0;
+      }
+
+      .htr-promises {
+        grid-template-columns: repeat(4, minmax(260px, 82vw));
+        overflow-x: auto;
+        padding: 3px 3px 17px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .htr-promise {
+        min-height: 172px;
+        scroll-snap-align: start;
+      }
+
+      .htr-steps {
+        grid-template-columns: repeat(3, minmax(280px, 84vw));
+        overflow-x: auto;
+        padding: 3px 3px 17px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .htr-step {
+        min-height: 205px;
+        scroll-snap-align: start;
+      }
+
+      .htr-step-icon {
+        margin-bottom: 25px;
+      }
+
+      .htr-sell {
+        padding: 27px 19px;
+      }
+
+      .htr-sell-actions {
+        grid-template-columns: repeat(2, minmax(245px, 78vw));
+        overflow-x: auto;
+        padding: 3px 3px 14px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .htr-sell-card {
+        min-height: 155px;
+        scroll-snap-align: start;
+      }
+
+      .htr-review-score {
+        display: none;
+      }
+
+      .htr-review-score {
+        padding: 26px;
+      }
+
+      .htr-review-score strong {
+        margin-top: 50px;
+      }
+
+      .htr-faq-question {
+        min-height: 67px;
+        padding-inline: 17px;
+      }
+
+      .htr-faq-answer p {
+        padding: 0 17px 18px;
+      }
+
+      .htr-faq-item:nth-child(n+3) {
+        display: none;
+      }
+
+      .htr-faq-intro .htr-btn {
+        display: none;
+      }
+
+      .htr-final {
+        padding-bottom: 55px;
+      }
+
+      .htr-final-card {
+        gap: 20px;
+        padding: 27px 21px;
+        border-radius: 24px;
+      }
+
+      .htr-final-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .htr-final-actions .htr-btn {
+        min-height: 48px;
+        gap: 6px;
+        padding-inline: 8px;
+        font-size: 11.5px;
+      }
+
+      .htr-final-actions .htr-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .htr-hero-stage {
+        width: 112%;
+        margin-left: -6%;
+        transform: scale(.78);
+        margin-bottom: -102px;
+      }
+
+      .htr-main-card {
+        width: 295px;
+      }
+
+      .htr-float-card {
+        width: 188px;
+      }
+
+      .htr-category-copy strong {
+        font-size: 12.5px;
+      }
+
+      .htr-category-copy span {
+        font-size: 10.5px;
+      }
+
+      .htr-stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .htr-stat strong {
+        font-size: 23px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .htr-section {
+        padding: 32px 0;
+      }
+
+      .htr-trust {
+        padding: 48px 0;
+      }
+
+      .htr-hero {
+        padding: 40px 0 50px;
+      }
+
+      .htr-hero h1 {
+        font-size: 40px;
+      }
+
+      .htr-hero-lead {
+        font-size: 14px;
+        line-height: 1.62;
+      }
+
+      .htr-hero-stage {
+        min-height: 425px;
+      }
+
+      .htr-section-head h2,
+      .htr-trust-copy h2,
+      .htr-sell-copy h2,
+      .htr-final-copy h2,
+      .htr-faq-intro h2 {
+        font-size: 32px;
+      }
+
+      .htr-section-head p {
+        margin-top: 10px;
+        line-height: 1.55;
+      }
+
+      .htr-final-copy > p {
+        display: none;
+      }
+
+      .htr-final {
+        padding-bottom: 48px;
+      }
+    }
+
+    @media (max-width: 330px) {
+      .htr-section {
+        padding: 28px 0;
+      }
+
+      .htr-trust {
+        padding: 44px 0;
+      }
+
+      .htr-hero {
+        padding: 36px 0 45px;
+      }
+
+      .htr-hero-stage {
+        min-height: 405px;
+      }
+
+      .htr-section-head h2,
+      .htr-trust-copy h2,
+      .htr-sell-copy h2,
+      .htr-final-copy h2,
+      .htr-faq-intro h2 {
+        font-size: 30px;
+      }
+
+      .htr-sell-copy > p,
+      .htr-faq-intro > p {
+        display: none;
+      }
+
+      .htr-final {
+        padding-bottom: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .js .htr-reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg class="htr-sprite" aria-hidden="true">
+    <symbol id="htr-i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="htr-i-gamepad" viewBox="0 0 24 24"><path d="M8.5 8.5h7a5.5 5.5 0 0 1 5.2 7.3l-.6 1.8a2.5 2.5 0 0 1-4.1 1l-1.2-1.1H9.2L8 18.6a2.5 2.5 0 0 1-4.1-1l-.6-1.8a5.5 5.5 0 0 1 5.2-7.3Z"/><path d="M8 11v4M6 13h4M16.5 12h.01M18.5 14h.01"/></symbol>
+    <symbol id="htr-i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.3c0 4.8 3.1 8.1 7.5 9.7 4.4-1.6 7.5-4.9 7.5-9.7V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+    <symbol id="htr-i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="htr-i-bolt" viewBox="0 0 24 24"><path d="m13.5 2-8 12h6l-1 8 8-12h-6l1-8Z"/></symbol>
+    <symbol id="htr-i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M5.5 14H8v6H6.5A2.5 2.5 0 0 1 4 17.5v-1A2.5 2.5 0 0 1 6.5 14ZM18.5 14H16v6h1.5a2.5 2.5 0 0 0 2.5-2.5v-1a2.5 2.5 0 0 0-2.5-2.5Z"/><path d="M16 20c-1 1-2.2 1.5-4 1.5"/></symbol>
+    <symbol id="htr-i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h3"/></symbol>
+    <symbol id="htr-i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="htr-i-star" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2L3 9.4l6.2-.9L12 2.8Z"/></symbol>
+    <symbol id="htr-i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+    <symbol id="htr-i-dice" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></symbol>
+    <symbol id="htr-i-crosshair" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M12 9v6M9 12h6"/></symbol>
+    <symbol id="htr-i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Z"/><path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></symbol>
+    <symbol id="htr-i-ticket" viewBox="0 0 24 24"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4V6Z"/><path d="M12 7.5v2M12 11v2M12 14.5v2"/></symbol>
+    <symbol id="htr-i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7M4 11v4c0 1.4 2.2 2.5 5 2.5 1.1 0 2.1-.2 3-.5"/><path d="M14 12.5c.8-.6 2-1 3.5-1 2.5 0 4.5 1.1 4.5 2.5s-2 2.5-4.5 2.5S13 15.4 13 14c0-.6.3-1.1 1-1.5Z"/><path d="M13 14v4c0 1.4 2 2.5 4.5 2.5S22 19.4 22 18v-4"/></symbol>
+    <symbol id="htr-i-gem" viewBox="0 0 24 24"><path d="m3 9 4-5h10l4 5-9 12L3 9Z"/><path d="M3 9h18M8 4l4 5 4-5M8 9l4 12 4-12"/></symbol>
+    <symbol id="htr-i-parachute" viewBox="0 0 24 24"><path d="M3 10a9 9 0 0 1 18 0H3Z"/><path d="m3 10 7 6M21 10l-7 6M12 10v6M9 16h6v5H9z"/></symbol>
+    <symbol id="htr-i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="htr-i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L20.5 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></symbol>
+    <symbol id="htr-i-message" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8 8.8 8.8 0 0 1-3.7-.9L4 21l1.8-5A8 8 0 1 1 21 12Z"/><path d="M9 9.5c.5 2.5 2 4 4.5 5l1.5-1.2"/></symbol>
+    <symbol id="htr-i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+    <symbol id="htr-i-box" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4Z"/><path d="M4 7v10l8 4 8-4V7M12 11v10"/></symbol>
+  </svg>
+
+  <main class="htr-home">
+    <section class="htr-hero" aria-labelledby="htr-main-title">
+      <div class="htr-container htr-hero-grid">
+        <div class="htr-hero-copy htr-reveal is-visible">
+          <div class="htr-hero-badge"><span class="htr-live-dot"></span> HESABIMTR OYUN MAĞAZASI</div>
+          <h1 id="htr-main-title">Oyunun hazır.<br><span>Avantajın tek tık uzakta.</span></h1>
+          <p class="htr-hero-lead">Zula hesap ve desenlerden Valorant VP’ye, PUBG Mobile UC’den oyun hesabına kadar aradığın dijital ürünleri hızlı, anlaşılır ve güven veren bir alışveriş deneyimiyle keşfet.</p>
+          <div class="htr-hero-actions">
+            <a class="htr-btn htr-btn--primary" href="#htr-oyunlar">
+              Oyununu seç
+              <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg>
+            </a>
+            <a class="htr-btn htr-btn--ghost" href="https://wa.me/908503077784?text=Merhaba%20HESABIMTR%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_top" rel="noopener">
+              <svg aria-hidden="true"><use href="#htr-i-message"></use></svg>
+              WhatsApp’tan sor
+            </a>
+          </div>
+          <ul class="htr-hero-trust" aria-label="Alışveriş avantajları">
+            <li><svg aria-hidden="true"><use href="#htr-i-bolt"></use></svg> Ortalama 1–5 dk işlem</li>
+            <li><svg aria-hidden="true"><use href="#htr-i-shield"></use></svg> 3D Secure &amp; SSL</li>
+            <li><svg aria-hidden="true"><use href="#htr-i-headset"></use></svg> 09.00–02.00 destek</li>
+          </ul>
+        </div>
+
+        <div class="htr-hero-stage htr-reveal is-visible" id="htr-stage">
+          <div class="htr-stage-orbit"></div>
+          <div class="htr-main-card">
+            <div class="htr-main-card__top">
+              <div class="htr-brand-chip">
+                <img src="https://cdn.myikas.com/images/theme-images/5870144b-187b-41f1-b867-14c478462946/image_360.webp" alt="" width="37" height="37">
+                HESABIMTR
+              </div>
+              <div class="htr-card-status"><span class="htr-live-dot"></span> Aktif</div>
+            </div>
+            <div class="htr-main-card__art">
+              <svg><use href="#htr-i-gamepad"></use></svg>
+            </div>
+            <div class="htr-main-card__bottom">
+              <small>OYUNCU DOSTU MAĞAZA</small>
+              <strong>Hızlı teslimat.<br>Net destek.</strong>
+            </div>
+          </div>
+
+          <a class="htr-float-card htr-float-card--one" href="https://hesabimtr.shop/zsl-desen" target="_top" tabindex="-1">
+            <span class="htr-float-thumb"><img src="https://cdn.myikas.com/images/0de44d93-a700-4940-a845-00d1771ea34d/b17595bd-7b0d-41e9-9f3e-aea342d2cc7e/540/chatgpt-image-8-tem-2026-09-41-02.webp" alt="" width="58" height="58"></span>
+            <span class="htr-float-copy"><small>ÖNE ÇIKAN</small><strong>Zula Süper Lig Desenleri</strong></span>
+          </a>
+
+          <a class="htr-float-card htr-float-card--two" href="https://hesabimtr.shop/hesaplar" target="_top" tabindex="-1">
+            <span class="htr-float-thumb"><img src="https://cdn.myikas.com/images/0de44d93-a700-4940-a845-00d1771ea34d/bc4d98ff-518f-44bd-8a37-7e2c1ce4a87c/540/f13-numarali-hesap-1080x1080.webp" alt="" width="58" height="58"></span>
+            <span class="htr-float-copy"><small>HESAP VİTRİNİ</small><strong>Özenle listelenen hesaplar</strong></span>
+          </a>
+
+          <div class="htr-secure-chip"><svg><use href="#htr-i-shield"></use></svg> Güvenli ödeme</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="htr-container htr-quick-wrap htr-reveal">
+      <nav class="htr-quick" aria-label="Hızlı kategori bağlantıları">
+        <a href="https://hesabimtr.shop/hesaplar" target="_top"><svg aria-hidden="true"><use href="#htr-i-user"></use></svg> Zula Hesap</a>
+        <a href="https://hesabimtr.shop/zsl-desen" target="_top"><svg aria-hidden="true"><use href="#htr-i-spark"></use></svg> ZSL Desen</a>
+        <a href="https://hesabimtr.shop/7-sinirsiz-silah" target="_top"><svg aria-hidden="true"><use href="#htr-i-crosshair"></use></svg> +7 Silah</a>
+        <a href="https://hesabimtr.shop/valorant-hesap" target="_top"><svg aria-hidden="true"><use href="#htr-i-gamepad"></use></svg> Valorant Hesap</a>
+        <a href="https://hesabimtr.shop/valorant-point-vp" target="_top"><svg aria-hidden="true"><use href="#htr-i-gem"></use></svg> Valorant VP</a>
+        <a href="https://hesabimtr.shop/uc-" target="_top"><svg aria-hidden="true"><use href="#htr-i-parachute"></use></svg> PUBG UC</a>
+      </nav>
+    </div>
+
+    <section class="htr-section" id="htr-oyunlar" aria-labelledby="htr-games-title">
+      <div class="htr-container">
+        <div class="htr-section-head htr-reveal">
+          <div class="htr-section-head__copy">
+            <div class="htr-kicker">OYUNUNU SEÇ</div>
+            <h2 id="htr-games-title">Aradığın ürüne kısa yoldan ulaş.</h2>
+            <p>Uzun menüler arasında kaybolmadan oyununu seç, ilgili hesap ve bakiye seçeneklerini doğrudan incele.</p>
+          </div>
+          <a class="htr-link-arrow" href="https://hesabimtr.shop/" target="_top">Tüm mağazayı keşfet <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></a>
+        </div>
+
+        <div class="htr-games">
+          <article class="htr-game-card htr-game-card--zula htr-reveal" style="--htr-delay: 60ms">
+            <div class="htr-game-card__ghost">ZULA</div>
+            <div class="htr-game-card__inner">
+              <div class="htr-game-card__top">
+                <span class="htr-game-icon"><svg aria-hidden="true"><use href="#htr-i-crosshair"></use></svg></span>
+                <span class="htr-game-pill">EN GENİŞ KOLEKSİYON</span>
+              </div>
+              <div class="htr-game-card__copy">
+                <small>HESAP • DESEN • ALTIN</small>
+                <h3>Zula Dünyası</h3>
+                <p>Hesaptan desene, +7 sınırsız silahtan Zula Pass’e tüm Zula seçenekleri bir arada.</p>
+                <div class="htr-game-links">
+                  <a href="https://hesabimtr.shop/hesaplar" target="_top">Hesaplar <span>→</span></a>
+                  <a href="https://hesabimtr.shop/zula-desen" target="_top">Desenler <span>→</span></a>
+                  <a href="https://hesabimtr.shop/altin-1" target="_top">Altın <span>→</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="htr-game-card htr-game-card--valorant htr-reveal" style="--htr-delay: 120ms">
+            <div class="htr-game-card__ghost">V</div>
+            <div class="htr-game-card__inner">
+              <div class="htr-game-card__top">
+                <span class="htr-game-icon"><svg aria-hidden="true"><use href="#htr-i-gem"></use></svg></span>
+                <span class="htr-game-pill">HESAP &amp; VP</span>
+              </div>
+              <div class="htr-game-card__copy">
+                <small>VALORANT</small>
+                <h3>Rekabete hazır ol.</h3>
+                <p>Valorant hesaplarını ve VP seçeneklerini güncel sayfalarında incele.</p>
+                <div class="htr-game-links">
+                  <a href="https://hesabimtr.shop/valorant-hesap" target="_top">Hesap <span>→</span></a>
+                  <a href="https://hesabimtr.shop/valorant-point-vp" target="_top">VP <span>→</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="htr-game-card htr-game-card--pubg htr-reveal" style="--htr-delay: 180ms">
+            <div class="htr-game-card__ghost">UC</div>
+            <div class="htr-game-card__inner">
+              <div class="htr-game-card__top">
+                <span class="htr-game-icon"><svg aria-hidden="true"><use href="#htr-i-parachute"></use></svg></span>
+                <span class="htr-game-pill">MOBİL</span>
+              </div>
+              <div class="htr-game-card__copy">
+                <small>PUBG MOBILE</small>
+                <h3>UC’ni seç, oyuna dön.</h3>
+                <p>Farklı UC paketlerini tek sayfada karşılaştır ve sana uygun seçeneğe ulaş.</p>
+                <div class="htr-game-links">
+                  <a href="https://hesabimtr.shop/uc-" target="_top">UC paketleri <span>→</span></a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-section htr-section--soft" aria-labelledby="htr-hub-title">
+      <div class="htr-container">
+        <div class="htr-section-head htr-reveal">
+          <div class="htr-section-head__copy">
+            <div class="htr-kicker">ZULA MERKEZİ</div>
+            <h2 id="htr-hub-title">Zula için ne arıyorsan burada.</h2>
+            <p>HESABIMTR’nin uzmanlaştığı Zula kategorilerini ihtiyacına göre hızlıca filtrele.</p>
+          </div>
+        </div>
+
+        <div class="htr-hub-layout">
+          <div class="htr-category-grid">
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/hesaplar" target="_top" style="--htr-delay: 30ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-user"></use></svg></span>
+              <span class="htr-category-copy"><strong>Zula Hesap</strong><span>Detaylı hesap vitrini</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/random-hesap" target="_top" style="--htr-delay: 60ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-dice"></use></svg></span>
+              <span class="htr-category-copy"><strong>Random Hesap</strong><span>Sürpriz içerikli seçenekler</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/7-sinirsiz-silah" target="_top" style="--htr-delay: 90ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-crosshair"></use></svg></span>
+              <span class="htr-category-copy"><strong>+7 Sınırsız Silah</strong><span>Silah seçeneklerini incele</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/7-sinirsiz-tabanca" target="_top" style="--htr-delay: 120ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-bolt"></use></svg></span>
+              <span class="htr-category-copy"><strong>+7 Sınırsız Tabanca</strong><span>Tabanca seçeneklerini incele</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/zula-desen" target="_top" style="--htr-delay: 150ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-spark"></use></svg></span>
+              <span class="htr-category-copy"><strong>Zula Skin &amp; Desen</strong><span>Tarzını oyuna yansıt</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/zsl-desen" target="_top" style="--htr-delay: 180ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-star"></use></svg></span>
+              <span class="htr-category-copy"><strong>Süper Lig Desen</strong><span>ZSL koleksiyonunu keşfet</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/zula-pass" target="_top" style="--htr-delay: 210ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-ticket"></use></svg></span>
+              <span class="htr-category-copy"><strong>Zula Pass</strong><span>Sezon avantajları</span></span>
+            </a>
+            <a class="htr-category htr-reveal" href="https://hesabimtr.shop/altin-1" target="_top" style="--htr-delay: 240ms">
+              <span class="htr-category-icon"><svg aria-hidden="true"><use href="#htr-i-coins"></use></svg></span>
+              <span class="htr-category-copy"><strong>Altın &amp; Zula Parası</strong><span>Bakiye paketlerini seç</span></span>
+            </a>
+          </div>
+
+          <aside class="htr-hub-feature htr-reveal" style="--htr-delay: 120ms">
+            <div class="htr-hub-feature__inner">
+              <span class="htr-hub-feature__tag">OYUNCUDAN OYUNCUYA</span>
+              <div class="htr-hub-feature__copy">
+                <h3>Kullanmadığın Zula klanı değerini bulsun.</h3>
+                <p>Klan seçeneklerini incele veya satış süreci hakkında WhatsApp destek ekibinden bilgi al.</p>
+                <a href="https://hesabimtr.shop/klan" target="_top">Zula Klan kategorisi <span><svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></span></a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="htr-section-head htr-showcase-head htr-reveal" style="margin-top: 54px; margin-bottom: 24px;">
+          <div class="htr-section-head__copy">
+            <div class="htr-kicker">VİTRİNDEN SEÇKİLER</div>
+            <h2 style="font-size: clamp(28px, 3.2vw, 42px);">Güncel ürün sayfalarına doğrudan geç.</h2>
+          </div>
+          <a class="htr-link-arrow" href="https://hesabimtr.shop/" target="_top">Güncel fiyatları gör <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></a>
+        </div>
+
+        <div class="htr-showcase">
+          <a class="htr-showcase-card htr-reveal" href="https://hesabimtr.shop/zula-super-lig-desen?zula-super-lig-desen=m4a4-zsl7" target="_top" style="--htr-delay: 50ms">
+            <span class="htr-showcase-media"><img src="https://cdn.myikas.com/images/0de44d93-a700-4940-a845-00d1771ea34d/b17595bd-7b0d-41e9-9f3e-aea342d2cc7e/540/chatgpt-image-8-tem-2026-09-41-02.webp" alt="Zula M4A4 ZSL7 desen görseli" loading="lazy" width="400" height="400"></span>
+            <span class="htr-showcase-copy"><small>ZSL KOLEKSİYONU</small><h3>Zula Süper Lig Desen — M4A4 ZSL7</h3><span>Ürün sayfasına git</span></span>
+          </a>
+          <a class="htr-showcase-card htr-reveal" href="https://hesabimtr.shop/hesaplar" target="_top" style="--htr-delay: 100ms">
+            <span class="htr-showcase-media"><img src="https://cdn.myikas.com/images/0de44d93-a700-4940-a845-00d1771ea34d/bc4d98ff-518f-44bd-8a37-7e2c1ce4a87c/540/f13-numarali-hesap-1080x1080.webp" alt="Zula hesap vitrini görseli" loading="lazy" width="400" height="400"></span>
+            <span class="htr-showcase-copy"><small>HESAP VİTRİNİ</small><h3>İçeriği belirtilmiş Zula hesap seçenekleri</h3><span>Hesapları karşılaştır</span></span>
+          </a>
+          <a class="htr-showcase-card htr-reveal" href="https://hesabimtr.shop/zula-pass" target="_top" style="--htr-delay: 150ms">
+            <span class="htr-showcase-media"><img src="https://cdn.myikas.com/images/0de44d93-a700-4940-a845-00d1771ea34d/3a48785c-bea0-4c58-9475-87e8f1090040/540/chatgpt-image-15-haz-2026-20-56-02.webp" alt="Zula Pass görseli" loading="lazy" width="400" height="400"></span>
+            <span class="htr-showcase-copy"><small>SEZON AVANTAJI</small><h3>Zula Pass seçeneklerini güncel sayfasında incele</h3><span>Paketleri gör</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-trust" aria-labelledby="htr-trust-title">
+      <div class="htr-container htr-trust-grid">
+        <div class="htr-trust-copy htr-reveal">
+          <div class="htr-kicker">NEDEN HESABIMTR?</div>
+          <h2 id="htr-trust-title">Sadece ürün değil, net bir alışveriş süreci.</h2>
+          <p>Siparişten teslimata kadar ne olacağını bil; ihtiyaç duyduğunda gerçek bir destek kanalına ulaş.</p>
+          <div class="htr-stat-grid" aria-label="HESABIMTR mağaza istatistikleri">
+            <div class="htr-stat"><strong data-count="21814">21.814</strong><span>memnun müşteri</span></div>
+            <div class="htr-stat"><strong data-count="6404">6.404</strong><span>tekrarlanan sipariş</span></div>
+            <div class="htr-stat"><strong data-count="96">%96</strong><span>müşteri memnuniyeti</span></div>
+            <div class="htr-stat"><strong>7/24</strong><span>sipariş verebilme</span></div>
+          </div>
+        </div>
+
+        <div class="htr-promises">
+          <article class="htr-promise htr-reveal" style="--htr-delay: 50ms">
+            <span class="htr-promise-icon"><svg aria-hidden="true"><use href="#htr-i-lock"></use></svg></span>
+            <h3>Güvenli ödeme altyapısı</h3>
+            <p>3D Secure ve SSL destekli ödeme adımlarıyla bilgilerin koruma altında ilerler.</p>
+          </article>
+          <article class="htr-promise htr-reveal" style="--htr-delay: 100ms">
+            <span class="htr-promise-icon"><svg aria-hidden="true"><use href="#htr-i-bolt"></use></svg></span>
+            <h3>Hızlı işlem akışı</h3>
+            <p>Kod ve hesap siparişlerinde süreç, ürün tipine göre hızlıca başlatılır.</p>
+          </article>
+          <article class="htr-promise htr-reveal" style="--htr-delay: 150ms">
+            <span class="htr-promise-icon"><svg aria-hidden="true"><use href="#htr-i-headset"></use></svg></span>
+            <h3>Ulaşılabilir destek</h3>
+            <p>Satın alma öncesi ve sonrasında 09.00–02.00 arasında WhatsApp üzerinden iletişim kur.</p>
+          </article>
+          <article class="htr-promise htr-reveal" style="--htr-delay: 200ms">
+            <span class="htr-promise-icon"><svg aria-hidden="true"><use href="#htr-i-shield"></use></svg></span>
+            <h3>Şeffaf güvence bilgisi</h3>
+            <p>Hesap ve dijital ürün süreçleriyle ilgili güvence kapsamını satın almadan önce incele.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-section" aria-labelledby="htr-steps-title">
+      <div class="htr-container">
+        <div class="htr-section-head htr-reveal">
+          <div class="htr-section-head__copy">
+            <div class="htr-kicker">3 ADIMDA ALIŞVERİŞ</div>
+            <h2 id="htr-steps-title">Seç. Güvenle öde. Oyuna dön.</h2>
+            <p>Karmaşık bakiye yükleme adımları yerine doğrudan ürününü seçerek siparişini tamamla.</p>
+          </div>
+        </div>
+
+        <div class="htr-steps">
+          <article class="htr-step htr-reveal" style="--htr-delay: 50ms">
+            <span class="htr-step-icon"><svg aria-hidden="true"><use href="#htr-i-search"></use></svg></span>
+            <h3>Ürününü bul</h3>
+            <p>Oyun, hesap veya bakiye kategorisinden ihtiyacına uygun ürünü seç.</p>
+          </article>
+          <article class="htr-step htr-reveal" style="--htr-delay: 100ms">
+            <span class="htr-step-icon"><svg aria-hidden="true"><use href="#htr-i-card"></use></svg></span>
+            <h3>Siparişini tamamla</h3>
+            <p>Sepete ekle, iletişim bilgilerini kontrol et ve güvenli ödeme adımını tamamla.</p>
+          </article>
+          <article class="htr-step htr-reveal" style="--htr-delay: 150ms">
+            <span class="htr-step-icon"><svg aria-hidden="true"><use href="#htr-i-box"></use></svg></span>
+            <h3>Teslimatını al</h3>
+            <p>Ürün tipine uygun teslimat yöntemiyle bilgilerini al; gerektiğinde destek ekibine ulaş.</p>
+          </article>
+        </div>
+
+        <div class="htr-sell htr-reveal">
+          <div class="htr-sell-copy">
+            <div class="htr-kicker">HESABINI SAT</div>
+            <h2>Kullanmadığın hesap, yeni fırsata dönüşsün.</h2>
+            <p>Zula veya Valorant hesabını satmak istiyorsan ilgili WhatsApp hattına doğrudan yaz. Hesabın hakkında bilgi ver, süreçle ilgili dönüş al.</p>
+          </div>
+          <div class="htr-sell-actions">
+            <a class="htr-sell-card" href="https://wa.me/908503077784?text=Merhabalar%20Valorant%20Hesab%C4%B1m%C4%B1%20Satmak%20%C4%B0stiyorum." target="_top" rel="noopener">
+              <small>VALORANT</small>
+              <strong>Valorant hesabımı satmak istiyorum</strong>
+              <span><svg aria-hidden="true"><use href="#htr-i-message"></use></svg> WhatsApp’tan başla</span>
+            </a>
+            <a class="htr-sell-card" href="https://wa.me/908503077784?text=Merhabalar%20Zula%20Hesab%C4%B1m%C4%B1%20Satmak%20%C4%B0stiyorum." target="_top" rel="noopener">
+              <small>ZULA</small>
+              <strong>Zula hesabımı satmak istiyorum</strong>
+              <span><svg aria-hidden="true"><use href="#htr-i-message"></use></svg> WhatsApp’tan başla</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-section htr-section--soft" aria-labelledby="htr-reviews-title">
+      <div class="htr-container">
+        <div class="htr-section-head htr-reveal">
+          <div class="htr-section-head__copy">
+            <div class="htr-kicker">GERÇEK MÜŞTERİ DENEYİMİ</div>
+            <h2 id="htr-reviews-title">Güven, teslimattan sonra belli olur.</h2>
+            <p>Mağazada yayınlanan doğrulanmış sipariş yorumlarından kısa bir seçki.</p>
+          </div>
+          <a class="htr-link-arrow" href="https://hesabimtr.shop/pages/musterilerimiz" target="_top">Tüm yorumları oku <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></a>
+        </div>
+
+        <div class="htr-review-layout">
+          <aside class="htr-review-score htr-reveal">
+            <div class="htr-score-stars" aria-label="5 yıldız">
+              <svg><use href="#htr-i-star"></use></svg><svg><use href="#htr-i-star"></use></svg><svg><use href="#htr-i-star"></use></svg><svg><use href="#htr-i-star"></use></svg><svg><use href="#htr-i-star"></use></svg>
+            </div>
+            <strong>%96</strong>
+            <p>HESABIMTR ana sayfasında yayınlanan müşteri memnuniyeti oranı.</p>
+            <a href="https://hesabimtr.shop/pages/musterilerimiz" target="_top">Doğrulanmış yorumlara git →</a>
+          </aside>
+
+          <div class="htr-reviews" aria-label="Müşteri yorumları">
+            <article class="htr-review htr-reveal" style="--htr-delay: 60ms">
+              <div class="htr-review-quote">“</div>
+              <blockquote>Hesap sorunsuz teslim edildi, giriş yaptım. Teşekkürler.</blockquote>
+              <div class="htr-review-author"><span class="htr-avatar">AU</span><span><strong>Arda U.</strong><span><svg aria-hidden="true"><use href="#htr-i-check"></use></svg> Doğrulanmış sipariş</span></span></div>
+            </article>
+            <article class="htr-review htr-reveal" style="--htr-delay: 120ms">
+              <div class="htr-review-quote">“</div>
+              <blockquote>Valorant hesabını aldım, 5 dakika içinde teslim edildi; sorunsuz giriş yaptım.</blockquote>
+              <div class="htr-review-author"><span class="htr-avatar">ND</span><span><strong>Nihat D.</strong><span><svg aria-hidden="true"><use href="#htr-i-check"></use></svg> Doğrulanmış sipariş</span></span></div>
+            </article>
+            <article class="htr-review htr-reveal" style="--htr-delay: 180ms">
+              <div class="htr-review-quote">“</div>
+              <blockquote>WhatsApp destek hattı çok ilgili, tüm sorularıma tek tek cevap verdiler.</blockquote>
+              <div class="htr-review-author"><span class="htr-avatar">MD</span><span><strong>Mert D.</strong><span><svg aria-hidden="true"><use href="#htr-i-check"></use></svg> Doğrulanmış sipariş</span></span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-section" aria-labelledby="htr-faq-title">
+      <div class="htr-container htr-faq-layout">
+        <div class="htr-faq-intro htr-reveal">
+          <div class="htr-kicker">MERAK ETTİKLERİN</div>
+          <h2 id="htr-faq-title">Satın almadan önce bilmen gerekenler.</h2>
+          <p>Teslimat, güvence ve destek süreciyle ilgili en sık sorulan soruların kısa cevapları.</p>
+          <a class="htr-btn htr-btn--ghost" href="https://hesabimtr.shop/pages/sss" target="_top">Tüm yardım konuları <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></a>
+        </div>
+
+        <div class="htr-faq-list htr-reveal">
+          <article class="htr-faq-item is-open">
+            <button class="htr-faq-question" type="button" aria-expanded="true"><span>Siparişimi verdikten sonra ürünüm nasıl teslim edilir?</span><span class="htr-faq-plus" aria-hidden="true"></span></button>
+            <div class="htr-faq-answer"><div><p>Dijital ürün teslimatı, ürün tipine göre siparişte kullandığın iletişim bilgileri veya uygun teslimat yöntemi üzerinden gerçekleştirilir. Hesap ürünlerinde giriş bilgileri güvenli şekilde paylaşılır.</p></div></div>
+          </article>
+          <article class="htr-faq-item">
+            <button class="htr-faq-question" type="button" aria-expanded="false"><span>Ortalama işlem süresi ne kadar?</span><span class="htr-faq-plus" aria-hidden="true"></span></button>
+            <div class="htr-faq-answer"><div><p>Mağaza genelinde işlemler ortalama 1–5 dakika içinde tamamlanır. Ürün tipi, yoğunluk ve oyun içi teslimat koşullarına göre süre değişebilir.</p></div></div>
+          </article>
+          <article class="htr-faq-item">
+            <button class="htr-faq-question" type="button" aria-expanded="false"><span>Satın aldığım oyun hesabı için güvence var mı?</span><span class="htr-faq-plus" aria-hidden="true"></span></button>
+            <div class="htr-faq-answer"><div><p>Hesap ürünlerinde geçerli kapsam ve koşullar ürün detayında ve Güvence sayfasında açıklanır. Satın almadan önce bu bilgileri incelemeni öneririz.</p></div></div>
+          </article>
+          <article class="htr-faq-item">
+            <button class="htr-faq-question" type="button" aria-expanded="false"><span>Oyun içi teslimatlar hangi saatlerde yapılır?</span><span class="htr-faq-plus" aria-hidden="true"></span></button>
+            <div class="htr-faq-answer"><div><p>Oyun içi teslimatlar 09.00–02.00 saatleri arasında gerçekleştirilir. Kod veya hesap ürünlerinde ilgili ürün sayfasındaki teslimat bilgisi esas alınır.</p></div></div>
+          </article>
+          <article class="htr-faq-item">
+            <button class="htr-faq-question" type="button" aria-expanded="false"><span>Siparişle ilgili yardıma ihtiyacım olursa ne yapmalıyım?</span><span class="htr-faq-plus" aria-hidden="true"></span></button>
+            <div class="htr-faq-answer"><div><p>0850 307 77 84 numaralı WhatsApp destek hattına sipariş numaranla birlikte yazabilirsin. Ekip, destek saatleri içinde süreci kontrol eder.</p></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="htr-final">
+      <div class="htr-container">
+        <div class="htr-final-card htr-reveal">
+          <div class="htr-final-copy">
+            <div class="htr-kicker">OYUNA DÖNME ZAMANI</div>
+            <h2>Aradığın ürün hazırsa, beklemene gerek yok.</h2>
+            <p>Kategorini seçip güncel ürünleri incele veya karar vermeden önce destek ekibine sor.</p>
+          </div>
+          <div class="htr-final-actions">
+            <a class="htr-btn htr-btn--primary" href="https://hesabimtr.shop/" target="_top">Mağazayı keşfet <svg aria-hidden="true"><use href="#htr-i-arrow"></use></svg></a>
+            <a class="htr-btn htr-btn--whatsapp" href="https://wa.me/908503077784?text=Merhaba%20HESABIMTR%2C%20bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_top" rel="noopener"><svg aria-hidden="true"><use href="#htr-i-message"></use></svg> Destek al</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+
+    (function () {
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealItems = document.querySelectorAll('.htr-reveal:not(.is-visible)');
+
+      if (!reducedMotion && 'IntersectionObserver' in window) {
+        var revealObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -35px' });
+        revealItems.forEach(function (item) { revealObserver.observe(item); });
+      } else {
+        revealItems.forEach(function (item) { item.classList.add('is-visible'); });
+      }
+
+      document.querySelectorAll('.htr-faq-question').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var item = button.closest('.htr-faq-item');
+          var willOpen = !item.classList.contains('is-open');
+          document.querySelectorAll('.htr-faq-item.is-open').forEach(function (openItem) {
+            openItem.classList.remove('is-open');
+            openItem.querySelector('.htr-faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (willOpen) {
+            item.classList.add('is-open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+          notifyHeight();
+        });
+      });
+
+      if (!reducedMotion) {
+        var stage = document.getElementById('htr-stage');
+        if (stage && window.innerWidth > 900 && window.matchMedia('(pointer: fine)').matches) {
+          stage.addEventListener('pointermove', function (event) {
+            var rect = stage.getBoundingClientRect();
+            var x = (event.clientX - rect.left) / rect.width - .5;
+            var y = (event.clientY - rect.top) / rect.height - .5;
+            stage.style.transform = 'perspective(900px) rotateY(' + (x * 4) + 'deg) rotateX(' + (y * -4) + 'deg)';
+          });
+          stage.addEventListener('pointerleave', function () { stage.style.transform = ''; });
+        }
+      }
+
+      function notifyHeight() {
+        var height = Math.ceil(document.documentElement.scrollHeight);
+        window.parent.postMessage({ type: 'hesabimtr:resize', height: height }, '*');
+      }
+
+      window.addEventListener('load', notifyHeight);
+      window.addEventListener('resize', notifyHeight);
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(notifyHeight).observe(document.body);
+      }
+      setTimeout(notifyHeight, 500);
+      setTimeout(notifyHeight, 1800);
+    }());
+  </script>
+</body>
+</html>
