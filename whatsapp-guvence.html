@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071813">
+  <title>HesabımTR Güvence | WhatsApp Müşteri Görüşmeleri</title>
+  <meta name="description" content="HesabımTR müşterilerinin WhatsApp üzerinden ilettiği güven ve memnuniyet mesajlarından örnekler.">
+  <style>
+    :root {
+      --bg:#06110e;
+      --bg-2:#0a1d17;
+      --panel:#0e2a22;
+      --panel-2:#12362c;
+      --text:#f4fff9;
+      --muted:#a9c8bc;
+      --green:#25d366;
+      --green-2:#43f08a;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 22px 65px rgba(0,0,0,.36);
+      --radius:26px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      min-width:320px;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 6%, rgba(37,211,102,.17), transparent 27rem),
+        radial-gradient(circle at 88% 18%, rgba(77,150,255,.10), transparent 24rem),
+        linear-gradient(180deg, #071813 0%, var(--bg) 46%, #050c0a 100%);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    button, a { -webkit-tap-highlight-color:transparent; }
+    .page {
+      position:relative;
+      isolation:isolate;
+      min-height:100vh;
+    }
+    .ambient {
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      pointer-events:none;
+      opacity:.65;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(to bottom, #000 0%, transparent 82%);
+    }
+    .orb {
+      position:fixed;
+      z-index:-1;
+      width:330px;
+      aspect-ratio:1;
+      border-radius:999px;
+      filter:blur(90px);
+      opacity:.16;
+      pointer-events:none;
+      animation:orbMove 14s ease-in-out infinite alternate;
+    }
+    .orb--one { left:-180px; top:23vh; background:#25d366; }
+    .orb--two { right:-190px; top:54vh; background:#3478f6; animation-delay:-5s; }
+    @keyframes orbMove {
+      to { transform:translate3d(28px, -38px, 0) scale(1.08); }
+    }
+    .shell {
+      width:min(1240px, calc(100% - 28px));
+      margin:0 auto;
+    }
+    .hero {
+      position:relative;
+      padding:clamp(48px, 8vw, 104px) 0 36px;
+      text-align:center;
+    }
+    .eyebrow {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 14px;
+      border:1px solid rgba(67,240,138,.30);
+      border-radius:999px;
+      background:rgba(12,43,33,.74);
+      color:#bfffd7;
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:.09em;
+      box-shadow:inset 0 1px rgba(255,255,255,.08);
+    }
+    .live-dot {
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--green-2);
+      box-shadow:0 0 0 0 rgba(67,240,138,.48);
+      animation:pulse 1.9s infinite;
+    }
+    @keyframes pulse {
+      70% { box-shadow:0 0 0 11px rgba(67,240,138,0); }
+      100% { box-shadow:0 0 0 0 rgba(67,240,138,0); }
+    }
+    h1 {
+      max-width:950px;
+      margin:22px auto 16px;
+      font-size:clamp(38px, 7vw, 76px);
+      line-height:.99;
+      letter-spacing:-.055em;
+      text-wrap:balance;
+    }
+    .gradient-text {
+      background:linear-gradient(105deg, #ffffff 12%, #bfffd6 52%, #43f08a 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero__text {
+      max-width:700px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:clamp(16px, 2.2vw, 20px);
+      line-height:1.7;
+      text-wrap:balance;
+    }
+    .hero__actions {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
+    }
+    .btn {
+      min-height:52px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:0 20px;
+      border:1px solid transparent;
+      border-radius:15px;
+      font-weight:850;
+      text-decoration:none;
+      transition:transform .22s ease, border-color .22s ease, background .22s ease;
+    }
+    .btn:hover { transform:translateY(-3px); }
+    .btn--primary {
+      color:#052312;
+      background:linear-gradient(135deg, #69f49d, #25d366);
+      box-shadow:0 14px 34px rgba(37,211,102,.22);
+    }
+    .btn--secondary {
+      color:var(--text);
+      background:rgba(255,255,255,.055);
+      border-color:var(--line);
+    }
+    .btn svg { width:21px; height:21px; fill:currentColor; }
+    .trust-bar {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+      margin:30px 0 42px;
+    }
+    .trust-item {
+      min-height:90px;
+      display:flex;
+      align-items:center;
+      gap:13px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:linear-gradient(145deg, rgba(255,255,255,.072), rgba(255,255,255,.035));
+      box-shadow:inset 0 1px rgba(255,255,255,.05);
+    }
+    .trust-item__icon {
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      color:#7cf5a7;
+      background:rgba(37,211,102,.12);
+      border:1px solid rgba(37,211,102,.18);
+    }
+    .trust-item__icon svg { width:22px; height:22px; fill:currentColor; }
+    .trust-item strong { display:block; font-size:15px; }
+    .trust-item small { display:block; margin-top:4px; color:var(--muted); line-height:1.35; }
+    .section-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:24px;
+      margin-bottom:22px;
+    }
+    .section-head h2 {
+      margin:0;
+      font-size:clamp(28px, 5vw, 46px);
+      letter-spacing:-.035em;
+    }
+    .section-head p {
+      max-width:560px;
+      margin:8px 0 0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+    .counter {
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      padding:11px 14px;
+      border-radius:14px;
+      color:#c9ffdc;
+      background:rgba(37,211,102,.10);
+      border:1px solid rgba(37,211,102,.22);
+      font-weight:800;
+    }
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+      padding-bottom:72px;
+    }
+    .proof-card {
+      position:relative;
+      display:block;
+      width:100%;
+      padding:0;
+      overflow:hidden;
+      cursor:zoom-in;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      color:inherit;
+      background:#071410;
+      box-shadow:0 16px 45px rgba(0,0,0,.22);
+      transform:translateZ(0);
+      content-visibility:auto;
+      contain-intrinsic-size:420px 900px;
+      transition:transform .28s cubic-bezier(.2,.75,.2,1), border-color .28s ease, box-shadow .28s ease;
+    }
+    .proof-card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      border-radius:inherit;
+      box-shadow:inset 0 1px rgba(255,255,255,.10);
+    }
+    .proof-card:hover {
+      transform:translateY(-7px) scale(1.012);
+      border-color:rgba(80,245,143,.50);
+      box-shadow:0 24px 58px rgba(0,0,0,.38), 0 0 0 1px rgba(37,211,102,.08);
+    }
+    .proof-card__media {
+      display:block;
+      aspect-ratio:946 / 2048;
+      background:#0b1814;
+    }
+    .proof-card img {
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .5s cubic-bezier(.2,.75,.2,1), filter .28s ease;
+    }
+    .proof-card:hover img { transform:scale(1.025); filter:brightness(.78); }
+    .proof-card__number {
+      position:absolute;
+      z-index:4;
+      left:12px;
+      top:12px;
+      min-width:38px;
+      height:32px;
+      display:grid;
+      place-items:center;
+      padding:0 9px;
+      border-radius:11px;
+      background:rgba(4,17,12,.76);
+      border:1px solid rgba(255,255,255,.15);
+      color:#d5ffe3;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      backdrop-filter:blur(8px);
+    }
+    .proof-card__overlay {
+      position:absolute;
+      inset:auto 12px 12px;
+      z-index:4;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:46px;
+      padding:10px 14px;
+      border-radius:14px;
+      color:#fff;
+      background:rgba(4,19,13,.82);
+      border:1px solid rgba(255,255,255,.14);
+      font-size:13px;
+      font-weight:800;
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity .25s ease, transform .25s ease;
+      backdrop-filter:blur(9px);
+    }
+    .proof-card:hover .proof-card__overlay,
+    .proof-card:focus-visible .proof-card__overlay {
+      opacity:1;
+      transform:none;
+    }
+    .proof-card__zoom {
+      width:25px;
+      height:25px;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:rgba(37,211,102,.17);
+      color:#78f5a6;
+    }
+    .proof-card__zoom svg { width:16px; height:16px; fill:currentColor; }
+    .reveal {
+      opacity:0;
+      transform:translateY(26px) scale(.985);
+    }
+    .reveal.is-visible {
+      opacity:1;
+      transform:none;
+      transition:opacity .62s ease, transform .62s cubic-bezier(.2,.7,.2,1);
+    }
+    .privacy-note {
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      margin:-42px 0 90px;
+      padding:17px 18px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:18px;
+      color:var(--muted);
+      background:rgba(255,255,255,.035);
+      line-height:1.55;
+    }
+    .privacy-note svg {
+      width:22px;
+      height:22px;
+      flex:0 0 auto;
+      fill:#77f5a4;
+      margin-top:1px;
+    }
+    .cta {
+      position:relative;
+      overflow:hidden;
+      margin-bottom:80px;
+      padding:clamp(28px, 6vw, 58px);
+      text-align:center;
+      border:1px solid rgba(91,248,150,.20);
+      border-radius:32px;
+      background:
+        radial-gradient(circle at 50% -30%, rgba(84,255,150,.24), transparent 60%),
+        linear-gradient(145deg, rgba(20,66,50,.94), rgba(8,31,24,.98));
+      box-shadow:var(--shadow);
+    }
+    .cta::after {
+      content:"";
+      position:absolute;
+      top:-120%;
+      left:-25%;
+      width:26%;
+      height:340%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      transform:rotate(20deg);
+      animation:shine 5.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes shine {
+      0%, 58% { left:-40%; }
+      100% { left:125%; }
+    }
+    .cta h3 {
+      margin:0;
+      font-size:clamp(28px, 5vw, 48px);
+      letter-spacing:-.04em;
+    }
+    .cta p {
+      max-width:650px;
+      margin:12px auto 24px;
+      color:#b9d9cd;
+      line-height:1.65;
+    }
+    .footer {
+      padding:0 0 38px;
+      text-align:center;
+      color:#77958a;
+      font-size:13px;
+    }
+    .floating-whatsapp {
+      position:fixed;
+      right:max(16px, env(safe-area-inset-right));
+      bottom:max(16px, env(safe-area-inset-bottom));
+      z-index:40;
+      width:58px;
+      height:58px;
+      display:grid;
+      place-items:center;
+      border-radius:18px;
+      color:#052010;
+      background:linear-gradient(145deg, #63f398, #25d366);
+      box-shadow:0 16px 40px rgba(37,211,102,.30);
+      transition:transform .22s ease;
+    }
+    .floating-whatsapp:hover { transform:translateY(-4px) scale(1.04); }
+    .floating-whatsapp svg { width:29px; height:29px; fill:currentColor; }
+    .lightbox {
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      place-items:center;
+      padding:22px;
+      background:rgba(0,8,5,.92);
+      backdrop-filter:blur(14px);
+    }
+    .lightbox.is-open { display:grid; animation:fadeIn .18s ease; }
+    @keyframes fadeIn { from { opacity:0; } }
+    .lightbox__figure {
+      position:relative;
+      max-width:min(520px, 92vw);
+      max-height:88vh;
+      margin:0;
+    }
+    .lightbox__img {
+      display:block;
+      max-width:100%;
+      max-height:88vh;
+      width:auto;
+      height:auto;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 30px 90px rgba(0,0,0,.58);
+    }
+    .lightbox__close,
+    .lightbox__nav {
+      position:fixed;
+      z-index:102;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;
+      background:rgba(11,34,27,.82);
+      cursor:pointer;
+      backdrop-filter:blur(10px);
+    }
+    .lightbox__close {
+      top:max(15px, env(safe-area-inset-top));
+      right:max(15px, env(safe-area-inset-right));
+      width:48px;
+      height:48px;
+      border-radius:15px;
+      font-size:28px;
+      line-height:1;
+    }
+    .lightbox__nav {
+      top:50%;
+      width:48px;
+      height:64px;
+      border-radius:16px;
+      transform:translateY(-50%);
+      font-size:31px;
+    }
+    .lightbox__prev { left:14px; }
+    .lightbox__next { right:14px; }
+    .lightbox__count {
+      position:fixed;
+      left:50%;
+      bottom:max(14px, env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      padding:9px 13px;
+      border-radius:12px;
+      color:#d8f9e4;
+      background:rgba(11,34,27,.82);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:13px;
+      font-weight:850;
+      backdrop-filter:blur(10px);
+    }
+    @media (max-width:1020px) {
+      .gallery { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    }
+    @media (max-width:760px) {
+      .shell { width:min(100% - 22px, 620px); }
+      .hero { padding-top:42px; }
+      .trust-bar { grid-template-columns:1fr; }
+      .trust-item { min-height:76px; }
+      .section-head { align-items:flex-start; flex-direction:column; }
+      .gallery { grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; }
+      .proof-card { border-radius:18px; }
+      .proof-card__number { left:8px; top:8px; }
+      .proof-card__overlay { display:none; }
+      .privacy-note { margin-top:-48px; margin-bottom:60px; }
+      .floating-whatsapp { width:54px; height:54px; border-radius:17px; }
+    }
+    @media (max-width:460px) {
+      h1 { font-size:39px; }
+      .hero__actions { display:grid; }
+      .btn { width:100%; }
+      .gallery { grid-template-columns:1fr; gap:16px; }
+      .proof-card { width:min(100%, 390px); margin-inline:auto; }
+      .counter { width:100%; justify-content:center; }
+      .lightbox { padding:10px; }
+      .lightbox__nav { width:42px; height:56px; }
+      .lightbox__prev { left:8px; }
+      .lightbox__next { right:8px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after {
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+      }
+      .reveal { opacity:1; transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="orb orb--one" aria-hidden="true"></div>
+    <div class="orb orb--two" aria-hidden="true"></div>
+
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow"><span class="live-dot"></span> HESABIMTR GÜVENCE MERKEZİ</div>
+        <h1><span class="gradient-text">Güven, gerçek müşteri görüşmeleriyle görünür.</span></h1>
+        <p class="hero__text">
+          WhatsApp üzerinden iletilen teslimat ve memnuniyet mesajlarından örnekleri inceleyin.
+          Her görsele dokunarak tam ekran görüntüleyebilirsiniz.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#musteri-gorusmeleri">
+            Görüşmeleri İncele
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 16.2-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4-6 6Z"/></svg>
+          </a>
+          <a class="btn btn--secondary" href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F" target="_blank" rel="noopener">
+            WhatsApp’tan Yaz
+          </a>
+        </div>
+
+        <div class="trust-bar" aria-label="Güvence özellikleri">
+          <div class="trust-item reveal">
+            <span class="trust-item__icon">
+              <svg viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5.1-3.4 9.7-8 11-4.6-1.3-8-5.9-8-11V6l8-4Zm0 3.2L7 7.7V12c0 3.6 2.2 6.8 5 7.9 2.8-1.1 5-4.3 5-7.9V7.7l-5-2.5Zm-1.1 10.4-2.6-2.5 1.4-1.5 1.2 1.2 3.5-3.5 1.4 1.4-4.9 4.9Z"/></svg>
+            </span>
+            <span><strong>Gerçek görüşme örnekleri</strong><small>Gönderilen ekran görüntüleri tek tek sergilenir.</small></span>
+          </div>
+          <div class="trust-item reveal">
+            <span class="trust-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2h1a2 2 0 0 1 2 2v8H4v-8a2 2 0 0 1 2-2h1Zm2 0h6V8a3 3 0 0 0-6 0v2Zm3 3a2 2 0 0 0-1 3.73V18h2v-1.27A2 2 0 0 0 12 13Z"/></svg>
+            </span>
+            <span><strong>Gizlilik korunur</strong><small>İletişim bilgileri görsellerde kısmen gizlenmiştir.</small></span>
+          </div>
+          <div class="trust-item reveal">
+            <span class="trust-item__icon">
+              <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 2.1 17.6L1 23l5.5-1.1A11.7 11.7 0 0 0 20.5 3.5Zm-8.7 17a9.6 9.6 0 0 1-4.9-1.3l-.4-.2-3.2.6.7-3.1-.2-.4a9.6 9.6 0 1 1 8 4.4Zm5.3-7.2c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1.8-.9-3-1.7-4.2-3.8-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.9.3 1.7.2 2.3.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg>
+            </span>
+            <span><strong>WhatsApp destek</strong><small>Sipariş öncesi ve sonrası hızlı iletişim.</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="musteri-gorusmeleri" class="shell" aria-labelledby="gorusmeler-baslik">
+      <div class="section-head">
+        <div>
+          <h2 id="gorusmeler-baslik">Müşteri görüşmeleri</h2>
+          <p>Görsellerin üzerine gelin veya dokunun. Açılan ekranda ileri–geri geçiş yapabilirsiniz.</p>
+        </div>
+        <div class="counter"><span class="live-dot"></span> 20 Görüşme</div>
+      </div>
+
+      <div class="gallery">
+        
+        <button class="proof-card reveal" type="button"
+                data-index="0"
+                aria-label="1. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">01</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-01.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 1"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="1"
+                aria-label="2. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">02</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-02.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 2"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="2"
+                aria-label="3. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">03</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-03.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 3"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="3"
+                aria-label="4. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">04</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-04.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 4"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="4"
+                aria-label="5. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">05</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-05.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 5"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="5"
+                aria-label="6. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">06</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-06.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 6"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="6"
+                aria-label="7. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">07</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-07.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 7"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="7"
+                aria-label="8. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">08</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-08.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 8"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="8"
+                aria-label="9. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">09</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-09.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 9"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="9"
+                aria-label="10. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">10</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-10.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 10"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="10"
+                aria-label="11. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">11</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-11.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 11"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="11"
+                aria-label="12. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">12</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-12.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 12"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="12"
+                aria-label="13. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">13</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-13.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 13"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="13"
+                aria-label="14. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">14</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-14.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 14"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="14"
+                aria-label="15. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">15</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-15.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 15"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="15"
+                aria-label="16. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">16</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-16.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 16"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="16"
+                aria-label="17. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">17</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-17.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 17"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="17"
+                aria-label="18. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">18</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-18.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 18"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="18"
+                aria-label="19. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">19</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-19.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 19"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+        <button class="proof-card reveal" type="button"
+                data-index="19"
+                aria-label="20. WhatsApp müşteri görüşmesini büyüt">
+          <span class="proof-card__number">20</span>
+          <span class="proof-card__media">
+            <img src="images/musteri-gorusmesi-20.jpg"
+                 alt="HesabımTR WhatsApp müşteri görüşmesi 20"
+                 loading="lazy"
+                 decoding="async">
+          </span>
+          <span class="proof-card__overlay">
+            <span class="proof-card__zoom" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10.5 5a5.5 5.5 0 1 0 3.47 9.77l3.63 3.63 1.4-1.4-3.63-3.63A5.5 5.5 0 0 0 10.5 5Zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm-1 1.5h2v1.25h1.25v2H11.5V13h-2v-1.25H8.25v-2H9.5V8.5Z"/></svg>
+            </span>
+            <span>Görseli büyüt</span>
+          </span>
+        </button>
+    
+      </div>
+
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7v2h1a2 2 0 0 1 2 2v8H2v-8a2 2 0 0 1 2-2h1V9a7 7 0 0 1 7-7Zm5 9V9a5 5 0 0 0-10 0v2h10Zm-5 3a2 2 0 0 0-1 3.73V19h2v-1.27A2 2 0 0 0 12 14Z"/></svg>
+        <span>Gizlilik amacıyla telefon numaraları ve bazı kişisel bilgiler ekran görüntülerinde kısmen gizlenmiştir.</span>
+      </div>
+
+      <section class="cta reveal">
+        <h3>Sorunuz mu var?</h3>
+        <p>Ürün, sipariş veya teslimat süreciyle ilgili merak ettiklerinizi WhatsApp üzerinden bize yazabilirsiniz.</p>
+        <a class="btn btn--primary" href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F" target="_blank" rel="noopener">
+          WhatsApp’tan Destek Al
+        </a>
+      </section>
+
+      <footer class="footer">© HesabımTR — Güvenli ve hızlı dijital teslimat</footer>
+    </section>
+
+    <a class="floating-whatsapp" href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F"
+       target="_blank" rel="noopener" aria-label="WhatsApp üzerinden iletişime geç">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.7 11.7 0 0 0 2.1 17.6L1 23l5.5-1.1A11.7 11.7 0 0 0 20.5 3.5Zm-8.7 17a9.6 9.6 0 0 1-4.9-1.3l-.4-.2-3.2.6.7-3.1-.2-.4a9.6 9.6 0 1 1 8 4.4Zm5.3-7.2c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1.8-.9-3-1.7-4.2-3.8-.3-.5.3-.5.8-1.7.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.9.3 1.7.2 2.3.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg>
+    </a>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Büyütülmüş müşteri görüşmesi">
+    <button class="lightbox__close" type="button" aria-label="Kapat">×</button>
+    <button class="lightbox__nav lightbox__prev" type="button" aria-label="Önceki görsel">‹</button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" alt="Büyütülmüş WhatsApp müşteri görüşmesi">
+    </figure>
+    <button class="lightbox__nav lightbox__next" type="button" aria-label="Sonraki görsel">›</button>
+    <div class="lightbox__count" aria-live="polite"></div>
+  </div>
+
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.proof-card')];
+      const imageSources = cards.map(card => card.querySelector('img').src);
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = lightbox.querySelector('.lightbox__img');
+      const counter = lightbox.querySelector('.lightbox__count');
+      const closeButton = lightbox.querySelector('.lightbox__close');
+      const prevButton = lightbox.querySelector('.lightbox__prev');
+      const nextButton = lightbox.querySelector('.lightbox__next');
+      let activeIndex = 0;
+      let lastFocused = null;
+
+      const show = index => {
+        activeIndex = (index + imageSources.length) % imageSources.length;
+        lightboxImage.src = imageSources[activeIndex];
+        lightboxImage.alt = `${activeIndex + 1}. WhatsApp müşteri görüşmesi`;
+        counter.textContent = `${activeIndex + 1} / ${imageSources.length}`;
+      };
+
+      const open = index => {
+        lastFocused = document.activeElement;
+        show(index);
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      };
+
+      const close = () => {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+        lightboxImage.removeAttribute('src');
+        if (lastFocused) lastFocused.focus();
+      };
+
+      cards.forEach((card, index) => card.addEventListener('click', () => open(index)));
+      closeButton.addEventListener('click', close);
+      prevButton.addEventListener('click', () => show(activeIndex - 1));
+      nextButton.addEventListener('click', () => show(activeIndex + 1));
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) close();
+      });
+      document.addEventListener('keydown', event => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (event.key === 'Escape') close();
+        if (event.key === 'ArrowLeft') show(activeIndex - 1);
+        if (event.key === 'ArrowRight') show(activeIndex + 1);
+      });
+
+      let touchStartX = 0;
+      lightbox.addEventListener('touchstart', event => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, {passive:true});
+      lightbox.addEventListener('touchend', event => {
+        const delta = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) < 48) return;
+        delta > 0 ? show(activeIndex - 1) : show(activeIndex + 1);
+      }, {passive:true});
+
+      const revealItems = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, {rootMargin:'0px 0px -7% 0px', threshold:.08});
+        revealItems.forEach((item, index) => {
+          item.style.transitionDelay = `${Math.min((index % 4) * 70, 210)}ms`;
+          observer.observe(item);
+        });
+      } else {
+        revealItems.forEach(item => item.classList.add('is-visible'));
+      }
+    })();
+  </script>
+</body>
+</html>
