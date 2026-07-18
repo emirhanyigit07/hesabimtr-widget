@@ -23,15 +23,15 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{
+      scroll-behavior:smooth;
+      background:transparent!important;
+    }
     body{
       margin:0;
       min-width:320px;
       color:var(--text);
-      background:
-        radial-gradient(circle at 8% 4%,rgba(102,88,245,.10),transparent 30rem),
-        radial-gradient(circle at 94% 34%,rgba(37,211,102,.08),transparent 28rem),
-        linear-gradient(180deg,#ffffff 0%,#f8f8fc 100%);
+      background:transparent!important;
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       -webkit-font-smoothing:antialiased;
       overflow-x:hidden;
@@ -44,20 +44,10 @@
       min-height:100vh;
       position:relative;
       isolation:isolate;
+      background:transparent!important;
     }
 
-    .grid-bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      pointer-events:none;
-      opacity:.72;
-      background-image:
-        linear-gradient(rgba(102,88,245,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(102,88,245,.035) 1px,transparent 1px);
-      background-size:34px 34px;
-      mask-image:linear-gradient(to bottom,#000,transparent 86%);
-    }
+    .grid-bg{display:none!important}
 
     .shell{
       width:min(1320px,calc(100% - 24px));
