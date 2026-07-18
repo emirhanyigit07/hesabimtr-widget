@@ -3,26 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f5fbff">
-  <title>HesabımTR Güvence | Müşteri Görüşmeleri</title>
+  <meta name="theme-color" content="#071813">
+  <title>HesabımTR Güvence | 3500 PX Uyumlu WhatsApp Görüşmeleri</title>
   <meta name="description" content="HesabımTR WhatsApp müşteri görüşmeleri ve güvence ekran görüntüleri.">
 
   <style>
     :root{
-      --page:#ffffff;
-      --soft:#f5fbff;
-      --soft-2:#eaf8ff;
-      --panel:#ffffff;
-      --text:#102236;
-      --muted:#657487;
-      --blue:#18b7e9;
-      --blue-2:#5fd7ff;
-      --blue-dark:#078dbd;
-      --line:#dcecf4;
-      --line-strong:#c5e5f2;
-      --success:#25d366;
-      --shadow:0 18px 48px rgba(16,73,102,.11);
-      --shadow-soft:0 10px 28px rgba(16,73,102,.08);
+      --bg:#06110e;
+      --bg2:#0b211a;
+      --panel:#0c281f;
+      --text:#f5fff9;
+      --muted:#a7c7bb;
+      --green:#25d366;
+      --green2:#72f7a5;
+      --line:rgba(255,255,255,.11);
+      --shadow:0 22px 65px rgba(0,0,0,.35);
     }
 
     *{box-sizing:border-box}
@@ -31,7 +26,10 @@
       margin:0;
       min-width:320px;
       color:var(--text);
-      background:var(--page);
+      background:
+        radial-gradient(circle at 10% 5%,rgba(37,211,102,.17),transparent 28rem),
+        radial-gradient(circle at 92% 38%,rgba(28,116,255,.10),transparent 27rem),
+        linear-gradient(180deg,#071813 0%,#06110e 100%);
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       -webkit-font-smoothing:antialiased;
       overflow-x:hidden;
@@ -41,61 +39,32 @@
     button{font:inherit}
 
     .page{
-      position:relative;
       min-height:100vh;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 6% 9%,rgba(24,183,233,.12),transparent 24rem),
-        radial-gradient(circle at 96% 32%,rgba(95,215,255,.15),transparent 25rem),
-        linear-gradient(180deg,#ffffff 0%,#f8fcff 48%,#ffffff 100%);
+      position:relative;
+      isolation:isolate;
     }
 
-    .page::before{
-      content:"";
-      position:absolute;
+    .grid-bg{
+      position:fixed;
       inset:0;
+      z-index:-2;
       pointer-events:none;
-      opacity:.45;
+      opacity:.48;
       background-image:
-        linear-gradient(rgba(18,126,168,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(18,126,168,.035) 1px,transparent 1px);
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
       background-size:34px 34px;
-      mask-image:linear-gradient(to bottom,#000,transparent 76%);
+      mask-image:linear-gradient(to bottom,#000,transparent 86%);
     }
 
     .shell{
-      position:relative;
       width:min(1320px,calc(100% - 24px));
       margin-inline:auto;
     }
 
     .hero{
-      padding:clamp(28px,4vw,54px) 0 22px;
+      padding:clamp(26px,4vw,48px) 0 18px;
       text-align:center;
-    }
-
-    .hero-card{
-      position:relative;
-      overflow:hidden;
-      padding:clamp(26px,4vw,48px) clamp(18px,4vw,46px);
-      border:1px solid var(--line);
-      border-radius:30px;
-      background:
-        radial-gradient(circle at 90% -20%,rgba(95,215,255,.30),transparent 35%),
-        linear-gradient(135deg,rgba(255,255,255,.98),rgba(238,249,255,.95));
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      width:280px;
-      aspect-ratio:1;
-      right:-150px;
-      bottom:-180px;
-      border-radius:50%;
-      border:42px solid rgba(24,183,233,.08);
-      pointer-events:none;
     }
 
     .eyebrow{
@@ -103,11 +72,10 @@
       align-items:center;
       gap:9px;
       padding:9px 14px;
-      border:1px solid rgba(24,183,233,.28);
+      border:1px solid rgba(61,241,132,.27);
       border-radius:999px;
-      color:#087da8;
-      background:rgba(255,255,255,.78);
-      box-shadow:inset 0 1px rgba(255,255,255,.9);
+      color:#c8ffdc;
+      background:rgba(12,45,34,.76);
       font-size:12px;
       font-weight:900;
       letter-spacing:.08em;
@@ -117,29 +85,24 @@
       width:9px;
       height:9px;
       border-radius:50%;
-      background:var(--blue);
-      box-shadow:0 0 0 0 rgba(24,183,233,.35);
+      background:var(--green2);
+      box-shadow:0 0 0 0 rgba(114,247,165,.45);
       animation:pulse 1.9s infinite;
     }
 
     @keyframes pulse{
-      70%{box-shadow:0 0 0 11px rgba(24,183,233,0)}
-      100%{box-shadow:0 0 0 0 rgba(24,183,233,0)}
+      70%{box-shadow:0 0 0 11px rgba(114,247,165,0)}
+      100%{box-shadow:0 0 0 0 rgba(114,247,165,0)}
     }
 
     h1{
-      max-width:960px;
-      margin:16px auto 10px;
-      color:var(--text);
-      font-size:clamp(32px,5.3vw,60px);
-      line-height:1.02;
+      max-width:980px;
+      margin:14px auto 9px;
+      font-size:clamp(30px,5vw,54px);
+      line-height:1;
       letter-spacing:-.055em;
       text-wrap:balance;
-    }
-
-    h1 span{
-      color:var(--blue-dark);
-      background:linear-gradient(100deg,#078dbd,#18b7e9 55%,#38c9f8);
+      background:linear-gradient(105deg,#fff 10%,#c9ffdc 55%,#55ef91);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -150,7 +113,7 @@
       margin:0 auto;
       color:var(--muted);
       font-size:clamp(14px,1.55vw,17px);
-      line-height:1.58;
+      line-height:1.5;
       text-wrap:balance;
     }
 
@@ -159,82 +122,36 @@
       justify-content:center;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:18px;
+      margin-top:16px;
     }
 
     .btn{
-      min-height:46px;
+      min-height:44px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:9px;
-      padding:0 17px;
+      padding:0 15px;
       border:1px solid transparent;
       border-radius:14px;
       text-decoration:none;
       cursor:pointer;
       font-weight:900;
-      transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+      transition:transform .2s ease,background .2s ease,border-color .2s ease;
     }
 
     .btn:hover{transform:translateY(-3px)}
 
     .btn-primary{
-      color:#ffffff;
-      background:linear-gradient(135deg,var(--blue-dark),var(--blue));
-      box-shadow:0 13px 28px rgba(24,183,233,.24);
+      color:#062413;
+      background:linear-gradient(135deg,#78f5a6,#25d366);
+      box-shadow:0 15px 36px rgba(37,211,102,.22);
     }
 
     .btn-secondary{
-      color:var(--text);
-      border-color:var(--line-strong);
-      background:#ffffff;
-      box-shadow:var(--shadow-soft);
-    }
-
-    .trust-row{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:22px;
-    }
-
-    .trust-item{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:18px;
-      text-align:left;
-      background:rgba(255,255,255,.86);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .trust-icon{
-      width:40px;
-      height:40px;
-      flex:0 0 auto;
-      display:grid;
-      place-items:center;
-      border-radius:13px;
-      color:var(--blue-dark);
-      background:var(--soft-2);
-      border:1px solid #d1edf8;
-      font-size:18px;
-    }
-
-    .trust-item strong{display:block;font-size:13px}
-    .trust-item small{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.35}
-
-    .gallery-section{
-      margin:8px auto 0;
-      padding:clamp(18px,3vw,28px);
-      border:1px solid var(--line);
-      border-radius:28px;
-      background:rgba(255,255,255,.93);
-      box-shadow:var(--shadow);
+      color:#eefcf4;
+      border-color:var(--line);
+      background:rgba(255,255,255,.055);
     }
 
     .section-head{
@@ -242,22 +159,20 @@
       justify-content:space-between;
       align-items:end;
       gap:18px;
-      margin-bottom:15px;
+      margin-bottom:13px;
     }
 
     .section-head h2{
       margin:0;
-      color:var(--text);
-      font-size:clamp(25px,4vw,38px);
-      letter-spacing:-.04em;
+      font-size:clamp(25px,4vw,36px);
+      letter-spacing:-.035em;
     }
 
     .section-head p{
-      max-width:720px;
-      margin:6px 0 0;
+      max-width:700px;
+      margin:7px 0 0;
       color:var(--muted);
       line-height:1.55;
-      font-size:14px;
     }
 
     .counter{
@@ -267,32 +182,30 @@
       gap:9px;
       padding:10px 13px;
       border-radius:13px;
-      color:#087da8;
-      border:1px solid #cbeaf6;
-      background:var(--soft-2);
+      color:#caffdc;
+      border:1px solid rgba(37,211,102,.22);
+      background:rgba(37,211,102,.10);
       font-weight:900;
       white-space:nowrap;
     }
 
-    .counter .dot{width:8px;height:8px}
-
-    .loading,.error-box{
+    .loading{
       min-height:260px;
       display:grid;
       place-items:center;
       text-align:center;
-      padding:30px;
+      padding:32px;
       border:1px solid var(--line);
-      border-radius:22px;
-      background:linear-gradient(180deg,#fbfeff,#f3faff);
+      border-radius:24px;
+      background:rgba(255,255,255,.035);
     }
 
     .loader{
       width:46px;
       height:46px;
       margin:0 auto 15px;
-      border:4px solid #dcecf4;
-      border-top-color:var(--blue);
+      border:4px solid rgba(255,255,255,.13);
+      border-top-color:var(--green);
       border-radius:50%;
       animation:spin .8s linear infinite;
     }
@@ -301,10 +214,15 @@
     .loading h3{margin:0 0 8px}
     .loading p{margin:0;color:var(--muted);line-height:1.55}
 
+    /*
+      15 görselin 3500 px iframe yüksekliğine güvenli şekilde sığması için:
+      masaüstü 6 sütun, tablet 5/4 sütun, telefonda 3 sütun.
+      Görsele dokunulduğunda tam ekran açılır.
+    */
     .gallery{
       display:grid;
       grid-template-columns:repeat(6,minmax(0,1fr));
-      gap:12px;
+      gap:10px;
       min-height:430px;
     }
 
@@ -315,11 +233,11 @@
       padding:0;
       overflow:hidden;
       cursor:zoom-in;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:18px;
       color:inherit;
-      background:#ffffff;
-      box-shadow:0 11px 27px rgba(16,73,102,.09);
+      background:#071410;
+      box-shadow:0 13px 35px rgba(0,0,0,.22);
       animation:cardIn .48s cubic-bezier(.2,.7,.2,1) both;
       transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease;
     }
@@ -331,15 +249,15 @@
 
     .proof-card:hover{
       transform:translateY(-6px) scale(1.012);
-      border-color:#8fd9ef;
-      box-shadow:0 20px 44px rgba(16,73,102,.16);
+      border-color:rgba(80,245,143,.48);
+      box-shadow:0 22px 50px rgba(0,0,0,.36);
     }
 
     .proof-card-media{
       display:block;
       aspect-ratio:946/2048;
       background:
-        linear-gradient(110deg,#edf8fc 8%,#dff3fa 18%,#edf8fc 33%);
+        linear-gradient(110deg,#0d211b 8%,#14352a 18%,#0d211b 33%);
       background-size:200% 100%;
       animation:shimmer 1.4s linear infinite;
     }
@@ -351,11 +269,11 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      background:#edf8fc;
+      background:#0b1814;
       transition:transform .42s ease,filter .24s ease;
     }
 
-    .proof-card:hover img{transform:scale(1.025);filter:brightness(.82)}
+    .proof-card:hover img{transform:scale(1.025);filter:brightness(.77)}
 
     .proof-number{
       position:absolute;
@@ -368,9 +286,9 @@
       place-items:center;
       padding:0 7px;
       border-radius:9px;
-      color:#ffffff;
-      border:1px solid rgba(255,255,255,.65);
-      background:rgba(9,82,111,.82);
+      color:#d9ffe6;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(4,17,12,.82);
       backdrop-filter:blur(8px);
       font-size:10px;
       font-weight:950;
@@ -387,9 +305,9 @@
       place-items:center;
       padding:0 8px;
       border-radius:9px;
-      color:#ffffff;
-      background:linear-gradient(135deg,var(--blue-dark),var(--blue));
-      box-shadow:0 8px 20px rgba(24,183,233,.25);
+      color:#052312;
+      background:linear-gradient(135deg,#7df6a9,#25d366);
+      box-shadow:0 8px 20px rgba(37,211,102,.22);
       font-size:9px;
       font-weight:950;
       letter-spacing:.05em;
@@ -405,10 +323,10 @@
       justify-content:center;
       gap:7px;
       padding:7px 10px;
-      border:1px solid rgba(255,255,255,.20);
+      border:1px solid rgba(255,255,255,.14);
       border-radius:11px;
-      color:#ffffff;
-      background:rgba(7,67,91,.86);
+      color:#fff;
+      background:rgba(4,19,13,.85);
       backdrop-filter:blur(9px);
       opacity:0;
       transform:translateY(7px);
@@ -429,17 +347,17 @@
       display:grid;
       place-items:center;
       padding:16px;
-      color:var(--muted);
+      color:#b9d2c8;
       text-align:center;
       font-size:12px;
       line-height:1.45;
-      background:#f1f9fc;
+      background:#10241e;
     }
 
     .pagination-wrap{
       display:flex;
       justify-content:center;
-      margin:18px 0 8px;
+      margin:16px 0 22px;
     }
 
     .pagination{
@@ -451,8 +369,9 @@
       padding:9px;
       border:1px solid var(--line);
       border-radius:17px;
-      background:#ffffff;
-      box-shadow:var(--shadow-soft);
+      background:rgba(8,29,22,.90);
+      box-shadow:0 15px 40px rgba(0,0,0,.24);
+      backdrop-filter:blur(12px);
     }
 
     .page-btn{
@@ -461,10 +380,10 @@
       display:grid;
       place-items:center;
       padding:0 10px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
       border-radius:11px;
-      color:var(--text);
-      background:var(--soft);
+      color:#dcefe7;
+      background:rgba(255,255,255,.045);
       cursor:pointer;
       font-weight:900;
       transition:.2s ease;
@@ -472,15 +391,15 @@
 
     .page-btn:hover{
       transform:translateY(-2px);
-      border-color:#96daef;
-      background:var(--soft-2);
+      border-color:rgba(67,240,138,.34);
+      background:rgba(37,211,102,.10);
     }
 
     .page-btn.active{
-      color:#ffffff;
+      color:#052312;
       border-color:transparent;
-      background:linear-gradient(135deg,var(--blue-dark),var(--blue));
-      box-shadow:0 9px 22px rgba(24,183,233,.24);
+      background:linear-gradient(135deg,#69f49d,#25d366);
+      box-shadow:0 9px 24px rgba(37,211,102,.22);
     }
 
     .page-btn:disabled{
@@ -492,14 +411,14 @@
     .page-dots{
       min-width:24px;
       text-align:center;
-      color:#8aa0ad;
+      color:#8aa99d;
       font-weight:900;
     }
 
     .page-status{
       width:100%;
       padding:2px 8px 0;
-      color:#7892a0;
+      color:#8eb3a5;
       text-align:center;
       font-size:12px;
       font-weight:750;
@@ -509,52 +428,70 @@
       display:flex;
       align-items:flex-start;
       gap:11px;
-      margin:18px 0 0;
-      padding:13px 15px;
-      border:1px solid var(--line);
-      border-radius:16px;
+      margin:0 0 26px;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:17px;
       color:var(--muted);
-      background:var(--soft);
+      background:rgba(255,255,255,.035);
       line-height:1.5;
-      font-size:13px;
     }
 
-    .note b{color:var(--text)}
+    .note b{color:#caffdc}
 
     .cta{
       position:relative;
       overflow:hidden;
-      margin:20px auto 28px;
-      padding:clamp(22px,3.5vw,36px);
+      margin-bottom:28px;
+      padding:clamp(20px,3.5vw,34px);
       text-align:center;
-      border:1px solid var(--line);
-      border-radius:26px;
+      border:1px solid rgba(91,248,150,.20);
+      border-radius:28px;
       background:
-        radial-gradient(circle at 90% -20%,rgba(95,215,255,.28),transparent 38%),
-        linear-gradient(135deg,#f8fdff,#eaf8ff);
+        radial-gradient(circle at 50% -30%,rgba(84,255,150,.24),transparent 60%),
+        linear-gradient(145deg,rgba(20,66,50,.94),rgba(8,31,24,.98));
       box-shadow:var(--shadow);
     }
 
     .cta h3{
       margin:0;
-      color:var(--text);
-      font-size:clamp(24px,4vw,36px);
+      font-size:clamp(24px,4vw,34px);
       letter-spacing:-.04em;
     }
 
     .cta p{
       max-width:660px;
       margin:8px auto 15px;
-      color:var(--muted);
-      line-height:1.58;
+      color:#bdd9cf;
+      line-height:1.6;
     }
 
     footer{
       padding:0 0 18px;
-      color:#7892a0;
+      color:#78968b;
       text-align:center;
       font-size:13px;
     }
+
+    .floating-wa{
+      position:fixed;
+      z-index:50;
+      right:max(15px,env(safe-area-inset-right));
+      bottom:max(15px,env(safe-area-inset-bottom));
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:17px;
+      color:#052010;
+      background:linear-gradient(145deg,#63f398,#25d366);
+      box-shadow:0 16px 40px rgba(37,211,102,.30);
+      text-decoration:none;
+      font-size:25px;
+      transition:.2s ease;
+    }
+
+    .floating-wa:hover{transform:translateY(-4px) scale(1.04)}
 
     .lightbox{
       position:fixed;
@@ -563,7 +500,7 @@
       display:none;
       place-items:center;
       padding:20px;
-      background:rgba(7,24,34,.92);
+      background:rgba(0,8,5,.93);
       backdrop-filter:blur(14px);
     }
 
@@ -576,9 +513,9 @@
       max-height:88vh;
       width:auto;
       height:auto;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.16);
       border-radius:21px;
-      box-shadow:0 30px 90px rgba(0,0,0,.58);
+      box-shadow:0 30px 90px rgba(0,0,0,.6);
     }
 
     .lb-btn{
@@ -586,9 +523,9 @@
       z-index:102;
       display:grid;
       place-items:center;
-      border:1px solid rgba(255,255,255,.18);
-      color:#ffffff;
-      background:rgba(8,53,70,.84);
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;
+      background:rgba(11,34,27,.85);
       cursor:pointer;
       backdrop-filter:blur(10px);
     }
@@ -620,26 +557,31 @@
       bottom:max(13px,env(safe-area-inset-bottom));
       transform:translateX(-50%);
       padding:8px 12px;
-      border:1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:11px;
-      color:#ffffff;
-      background:rgba(8,53,70,.84);
+      color:#d8f9e4;
+      background:rgba(11,34,27,.85);
       font-size:13px;
       font-weight:900;
       backdrop-filter:blur(10px);
     }
 
     .error-box{
-      color:#b64242;
-      border-color:#f0caca;
-      background:#fff8f8;
+      min-height:260px;
+      display:grid;
+      place-items:center;
+      padding:30px;
+      border:1px solid rgba(255,120,120,.19);
+      border-radius:23px;
+      color:#ffd8d8;
+      background:rgba(90,20,20,.14);
+      text-align:center;
     }
 
-    .error-box p{max-width:720px;color:#8a5f5f;line-height:1.6}
+    .error-box p{max-width:720px;color:#d7bcbc;line-height:1.6}
     .hidden{display:none!important}
 
     @media(max-width:1120px){
-      .trust-row{grid-template-columns:repeat(2,1fr)}
       .gallery{grid-template-columns:repeat(5,minmax(0,1fr))}
     }
 
@@ -648,15 +590,10 @@
     }
 
     @media(max-width:650px){
-      .shell{width:min(100% - 16px,620px)}
-      .hero{padding-top:18px}
-      .hero-card{border-radius:22px;padding:24px 15px}
-      .trust-row{grid-template-columns:1fr 1fr;gap:8px}
-      .trust-item{min-height:70px;padding:11px}
-      .trust-icon{width:36px;height:36px}
+      .shell{width:min(100% - 18px,620px)}
+      .hero{padding-top:24px}
       .section-head{align-items:flex-start;flex-direction:column}
       .counter{width:100%;justify-content:center}
-      .gallery-section{padding:14px;border-radius:21px}
       .gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
       .proof-card{border-radius:14px}
       .proof-number{left:5px;top:5px;min-width:29px;height:24px;font-size:9px}
@@ -666,10 +603,9 @@
     }
 
     @media(max-width:390px){
-      h1{font-size:31px}
+      h1{font-size:32px}
       .hero-actions{display:grid}
       .btn{width:100%}
-      .trust-row{grid-template-columns:1fr}
       .gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
       .lightbox{padding:8px}
       .lb-prev,.lb-next{width:40px;height:54px}
@@ -690,50 +626,30 @@
 
 <body>
   <main class="page">
+    <div class="grid-bg" aria-hidden="true"></div>
+
     <section class="hero">
       <div class="shell">
-        <div class="hero-card">
-          <div class="eyebrow"><span class="dot"></span> HESABIMTR GÜVENCE</div>
-          <h1>Gerçek müşteri <span>deneyimlerini</span> inceleyin.</h1>
-          <p>
-            Sipariş öncesi ve sonrası WhatsApp üzerinden iletilen gerçek müşteri
-            görüşmelerini, teslimat mesajlarını ve memnuniyet bildirimlerini görüntüleyin.
-          </p>
+        <div class="eyebrow"><span class="dot"></span> HESABIMTR GÜVENCE MERKEZİ</div>
+        <h1>Gerçek müşteri görüşmelerimizi inceleyin.</h1>
+        <p>
+          GitHub’daki <strong>whatsappguvenceresim</strong> klasörüne yüklenen bütün görseller
+          otomatik olarak alınır. En son eklenenler her zaman en başta gösterilir.
+        </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#gorusmeler">Görüşmeleri İncele ↓</a>
-            <button class="btn btn-secondary" id="refreshButton" type="button">Yeni Görselleri Kontrol Et</button>
-          </div>
-
-          <div class="trust-row" aria-label="HesabımTR avantajları">
-            <div class="trust-item">
-              <span class="trust-icon">🚀</span>
-              <span><strong>Hızlı Teslimat</strong><small>Siparişler kısa sürede teslim edilir.</small></span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">🛡️</span>
-              <span><strong>Güvenli Alışveriş</strong><small>Ödeme ve teslimat süreci korunur.</small></span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">🏷️</span>
-              <span><strong>Uygun Fiyat</strong><small>Avantajlı ürün seçenekleri sunulur.</small></span>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">🎧</span>
-              <span><strong>Müşteri Desteği</strong><small>Satış öncesi ve sonrası destek.</small></span>
-            </div>
-          </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#gorusmeler">Görüşmeleri İncele ↓</a>
+          <button class="btn btn-secondary" id="refreshButton" type="button">Yeni Görselleri Kontrol Et</button>
         </div>
       </div>
     </section>
 
-    <section id="gorusmeler" class="shell gallery-section">
+    <section id="gorusmeler" class="shell">
       <div class="section-head">
         <div>
-          <h2>Müşteri Görüşmeleri</h2>
+          <h2>Müşteri görüşmeleri</h2>
           <p>
-            Her sayfada en fazla 15 görüşme bulunur. Yeni yüklenen görseller otomatik
-            olarak ilk sırada gösterilir.
+            Her sayfada en fazla 15 görsel bulunur. 15’i aşınca 1, 2, 3 şeklinde yeni sayfalar otomatik oluşur.
           </p>
         </div>
         <div class="counter"><span class="dot"></span><span id="imageCounter">Yükleniyor…</span></div>
@@ -742,8 +658,8 @@
       <div class="loading" id="loadingBox">
         <div>
           <div class="loader"></div>
-          <h3>Görüşmeler hazırlanıyor</h3>
-          <p>Müşteri görüşmeleri güvenli kaynaktan yükleniyor.</p>
+          <h3>Görseller hazırlanıyor</h3>
+          <p>GitHub’daki <b>whatsappguvenceresim</b> klasörü okunuyor ve eklenme tarihine göre sıralanıyor.</p>
         </div>
       </div>
 
@@ -768,19 +684,23 @@
 
       <div class="note">
         <span>🔐</span>
-        <span><b>Gizlilik:</b> Telefon numaraları, e-posta adresleri ve kişisel bilgiler paylaşım öncesinde gizlenmelidir.</span>
+        <span><b>Gizlilik notu:</b> Yayımlamadan önce telefon numarası, e-posta adresi ve diğer kişisel bilgilerin kapatıldığından emin olun.</span>
       </div>
+
+      <section class="cta">
+        <h3>Sorunuz mu var?</h3>
+        <p>Ürün, sipariş veya teslimat süreciyle ilgili merak ettiklerinizi WhatsApp üzerinden bize yazabilirsiniz.</p>
+        <a class="btn btn-primary"
+           href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F"
+           target="_blank" rel="noopener">WhatsApp’tan Destek Al</a>
+      </section>
+
+      <footer>© HesabımTR — Güvenli ve hızlı dijital teslimat</footer>
     </section>
 
-    <section class="shell cta">
-      <h3>Sorunuz mu var?</h3>
-      <p>Ürün, sipariş veya teslimat süreci hakkında destek ekibimize WhatsApp üzerinden ulaşabilirsiniz.</p>
-      <a class="btn btn-primary"
-         href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F"
-         target="_blank" rel="noopener">WhatsApp’tan Destek Al</a>
-    </section>
-
-    <footer class="shell">© HesabımTR — Güvenli ve hızlı dijital teslimat</footer>
+    <a class="floating-wa"
+       href="https://wa.me/908503077784?text=Merhabalar%20bir%20sorum%20var%20yard%C4%B1mc%C4%B1%20olur%20musunuz%3F"
+       target="_blank" rel="noopener" aria-label="WhatsApp üzerinden iletişime geç">☎</a>
   </main>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Büyütülmüş müşteri görüşmesi">
@@ -792,17 +712,11 @@
   </div>
 
   <script>
-
-    (() => {
+(() => {
       const CONFIG = {
-        owner: "emirhanyigit07",
-        repo: "hesabimtr-widget",
-        branch: "main",
-        folder: "whatsappguvenceresim",
+        manifest: "./whatsapp-images.json",
         itemsPerPage: 15,
-        cacheMinutes: 3,
-        maxCommitChecks: 40,
-        allowedExtensions: [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"]
+        cacheHours: 24
       };
 
       const gallery = document.getElementById("gallery");
@@ -825,58 +739,53 @@
       const lbPrev = document.getElementById("lbPrev");
       const lbNext = document.getElementById("lbNext");
 
-      const CACHE_KEY = "hesabimtr_whatsappguvenceresim_light_v2";
+      const CACHE_KEY = "hesabimtr_whatsapp_manifest_v1";
       let images = [];
       let currentPage = 1;
       let currentImageIndex = 0;
       let lastFocused = null;
 
-      const isAllowedImage = name => {
-        const lower = String(name || "").toLowerCase();
-        return CONFIG.allowedExtensions.some(ext => lower.endsWith(ext));
-      };
-
       const encodePath = path =>
-        path.split("/").filter(Boolean).map(encodeURIComponent).join("/");
+        String(path || "")
+          .split("/")
+          .filter(Boolean)
+          .map(encodeURIComponent)
+          .join("/");
 
-      const contentsApiUrl =
-        `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/` +
-        `${encodePath(CONFIG.folder)}?ref=${encodeURIComponent(CONFIG.branch)}`;
+      const normalizeImages = data => {
+        const list = Array.isArray(data) ? data : data?.images;
+        if (!Array.isArray(list)) return [];
 
-      const commitsApiUrl =
-        `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/commits?` +
-        `sha=${encodeURIComponent(CONFIG.branch)}&` +
-        `path=${encodeURIComponent(CONFIG.folder)}&per_page=100`;
-
-      const githubFetch = async url => {
-        const response = await fetch(url, {
-          headers: {
-            "Accept": "application/vnd.github+json",
-            "X-GitHub-Api-Version": "2022-11-28"
-          },
-          cache: "no-store"
-        });
-
-        if (!response.ok) {
-          let message = "";
-          try {
-            const body = await response.json();
-            message = body && body.message ? ` — ${body.message}` : "";
-          } catch {}
-          throw new Error(`GitHub bağlantısı başarısız (${response.status})${message}`);
-        }
-
-        return response.json();
+        return list
+          .filter(item => item && item.path)
+          .map(item => ({
+            name: item.name || String(item.path).split("/").pop(),
+            path: item.path,
+            addedAt: item.addedAt || "",
+            url: `./${encodePath(item.path)}`
+          }))
+          .sort((a, b) => {
+            const dateA = a.addedAt ? Date.parse(a.addedAt) : 0;
+            const dateB = b.addedAt ? Date.parse(b.addedAt) : 0;
+            if (dateA !== dateB) return dateB - dateA;
+            return b.name.localeCompare(a.name, "tr", {
+              numeric: true,
+              sensitivity: "base"
+            });
+          });
       };
 
-      const getCache = () => {
+      const readCache = allowExpired => {
         try {
           const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-          if (!cached || !Array.isArray(cached.images)) return null;
+          if (!cached || !Array.isArray(cached.images) || !cached.images.length) {
+            return null;
+          }
 
           const age = Date.now() - Number(cached.time || 0);
-          if (age > CONFIG.cacheMinutes * 60 * 1000) return null;
+          const fresh = age <= CONFIG.cacheHours * 60 * 60 * 1000;
 
+          if (!fresh && !allowExpired) return null;
           return cached.images;
         } catch {
           return null;
@@ -890,126 +799,6 @@
             images: list
           }));
         } catch {}
-      };
-
-      /*
-        En yeni görsellerin başa gelmesi:
-
-        1) Klasördeki bütün görseller alınır.
-        2) Klasörü etkileyen son commitler yenisinden eskiye doğru okunur.
-        3) Her commit içindeki "added" dosyalar o commitin tarihini alır.
-        4) Eklenme tarihi yeni olan görsel en başta gösterilir.
-        5) Tarihi bulunamayan eski dosyalar en sona, dosya adına göre sıralanır.
-      */
-      const collectAdditionDates = async (commitSummaries, validPaths) => {
-        const additionDates = new Map();
-        const unresolved = new Set(validPaths);
-        const commitsToCheck = commitSummaries.slice(0, CONFIG.maxCommitChecks);
-
-        for (const commit of commitsToCheck) {
-          if (!unresolved.size) break;
-
-          try {
-            const detail = await githubFetch(commit.url);
-            const commitDate =
-              detail?.commit?.committer?.date ||
-              detail?.commit?.author?.date ||
-              commit?.commit?.committer?.date ||
-              commit?.commit?.author?.date ||
-              "";
-
-            const files = Array.isArray(detail.files) ? detail.files : [];
-
-            for (const file of files) {
-              const path = file.filename;
-
-              if (
-                unresolved.has(path) &&
-                (file.status === "added" || file.status === "renamed")
-              ) {
-                additionDates.set(path, commitDate);
-                unresolved.delete(path);
-              }
-            }
-          } catch (error) {
-            console.warn("Commit ayrıntısı okunamadı:", error);
-          }
-        }
-
-        return additionDates;
-      };
-
-      const loadImages = async forceRefresh => {
-        setLoading();
-
-        if (forceRefresh) {
-          try { localStorage.removeItem(CACHE_KEY); } catch {}
-        } else {
-          const cached = getCache();
-          if (cached && cached.length) {
-            images = cached;
-            finishLoading();
-            return;
-          }
-        }
-
-        try {
-          const folderItems = await githubFetch(contentsApiUrl);
-
-          if (!Array.isArray(folderItems)) {
-            throw new Error(`"${CONFIG.folder}" klasörü okunamadı.`);
-          }
-
-          const imageFiles = folderItems
-            .filter(item => item.type === "file" && isAllowedImage(item.name))
-            .map(item => ({
-              name: item.name,
-              path: item.path,
-              url:
-                item.download_url ||
-                `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${encodePath(item.path)}`,
-              sha: item.sha,
-              addedAt: ""
-            }));
-
-          if (!imageFiles.length) {
-            throw new Error(`"${CONFIG.folder}" klasöründe gösterilecek görsel bulunamadı.`);
-          }
-
-          let commitSummaries = [];
-
-          try {
-            const commits = await githubFetch(commitsApiUrl);
-            commitSummaries = Array.isArray(commits) ? commits : [];
-          } catch (error) {
-            console.warn("Commit geçmişi okunamadı, dosya adına göre sıralama kullanılacak:", error);
-          }
-
-          const validPaths = new Set(imageFiles.map(file => file.path));
-          const additionDates = await collectAdditionDates(commitSummaries, validPaths);
-
-          imageFiles.forEach(file => {
-            file.addedAt = additionDates.get(file.path) || "";
-          });
-
-          imageFiles.sort((a, b) => {
-            const dateA = a.addedAt ? Date.parse(a.addedAt) : 0;
-            const dateB = b.addedAt ? Date.parse(b.addedAt) : 0;
-
-            if (dateA !== dateB) return dateB - dateA;
-
-            return b.name.localeCompare(a.name, "tr", {
-              numeric: true,
-              sensitivity: "base"
-            });
-          });
-
-          images = imageFiles;
-          saveCache(images);
-          finishLoading();
-        } catch (error) {
-          showError(error);
-        }
       };
 
       const setLoading = () => {
@@ -1028,20 +817,69 @@
         imageCounter.textContent = "Bağlantı hatası";
 
         errorText.textContent =
-          `${error && error.message ? error.message : "Bilinmeyen hata."} ` +
-          "Klasör adının tam olarak whatsappguvenceresim olduğundan ve sayfanın GitHub Pages üzerinden açıldığından emin olun.";
+          `${error?.message || "Görsel listesi okunamadı."} ` +
+          "GitHub Actions işleminin tamamlandığından ve whatsapp-images.json dosyasının oluştuğundan emin olun.";
+      };
+
+      const loadImages = async forceRefresh => {
+        setLoading();
+
+        if (!forceRefresh) {
+          const cached = readCache(false);
+          if (cached) {
+            images = cached;
+            finishLoading();
+            return;
+          }
+        }
+
+        const oldCache = readCache(true);
+
+        try {
+          const separator = CONFIG.manifest.includes("?") ? "&" : "?";
+          const manifestUrl =
+            CONFIG.manifest +
+            separator +
+            "v=" +
+            (forceRefresh ? Date.now() : "1");
+
+          const response = await fetch(manifestUrl, {
+            cache: "no-store"
+          });
+
+          if (!response.ok) {
+            throw new Error(`Görsel listesi yüklenemedi (${response.status}).`);
+          }
+
+          const data = await response.json();
+          const loadedImages = normalizeImages(data);
+
+          if (!loadedImages.length) {
+            throw new Error("Gösterilecek müşteri görüşmesi bulunamadı.");
+          }
+
+          images = loadedImages;
+          saveCache(images);
+          finishLoading();
+        } catch (error) {
+          if (oldCache && oldCache.length) {
+            images = oldCache;
+            finishLoading();
+            return;
+          }
+
+          showError(error);
+        }
       };
 
       const finishLoading = () => {
         loadingBox.classList.add("hidden");
         errorBox.classList.add("hidden");
         gallery.classList.remove("hidden");
-
-        /*
-          15 veya daha az görsel varsa sayfa numaraları gösterilmez.
-          16 ve üzerindeyse numaralı sayfalama görünür.
-        */
-        paginationWrap.classList.toggle("hidden", images.length <= CONFIG.itemsPerPage);
+        paginationWrap.classList.toggle(
+          "hidden",
+          images.length <= CONFIG.itemsPerPage
+        );
 
         imageCounter.textContent = `${images.length} Görüşme`;
         currentPage = 1;
@@ -1083,13 +921,13 @@
 
           img.addEventListener("load", () => {
             media.style.animation = "none";
-          }, {once:true});
+          }, { once: true });
 
           img.addEventListener("error", () => {
             media.style.animation = "none";
             media.innerHTML =
               '<span class="image-error">Bu görsel yüklenemedi.<br>GitHub dosyasını kontrol edin.</span>';
-          }, {once:true});
+          }, { once: true });
 
           const number = document.createElement("span");
           number.className = "proof-number";
@@ -1138,7 +976,7 @@
         const current = currentPage;
 
         if (total <= 9) {
-          return Array.from({length: total}, (_, index) => index + 1);
+          return Array.from({ length: total }, (_, index) => index + 1);
         }
 
         const result = [1];
@@ -1242,7 +1080,6 @@
 
       document.addEventListener("keydown", event => {
         if (!lightbox.classList.contains("open")) return;
-
         if (event.key === "Escape") closeLightbox();
         if (event.key === "ArrowLeft") {
           showLightboxImage(currentImageIndex - 1);
@@ -1256,7 +1093,7 @@
 
       lightbox.addEventListener("touchstart", event => {
         touchStartX = event.changedTouches[0].clientX;
-      }, {passive:true});
+      }, { passive: true });
 
       lightbox.addEventListener("touchend", event => {
         const difference =
@@ -1267,11 +1104,10 @@
         difference > 0
           ? showLightboxImage(currentImageIndex - 1)
           : showLightboxImage(currentImageIndex + 1);
-      }, {passive:true});
+      }, { passive: true });
 
       loadImages(false);
     })();
-  
   </script>
 </body>
 </html>
