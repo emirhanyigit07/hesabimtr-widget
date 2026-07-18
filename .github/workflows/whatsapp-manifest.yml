@@ -1,0 +1,105 @@
+name: WhatsApp Görsel Listesini Güncelle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "whatsappguvenceresim/**"
+      - ".github/workflows/whatsapp-manifest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu indir
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Görsel listesini oluştur
+        shell: python
+        run: |
+          import datetime
+          import json
+          import pathlib
+          import subprocess
+
+          folder = pathlib.Path("whatsappguvenceresim")
+          allowed = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"}
+
+          if not folder.exists():
+              raise SystemExit("whatsappguvenceresim klasörü bulunamadı.")
+
+          images = []
+
+          for file in folder.rglob("*"):
+              if not file.is_file() or file.suffix.lower() not in allowed:
+                  continue
+
+              try:
+                  output = subprocess.check_output(
+                      [
+                          "git",
+                          "log",
+                          "--diff-filter=A",
+                          "--follow",
+                          "--format=%aI",
+                          "--",
+                          file.as_posix(),
+                      ],
+                      text=True,
+                  ).strip()
+
+                  added_at = output.splitlines()[0] if output else ""
+              except subprocess.CalledProcessError:
+                  added_at = ""
+
+              images.append(
+                  {
+                      "name": file.name,
+                      "path": file.as_posix(),
+                      "addedAt": added_at,
+                  }
+              )
+
+          images.sort(
+              key=lambda item: (
+                  item.get("addedAt", ""),
+                  item.get("name", "").casefold(),
+              ),
+              reverse=True,
+          )
+
+          payload = {
+              "generatedAt": datetime.datetime.now(
+                  datetime.timezone.utc
+              ).isoformat(),
+              "count": len(images),
+              "images": images,
+          }
+
+          pathlib.Path("whatsapp-images.json").write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2),
+              encoding="utf-8",
+          )
+
+          print(f"{len(images)} görsel whatsapp-images.json dosyasına yazıldı.")
+
+      - name: Listeyi depoya kaydet
+        run: |
+          if git diff --quiet -- whatsapp-images.json; then
+            echo "Görsel listesinde değişiklik yok."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add whatsapp-images.json
+          git commit -m "WhatsApp görsel listesini güncelle"
+          git push
