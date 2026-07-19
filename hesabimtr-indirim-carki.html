@@ -63,62 +63,14 @@
           <!-- Bu bağlantıyı kendi ürünler sayfanın bağlantısıyla değiştirebilirsin. -->
           <a href="/collections/all" class="htr-wheel-shop">ÜRÜNLERİ İNCELE <span>→</span></a>
 
-          <details class="htr-wheel-guide">
-            <summary>
-              <span class="htr-wheel-guide-left">
-                <span class="htr-wheel-guide-icon">?</span>
-                <span>
-                  <strong>Kuponu Nasıl Kullanırım?</strong>
-                  <small>Adım adım kullanım tarifini görüntüle</small>
-                </span>
-              </span>
-              <span class="htr-wheel-guide-arrow">⌄</span>
-            </summary>
-
-            <div class="htr-wheel-guide-content">
-              <p class="htr-wheel-guide-intro">Kazandığın kuponu kullanmak için aşağıdaki adımları takip et.</p>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number">1</span>
-                <div><strong>Kupon Kodunu Kopyala</strong><p>Yukarıdaki <b>Kopyala</b> butonuna dokunarak kazandığın kupon kodunu kopyala.</p></div>
-              </div>
-              <div class="htr-wheel-guide-line"></div>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number">2</span>
-                <div><strong>Ürününü Sepete Ekle</strong><p>Satın almak istediğin ürünü seç ve <b>Sepete Ekle</b> butonuna dokun.</p></div>
-              </div>
-              <div class="htr-wheel-guide-line"></div>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number">3</span>
-                <div><strong>Ödeme Ekranına Geç</strong><p>Sepetini görüntüledikten sonra <b>Alışverişi Tamamla</b> veya <b>Ödemeye Geç</b> butonuna dokun.</p></div>
-              </div>
-              <div class="htr-wheel-guide-line"></div>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number">4</span>
-                <div><strong>İndirim Kodu Alanını Bul</strong><p>Ödeme ekranındaki <b>İndirim Kodu</b> veya <b>Kupon Kodu</b> alanına dokun.</p></div>
-              </div>
-              <div class="htr-wheel-guide-line"></div>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number">5</span>
-                <div><strong>Kodu Uygula</strong><p>Kopyaladığın kodu ilgili alana yapıştır ve <b>Uygula</b> butonuna dokun.</p></div>
-              </div>
-              <div class="htr-wheel-guide-line"></div>
-
-              <div class="htr-wheel-guide-step">
-                <span class="htr-wheel-step-number htr-wheel-step-success">✓</span>
-                <div><strong>İndirimi Kontrol Et</strong><p>İndirimin sipariş toplamına yansıdığını kontrol ederek ödemeni güvenle tamamla.</p></div>
-              </div>
-
-              <div class="htr-wheel-guide-warning">
-                <span>⏳</span>
-                <div><strong>Kuponun 24 saat geçerlidir.</strong><p>Sayaç sona ermeden kuponunu kullanmayı unutma. Kupon, kampanya koşullarına uygun ürünlerde geçerlidir.</p></div>
-              </div>
+          <div class="htr-wheel-usage">
+            <span class="htr-wheel-usage-icon">?</span>
+            <div>
+              <strong>Kuponu Nasıl Kullanırım?</strong>
+              <p>Kupon kodunu kopyala, ürününü sepete ekle ve ödeme ekranındaki <b>İndirim Kodu</b> alanına yapıştırıp <b>Uygula</b> butonuna dokun.</p>
             </div>
-          </details>
+          </div>
+
         </div>
       </div>
     </div>
@@ -782,6 +734,61 @@
   .htr-wheel-guide-warning > span { flex-shrink: 0; font-size: 18px; }
   .htr-wheel-guide-warning strong { display: block; color: #92400e; font-size: 10px; font-weight: 900; }
   .htr-wheel-guide-warning p { margin: 3px 0 0; color: #a15c14; font-size: 9px; line-height: 1.5; }
+
+
+  .htr-wheel-usage {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px 15px;
+    border: 1px solid rgba(102, 88, 245, 0.16);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(242, 240, 255, 0.9), rgba(255, 255, 255, 0.96));
+    text-align: left;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.05);
+  }
+
+  .htr-wheel-usage-icon {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--htr-primary), var(--htr-secondary));
+    box-shadow: 0 7px 15px rgba(102, 88, 245, 0.22);
+    font-size: 17px;
+    font-weight: 950;
+  }
+
+  .htr-wheel-usage > div {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .htr-wheel-usage strong {
+    display: block;
+    color: var(--htr-text);
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.35;
+  }
+
+  .htr-wheel-usage p {
+    margin: 4px 0 0;
+    color: var(--htr-muted);
+    font-size: 10px;
+    line-height: 1.55;
+  }
+
+  .htr-wheel-usage p b {
+    color: var(--htr-text);
+    font-weight: 800;
+  }
 
   .htr-wheel-info-grid {
     position: relative;
