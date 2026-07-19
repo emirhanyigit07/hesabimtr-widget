@@ -1,0 +1,1176 @@
+<!-- HESABIMTR İNDİRİM ÇARKI - SON SÜRÜM -->
+<section id="htr-wheel-widget" class="htr-wheel-widget">
+  <div class="htr-wheel-shell">
+    <header class="htr-wheel-header">
+      <div class="htr-wheel-badge"><span>🎁</span> SANA ÖZEL İNDİRİM</div>
+      <h2>Çarkı Çevir, İndirimini Kazan!</h2>
+      <p>Şansını dene, alışverişinde kullanabileceğin indirim kuponunu hemen kazan.</p>
+    </header>
+
+    <div class="htr-wheel-layout">
+      <div class="htr-wheel-left">
+        <div class="htr-wheel-glow" aria-hidden="true"></div>
+        <div class="htr-wheel-pointer" aria-hidden="true"><span></span></div>
+
+        <div id="htr-wheel-disc" class="htr-wheel-disc" aria-label="İndirim çarkı">
+          <div id="htr-wheel-labels" class="htr-wheel-labels"></div>
+          <div class="htr-wheel-center" aria-hidden="true"><span>H</span></div>
+        </div>
+
+        <div class="htr-wheel-limit"><span>✓</span> Her cihaz 24 saatte bir kez çevirebilir.</div>
+      </div>
+
+      <div class="htr-wheel-panel">
+        <div id="htr-wheel-start" class="htr-wheel-start">
+          <div class="htr-wheel-main-icon">🎉</div>
+          <span class="htr-wheel-overline">ŞANSINI DENE</span>
+          <h3>Kuponun Seni Bekliyor</h3>
+          <p>Çarkı çevir ve HesabımTR alışverişinde kullanabileceğin indirimlerden birini kazan.</p>
+
+          <button id="htr-wheel-spin" class="htr-wheel-primary" type="button">
+            <span>↻</span> ÇARKI ÇEVİR
+          </button>
+
+          <div class="htr-wheel-secure"><span>🔒</span> Ücretsizdir ve ödeme gerektirmez.</div>
+        </div>
+
+        <div id="htr-wheel-result" class="htr-wheel-result" hidden>
+          <div class="htr-wheel-success-icon">✓</div>
+          <span class="htr-wheel-success-text">TEBRİKLER, KAZANDIN!</span>
+          <h3 id="htr-wheel-result-title">%10 İndirim</h3>
+          <p>Kupon kodunu kopyalayıp ödeme ekranındaki indirim kodu alanında kullanabilirsin.</p>
+
+          <div class="htr-wheel-coupon">
+            <div class="htr-wheel-coupon-code">
+              <span>KUPON KODUN</span>
+              <strong id="htr-wheel-code">HESABIM10</strong>
+            </div>
+            <button id="htr-wheel-copy" type="button"><span>⧉</span> KOPYALA</button>
+          </div>
+
+          <div class="htr-wheel-validity">
+            <div class="htr-wheel-validity-title"><span>⏱</span> Kuponunun kalan kullanım süresi</div>
+            <div class="htr-wheel-countdown" aria-live="polite">
+              <div class="htr-wheel-time"><strong id="htr-wheel-hours">23</strong><span>SAAT</span></div>
+              <div class="htr-wheel-colon">:</div>
+              <div class="htr-wheel-time"><strong id="htr-wheel-minutes">59</strong><span>DAKİKA</span></div>
+              <div class="htr-wheel-colon">:</div>
+              <div class="htr-wheel-time"><strong id="htr-wheel-seconds">59</strong><span>SANİYE</span></div>
+            </div>
+            <div id="htr-wheel-expire" class="htr-wheel-expire"></div>
+          </div>
+
+          <!-- Bu bağlantıyı kendi ürünler sayfanın bağlantısıyla değiştirebilirsin. -->
+          <a href="/collections/all" class="htr-wheel-shop">ÜRÜNLERİ İNCELE <span>→</span></a>
+
+          <details class="htr-wheel-guide">
+            <summary>
+              <span class="htr-wheel-guide-left">
+                <span class="htr-wheel-guide-icon">?</span>
+                <span>
+                  <strong>Kuponu Nasıl Kullanırım?</strong>
+                  <small>İkas'ta adım adım kullanım tarifini görüntüle</small>
+                </span>
+              </span>
+              <span class="htr-wheel-guide-arrow">⌄</span>
+            </summary>
+
+            <div class="htr-wheel-guide-content">
+              <p class="htr-wheel-guide-intro">Kazandığın kuponu kullanmak için aşağıdaki adımları takip et.</p>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number">1</span>
+                <div><strong>Kupon Kodunu Kopyala</strong><p>Yukarıdaki <b>Kopyala</b> butonuna dokunarak kazandığın kupon kodunu kopyala.</p></div>
+              </div>
+              <div class="htr-wheel-guide-line"></div>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number">2</span>
+                <div><strong>Ürününü Sepete Ekle</strong><p>Satın almak istediğin ürünü seç ve <b>Sepete Ekle</b> butonuna dokun.</p></div>
+              </div>
+              <div class="htr-wheel-guide-line"></div>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number">3</span>
+                <div><strong>Ödeme Ekranına Geç</strong><p>Sepetini görüntüledikten sonra <b>Alışverişi Tamamla</b> veya <b>Ödemeye Geç</b> butonuna dokun.</p></div>
+              </div>
+              <div class="htr-wheel-guide-line"></div>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number">4</span>
+                <div><strong>İndirim Kodu Alanını Bul</strong><p>İkas ödeme ekranındaki <b>İndirim Kodu</b> veya <b>Kupon Kodu</b> alanına dokun.</p></div>
+              </div>
+              <div class="htr-wheel-guide-line"></div>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number">5</span>
+                <div><strong>Kodu Uygula</strong><p>Kopyaladığın kodu ilgili alana yapıştır ve <b>Uygula</b> butonuna dokun.</p></div>
+              </div>
+              <div class="htr-wheel-guide-line"></div>
+
+              <div class="htr-wheel-guide-step">
+                <span class="htr-wheel-step-number htr-wheel-step-success">✓</span>
+                <div><strong>İndirimi Kontrol Et</strong><p>İndirimin sipariş toplamına yansıdığını kontrol ederek ödemeni güvenle tamamla.</p></div>
+              </div>
+
+              <div class="htr-wheel-guide-warning">
+                <span>⏳</span>
+                <div><strong>Kuponun 24 saat geçerlidir.</strong><p>Sayaç sona ermeden kuponunu kullanmayı unutma. Kupon, kampanya koşullarına uygun ürünlerde geçerlidir.</p></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="htr-wheel-info-grid">
+      <div><span>⚡</span><strong>Anında Kupon</strong><small>Çark sonucunda hemen görüntülenir.</small></div>
+      <div><span>🛡️</span><strong>Güvenli Alışveriş</strong><small>HesabımTR güvencesiyle kullanılır.</small></div>
+      <div><span>⏳</span><strong>24 Saat Geçerli</strong><small>Süre dolmadan kuponunu kullan.</small></div>
+    </div>
+  </div>
+
+  <div id="htr-wheel-confetti" class="htr-wheel-confetti" aria-hidden="true"></div>
+</section>
+
+<style>
+  #htr-wheel-widget,
+  #htr-wheel-widget * { box-sizing: border-box; }
+
+  #htr-wheel-widget {
+    --htr-primary: #6658f5;
+    --htr-primary-dark: #5143d9;
+    --htr-primary-light: #f2f0ff;
+    --htr-secondary: #9254de;
+    --htr-text: #101828;
+    --htr-muted: #667085;
+    --htr-border: #eaecf0;
+    --htr-success: #12b76a;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 24px 12px;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--htr-text);
+    background: transparent;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  #htr-wheel-widget button,
+  #htr-wheel-widget a { font-family: inherit; }
+
+  .htr-wheel-shell {
+    position: relative;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: clamp(26px, 4vw, 48px);
+    overflow: hidden;
+    border: 1px solid rgba(102, 88, 245, 0.12);
+    border-radius: 30px;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(146, 84, 222, 0.09), transparent 30%),
+      radial-gradient(circle at 100% 100%, rgba(102, 88, 245, 0.09), transparent 32%),
+      #ffffff;
+    box-shadow: 0 20px 55px rgba(16, 24, 40, 0.08), 0 2px 8px rgba(16, 24, 40, 0.03);
+  }
+
+  .htr-wheel-shell::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    width: 110px;
+    height: 110px;
+    opacity: 0.35;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(102, 88, 245, 0.35) 1.4px, transparent 1.4px);
+    background-size: 13px 13px;
+  }
+
+  .htr-wheel-header {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto 34px;
+    text-align: center;
+  }
+
+  .htr-wheel-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    padding: 9px 15px;
+    border: 1px solid rgba(102, 88, 245, 0.14);
+    border-radius: 999px;
+    color: var(--htr-primary-dark);
+    background: var(--htr-primary-light);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+  }
+
+  .htr-wheel-header h2 {
+    margin: 0;
+    color: var(--htr-text);
+    font-size: clamp(29px, 4.5vw, 46px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+  }
+
+  .htr-wheel-header p {
+    max-width: 640px;
+    margin: 14px auto 0;
+    color: var(--htr-muted);
+    font-size: clamp(14px, 2vw, 17px);
+    line-height: 1.65;
+  }
+
+  .htr-wheel-layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(340px, 0.92fr);
+    align-items: center;
+    gap: clamp(30px, 6vw, 75px);
+  }
+
+  .htr-wheel-left {
+    position: relative;
+    display: flex;
+    min-height: 460px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .htr-wheel-glow {
+    position: absolute;
+    width: min(405px, 88vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(102, 88, 245, 0.18), rgba(146, 84, 222, 0.1));
+    filter: blur(32px);
+    transform: scale(0.9);
+  }
+
+  .htr-wheel-disc {
+    position: relative;
+    z-index: 3;
+    width: min(380px, 82vw);
+    aspect-ratio: 1;
+    border: 9px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 7px var(--htr-primary), 0 22px 45px rgba(65, 54, 180, 0.23);
+    transition: transform 5.4s cubic-bezier(0.12, 0.78, 0.12, 1);
+    will-change: transform;
+  }
+
+  .htr-wheel-disc::before {
+    content: "";
+    position: absolute;
+    inset: 11px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .htr-wheel-disc::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent 48%, rgba(255, 255, 255, 0.08) 49%, rgba(0, 0, 0, 0.06) 100%);
+  }
+
+  .htr-wheel-pointer {
+    position: absolute;
+    z-index: 15;
+    top: 8px;
+    left: 50%;
+    width: 58px;
+    height: 70px;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 5px 6px rgba(16, 24, 40, 0.25));
+  }
+
+  .htr-wheel-pointer span {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 48px solid var(--htr-text);
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+    transform: translateX(-50%);
+  }
+
+  .htr-wheel-pointer span::before {
+    content: "";
+    position: absolute;
+    top: -59px;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    background: #ffd166;
+  }
+
+  .htr-wheel-labels { position: absolute; z-index: 4; inset: 0; }
+
+  .htr-wheel-label {
+    position: absolute;
+    width: 84px;
+    color: #ffffff;
+    text-align: center;
+    font-size: clamp(15px, 3.8vw, 21px);
+    font-weight: 950;
+    line-height: 1;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(16, 24, 40, 0.28);
+    transform: translate(-50%, -50%);
+    user-select: none;
+  }
+
+  .htr-wheel-label small {
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.7px;
+  }
+
+  .htr-wheel-label.htr-wheel-dark-label {
+    color: #463b0e;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .htr-wheel-center {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    width: 88px;
+    height: 88px;
+    align-items: center;
+    justify-content: center;
+    border: 8px solid #ffffff;
+    border-radius: 50%;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--htr-primary), var(--htr-secondary));
+    box-shadow: 0 9px 22px rgba(31, 24, 100, 0.32), inset 0 2px 6px rgba(255, 255, 255, 0.32);
+    transform: translate(-50%, -50%);
+  }
+
+  .htr-wheel-center span {
+    margin-left: -3px;
+    font-size: 39px;
+    font-weight: 950;
+    font-style: italic;
+  }
+
+  .htr-wheel-limit {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 28px;
+    color: var(--htr-muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .htr-wheel-limit span {
+    display: inline-flex;
+    width: 19px;
+    height: 19px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background: var(--htr-success);
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  .htr-wheel-panel {
+    position: relative;
+    padding: clamp(25px, 4vw, 38px);
+    border: 1px solid var(--htr-border);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 14px 35px rgba(16, 24, 40, 0.07), 0 2px 7px rgba(16, 24, 40, 0.03);
+  }
+
+  .htr-wheel-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 36px;
+    left: 36px;
+    height: 3px;
+    border-radius: 0 0 8px 8px;
+    background: linear-gradient(90deg, transparent, var(--htr-primary), var(--htr-secondary), transparent);
+  }
+
+  .htr-wheel-start,
+  .htr-wheel-result { text-align: center; }
+
+  .htr-wheel-result[hidden],
+  .htr-wheel-start[hidden] { display: none !important; }
+
+  .htr-wheel-main-icon,
+  .htr-wheel-success-icon {
+    display: flex;
+    width: 68px;
+    height: 68px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    border-radius: 20px;
+    background: var(--htr-primary-light);
+    font-size: 34px;
+  }
+
+  .htr-wheel-success-icon {
+    border-radius: 50%;
+    color: #ffffff;
+    background: var(--htr-success);
+    font-size: 34px;
+    font-weight: 950;
+    animation: htr-wheel-success-pop 0.55s ease both;
+  }
+
+  .htr-wheel-overline,
+  .htr-wheel-success-text {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--htr-primary);
+    font-size: 10px;
+    font-weight: 950;
+    letter-spacing: 1.1px;
+  }
+
+  .htr-wheel-success-text { color: var(--htr-success); }
+
+  .htr-wheel-start h3,
+  .htr-wheel-result h3 {
+    margin: 0;
+    color: var(--htr-text);
+    font-size: clamp(23px, 3vw, 30px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+  }
+
+  .htr-wheel-start > p,
+  .htr-wheel-result > p {
+    margin: 12px 0 22px;
+    color: var(--htr-muted);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .htr-wheel-primary {
+    display: flex;
+    width: 100%;
+    min-height: 59px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border: 0;
+    border-radius: 15px;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--htr-primary), var(--htr-secondary));
+    box-shadow: 0 12px 27px rgba(102, 88, 245, 0.28);
+    font-size: 14px;
+    font-weight: 950;
+    letter-spacing: 0.7px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  }
+
+  .htr-wheel-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(102, 88, 245, 0.35); }
+  .htr-wheel-primary:active { transform: scale(0.98); }
+  .htr-wheel-primary:disabled { opacity: 0.65; cursor: wait; }
+  .htr-wheel-primary span { font-size: 23px; line-height: 1; }
+
+  .htr-wheel-secure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+    color: var(--htr-muted);
+    font-size: 11px;
+  }
+
+  .htr-wheel-coupon {
+    display: flex;
+    align-items: stretch;
+    margin: 21px 0;
+    padding: 6px;
+    border: 2px dashed rgba(102, 88, 245, 0.35);
+    border-radius: 16px;
+    background: var(--htr-primary-light);
+  }
+
+  .htr-wheel-coupon-code {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .htr-wheel-coupon-code span {
+    margin-bottom: 3px;
+    color: var(--htr-muted);
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+  }
+
+  .htr-wheel-coupon-code strong {
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--htr-primary-dark);
+    font-size: clamp(17px, 4vw, 22px);
+    font-weight: 950;
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .htr-wheel-coupon button {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 11px;
+    color: #ffffff;
+    background: var(--htr-primary);
+    font-size: 10px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .htr-wheel-validity {
+    padding: 16px 12px;
+    border: 1px solid var(--htr-border);
+    border-radius: 17px;
+    background: #fafafa;
+  }
+
+  .htr-wheel-validity-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--htr-muted);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .htr-wheel-countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 13px;
+  }
+
+  .htr-wheel-time {
+    display: flex;
+    width: 68px;
+    min-height: 67px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--htr-border);
+    border-radius: 13px;
+    background: #ffffff;
+    box-shadow: 0 5px 13px rgba(16, 24, 40, 0.05);
+  }
+
+  .htr-wheel-time strong {
+    color: var(--htr-text);
+    font-size: 23px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .htr-wheel-time span {
+    margin-top: 6px;
+    color: var(--htr-muted);
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+  }
+
+  .htr-wheel-colon {
+    margin-top: -13px;
+    color: var(--htr-primary);
+    font-size: 23px;
+    font-weight: 900;
+  }
+
+  .htr-wheel-expire {
+    margin-top: 9px;
+    color: var(--htr-muted);
+    font-size: 9px;
+  }
+
+  .htr-wheel-shop {
+    display: flex;
+    width: 100%;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 17px;
+    border: 1px solid rgba(102, 88, 245, 0.2);
+    border-radius: 14px;
+    color: var(--htr-primary-dark) !important;
+    background: #ffffff;
+    font-size: 12px;
+    font-weight: 950;
+    letter-spacing: 0.4px;
+    text-decoration: none !important;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .htr-wheel-shop:hover { color: #ffffff !important; background: var(--htr-primary); transform: translateY(-1px); }
+
+  .htr-wheel-guide {
+    width: 100%;
+    margin-top: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(102, 88, 245, 0.16);
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.05);
+  }
+
+  .htr-wheel-guide summary {
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 15px;
+    color: var(--htr-text);
+    background: linear-gradient(135deg, rgba(242, 240, 255, 0.9), rgba(255, 255, 255, 0.96));
+    list-style: none;
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+  }
+
+  .htr-wheel-guide summary::-webkit-details-marker { display: none; }
+  .htr-wheel-guide summary::marker { content: ""; }
+  .htr-wheel-guide summary:hover { background: var(--htr-primary-light); }
+
+  .htr-wheel-guide-left { display: flex; min-width: 0; align-items: center; gap: 11px; }
+  .htr-wheel-guide-left > span:last-child { display: flex; min-width: 0; flex-direction: column; }
+  .htr-wheel-guide-left strong { color: var(--htr-text); font-size: 12px; font-weight: 900; line-height: 1.3; }
+  .htr-wheel-guide-left small { margin-top: 3px; color: var(--htr-muted); font-size: 9px; line-height: 1.4; }
+
+  .htr-wheel-guide-icon {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--htr-primary), var(--htr-secondary));
+    box-shadow: 0 7px 15px rgba(102, 88, 245, 0.22);
+    font-size: 17px;
+    font-weight: 950;
+  }
+
+  .htr-wheel-guide-arrow {
+    display: flex;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    color: var(--htr-primary);
+    background: #ffffff;
+    font-size: 20px;
+    font-weight: 900;
+    transition: transform 0.25s ease;
+  }
+
+  .htr-wheel-guide[open] .htr-wheel-guide-arrow { transform: rotate(180deg); }
+  .htr-wheel-guide[open] summary { border-bottom: 1px solid var(--htr-border); }
+
+  .htr-wheel-guide-content {
+    padding: 17px 15px 15px;
+    text-align: left;
+    animation: htr-wheel-guide-open 0.25s ease both;
+  }
+
+  .htr-wheel-guide-intro {
+    margin: 0 0 17px;
+    color: var(--htr-muted);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .htr-wheel-guide-step { position: relative; display: flex; align-items: flex-start; gap: 12px; }
+
+  .htr-wheel-step-number {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(102, 88, 245, 0.15);
+    border-radius: 10px;
+    color: var(--htr-primary-dark);
+    background: var(--htr-primary-light);
+    font-size: 12px;
+    font-weight: 950;
+  }
+
+  .htr-wheel-step-success { border-color: rgba(18, 183, 106, 0.18); color: #ffffff; background: var(--htr-success); }
+  .htr-wheel-guide-step > div { flex: 1; padding-top: 1px; }
+  .htr-wheel-guide-step strong { display: block; color: var(--htr-text); font-size: 11px; font-weight: 900; line-height: 1.4; }
+  .htr-wheel-guide-step p { margin: 4px 0 0; color: var(--htr-muted); font-size: 10px; line-height: 1.55; }
+  .htr-wheel-guide-step p b { color: var(--htr-text); font-weight: 800; }
+
+  .htr-wheel-guide-line {
+    width: 1px;
+    height: 15px;
+    margin: 3px 0 3px 15px;
+    background: linear-gradient(180deg, rgba(102, 88, 245, 0.32), rgba(102, 88, 245, 0.08));
+  }
+
+  .htr-wheel-guide-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 17px;
+    padding: 12px;
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    border-radius: 13px;
+    background: #fffbeb;
+  }
+
+  .htr-wheel-guide-warning > span { flex-shrink: 0; font-size: 18px; }
+  .htr-wheel-guide-warning strong { display: block; color: #92400e; font-size: 10px; font-weight: 900; }
+  .htr-wheel-guide-warning p { margin: 3px 0 0; color: #a15c14; font-size: 9px; line-height: 1.5; }
+
+  .htr-wheel-info-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 36px;
+    padding-top: 26px;
+    border-top: 1px solid var(--htr-border);
+  }
+
+  .htr-wheel-info-grid > div {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .htr-wheel-info-grid > div > span {
+    display: flex;
+    grid-row: 1 / 3;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--htr-primary-light);
+    font-size: 18px;
+  }
+
+  .htr-wheel-info-grid strong { color: var(--htr-text); font-size: 11px; font-weight: 900; }
+  .htr-wheel-info-grid small { margin-top: 2px; color: var(--htr-muted); font-size: 9px; line-height: 1.4; }
+
+  .htr-wheel-confetti { position: absolute; z-index: 50; inset: 0; overflow: hidden; pointer-events: none; }
+
+  .htr-wheel-confetti-piece {
+    position: absolute;
+    top: -30px;
+    width: 8px;
+    height: 14px;
+    border-radius: 2px;
+    animation: htr-wheel-confetti-fall var(--htr-duration) linear forwards;
+  }
+
+  @keyframes htr-wheel-success-pop {
+    0% { opacity: 0; transform: scale(0.4); }
+    70% { transform: scale(1.13); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes htr-wheel-confetti-fall {
+    0% { opacity: 1; transform: translate3d(0, -30px, 0) rotate(0deg); }
+    100% { opacity: 0; transform: translate3d(var(--htr-movement), calc(100vh + 100px), 0) rotate(800deg); }
+  }
+
+  @keyframes htr-wheel-guide-open {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 850px) {
+    #htr-wheel-widget { padding: 16px 9px; }
+    .htr-wheel-shell { padding: 27px 14px; border-radius: 24px; }
+    .htr-wheel-header { margin-bottom: 20px; }
+    .htr-wheel-layout { grid-template-columns: 1fr; gap: 12px; }
+    .htr-wheel-left { min-height: auto; padding: 26px 0 17px; }
+    .htr-wheel-pointer { top: 6px; }
+    .htr-wheel-panel { padding: 25px 17px; border-radius: 21px; }
+    .htr-wheel-info-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 27px; }
+  }
+
+  @media (max-width: 390px) {
+    .htr-wheel-label { width: 67px; font-size: 14px; }
+    .htr-wheel-label small { font-size: 6px; }
+    .htr-wheel-center { width: 78px; height: 78px; }
+    .htr-wheel-time { width: 61px; }
+    .htr-wheel-coupon button { padding: 0 11px; }
+    .htr-wheel-guide summary { padding: 11px 12px; }
+    .htr-wheel-guide-content { padding: 15px 12px 12px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .htr-wheel-disc,
+    .htr-wheel-primary,
+    .htr-wheel-shop { transition-duration: 0.01ms !important; }
+    .htr-wheel-confetti-piece { display: none !important; }
+  }
+</style>
+
+<script>
+  (function () {
+    "use strict";
+
+    /*
+      KUPON AYARLARI
+      wheelLabel: Çarkta görünen yazı
+      label: Sonuç ekranındaki açıklama
+      code: İkas panelinde oluşturacağın kupon kodu
+      weight: Çıkma ihtimali; yüksek sayı daha sık çıkar
+      color: Çark diliminin rengi
+    */
+    var coupons = [
+      { wheelLabel: "%5", label: "%5 İndirim", code: "HESABIM5", weight: 30, color: "#6658f5", darkText: false },
+      { wheelLabel: "50 TL", label: "50 TL İndirim", code: "HESABIM50", weight: 25, color: "#ffd166", darkText: true },
+      { wheelLabel: "%7", label: "%7 İndirim", code: "HESABIM7", weight: 20, color: "#9254de", darkText: false },
+      { wheelLabel: "100 TL", label: "100 TL İndirim", code: "HESABIM100", weight: 13, color: "#36bffa", darkText: false },
+      { wheelLabel: "%10", label: "%10 İndirim", code: "HESABIM10", weight: 9, color: "#12b76a", darkText: false },
+      { wheelLabel: "150 TL", label: "150 TL İndirim", code: "HESABIM150", weight: 3, color: "#f97066", darkText: false }
+    ];
+
+    var storageKey = "hesabimtr_indirim_carki_v3";
+    var couponDuration = 24 * 60 * 60 * 1000;
+
+    var wheel = document.getElementById("htr-wheel-disc");
+    var labels = document.getElementById("htr-wheel-labels");
+    var spinButton = document.getElementById("htr-wheel-spin");
+    var startBox = document.getElementById("htr-wheel-start");
+    var resultBox = document.getElementById("htr-wheel-result");
+    var resultTitle = document.getElementById("htr-wheel-result-title");
+    var couponCode = document.getElementById("htr-wheel-code");
+    var copyButton = document.getElementById("htr-wheel-copy");
+    var hoursElement = document.getElementById("htr-wheel-hours");
+    var minutesElement = document.getElementById("htr-wheel-minutes");
+    var secondsElement = document.getElementById("htr-wheel-seconds");
+    var expireDate = document.getElementById("htr-wheel-expire");
+    var confetti = document.getElementById("htr-wheel-confetti");
+
+    if (!wheel || !labels || !spinButton || !startBox || !resultBox) return;
+
+    var isSpinning = false;
+    var currentRotation = 0;
+    var countdownInterval = null;
+
+    function createWheel() {
+      var sectorAngle = 360 / coupons.length;
+      var gradientParts = [];
+
+      coupons.forEach(function (coupon, index) {
+        var start = index * sectorAngle;
+        var end = (index + 1) * sectorAngle;
+        gradientParts.push(coupon.color + " " + start + "deg " + end + "deg");
+      });
+
+      wheel.style.background = "conic-gradient(from 0deg," + gradientParts.join(",") + ")";
+      labels.innerHTML = "";
+
+      coupons.forEach(function (coupon, index) {
+        var label = document.createElement("div");
+        var centerAngle = index * sectorAngle + sectorAngle / 2;
+        var radians = (centerAngle - 90) * Math.PI / 180;
+        var radius = 35;
+
+        label.className = "htr-wheel-label" + (coupon.darkText ? " htr-wheel-dark-label" : "");
+        label.style.left = 50 + Math.cos(radians) * radius + "%";
+        label.style.top = 50 + Math.sin(radians) * radius + "%";
+        label.innerHTML = coupon.wheelLabel + "<small>İNDİRİM</small>";
+        labels.appendChild(label);
+      });
+    }
+
+    function selectCouponIndex() {
+      var totalWeight = coupons.reduce(function (total, coupon) {
+        return total + coupon.weight;
+      }, 0);
+
+      var random = Math.random() * totalWeight;
+      var current = 0;
+
+      for (var i = 0; i < coupons.length; i++) {
+        current += coupons[i].weight;
+        if (random < current) return i;
+      }
+
+      return coupons.length - 1;
+    }
+
+    function saveCoupon(data) {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      } catch (error) {
+        console.warn("Kupon bilgisi kaydedilemedi.");
+      }
+    }
+
+    function getSavedCoupon() {
+      try {
+        var saved = localStorage.getItem(storageKey);
+        if (!saved) return null;
+
+        var data = JSON.parse(saved);
+        if (!data.expiresAt || Date.now() >= Number(data.expiresAt)) {
+          localStorage.removeItem(storageKey);
+          return null;
+        }
+
+        return data;
+      } catch (error) {
+        try { localStorage.removeItem(storageKey); } catch (removeError) {}
+        return null;
+      }
+    }
+
+    function positionWheel(index) {
+      if (typeof index !== "number" || !coupons[index]) return;
+
+      var sectorAngle = 360 / coupons.length;
+      var selectedCenter = index * sectorAngle + sectorAngle / 2;
+      var destination = 360 - selectedCenter;
+
+      wheel.style.transition = "none";
+      currentRotation = destination;
+      wheel.style.transform = "rotate(" + destination + "deg)";
+      void wheel.offsetHeight;
+      wheel.style.transition = "transform 5.4s cubic-bezier(0.12,0.78,0.12,1)";
+    }
+
+    function spinWheel() {
+      if (isSpinning) return;
+
+      var existingCoupon = getSavedCoupon();
+      if (existingCoupon) {
+        showResult(existingCoupon);
+        return;
+      }
+
+      isSpinning = true;
+      spinButton.disabled = true;
+      spinButton.innerHTML = "<span>↻</span> ÇEVRİLİYOR...";
+
+      var selectedIndex = selectCouponIndex();
+      var selectedCoupon = coupons[selectedIndex];
+      var sectorAngle = 360 / coupons.length;
+      var selectedCenter = selectedIndex * sectorAngle + sectorAngle / 2;
+      var extraSpins = 6 + Math.floor(Math.random() * 3);
+      var normalizedRotation = ((currentRotation % 360) + 360) % 360;
+      var destination = 360 - selectedCenter;
+
+      currentRotation += extraSpins * 360 + ((destination - normalizedRotation + 360) % 360);
+      wheel.style.transform = "rotate(" + currentRotation + "deg)";
+
+      window.setTimeout(function () {
+        var now = Date.now();
+        var result = {
+          index: selectedIndex,
+          label: selectedCoupon.label,
+          code: selectedCoupon.code,
+          createdAt: now,
+          expiresAt: now + couponDuration
+        };
+
+        saveCoupon(result);
+        showResult(result, false);
+        createConfetti();
+        isSpinning = false;
+      }, 5600);
+    }
+
+    function showResult(data, reposition) {
+      startBox.hidden = true;
+      resultBox.hidden = false;
+      resultTitle.textContent = data.label;
+      couponCode.textContent = data.code;
+
+      if (reposition !== false) positionWheel(Number(data.index));
+
+      var endingDate = new Date(Number(data.expiresAt));
+      expireDate.textContent = "Bitiş zamanı: " + endingDate.toLocaleString("tr-TR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      startCountdown(Number(data.expiresAt));
+    }
+
+    function startCountdown(expiresAt) {
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      function updateCountdown() {
+        var remaining = expiresAt - Date.now();
+
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          try { localStorage.removeItem(storageKey); } catch (error) {}
+
+          hoursElement.textContent = "00";
+          minutesElement.textContent = "00";
+          secondsElement.textContent = "00";
+          resultTitle.textContent = "Kuponunun Süresi Doldu";
+          couponCode.textContent = "SÜRESİ DOLDU";
+          copyButton.disabled = true;
+          copyButton.textContent = "SÜRESİ DOLDU";
+
+          window.setTimeout(function () {
+            resultBox.hidden = true;
+            startBox.hidden = false;
+            spinButton.disabled = false;
+            spinButton.innerHTML = "<span>↻</span> ÇARKI YENİDEN ÇEVİR";
+            copyButton.disabled = false;
+            copyButton.innerHTML = "<span>⧉</span> KOPYALA";
+          }, 1800);
+
+          return;
+        }
+
+        var totalSeconds = Math.floor(remaining / 1000);
+        var hours = Math.floor(totalSeconds / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+
+        hoursElement.textContent = String(hours).padStart(2, "0");
+        minutesElement.textContent = String(minutes).padStart(2, "0");
+        secondsElement.textContent = String(seconds).padStart(2, "0");
+      }
+
+      updateCountdown();
+      countdownInterval = window.setInterval(updateCountdown, 1000);
+    }
+
+    function fallbackCopy(text, callback) {
+      var textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      textarea.style.pointerEvents = "none";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+
+      try {
+        document.execCommand("copy");
+        callback();
+      } catch (error) {
+        copyButton.textContent = text;
+      }
+
+      document.body.removeChild(textarea);
+    }
+
+    function copyCode() {
+      var code = couponCode.textContent.trim();
+      if (!code || code === "SÜRESİ DOLDU") return;
+
+      function showCopied() {
+        copyButton.innerHTML = "KOPYALANDI ✓";
+        window.setTimeout(function () {
+          copyButton.innerHTML = "<span>⧉</span> KOPYALA";
+        }, 1800);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(showCopied).catch(function () {
+          fallbackCopy(code, showCopied);
+        });
+      } else {
+        fallbackCopy(code, showCopied);
+      }
+    }
+
+    function createConfetti() {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      var colors = ["#6658f5", "#9254de", "#ffd166", "#12b76a", "#36bffa", "#f97066"];
+      confetti.innerHTML = "";
+
+      for (var i = 0; i < 38; i++) {
+        var piece = document.createElement("span");
+        piece.className = "htr-wheel-confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.setProperty("--htr-duration", 2.7 + Math.random() * 2 + "s");
+        piece.style.setProperty("--htr-movement", -100 + Math.random() * 200 + "px");
+        piece.style.animationDelay = Math.random() * 0.5 + "s";
+        confetti.appendChild(piece);
+      }
+
+      window.setTimeout(function () { confetti.innerHTML = ""; }, 5500);
+    }
+
+    createWheel();
+
+    var savedCoupon = getSavedCoupon();
+    if (savedCoupon) showResult(savedCoupon);
+
+    spinButton.addEventListener("click", spinWheel);
+    copyButton.addEventListener("click", copyCode);
+  })();
+</script>
+<!-- HESABIMTR İNDİRİM ÇARKI - SON -->
