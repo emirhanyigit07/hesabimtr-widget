@@ -14,7 +14,9 @@
 
         <div id="htr-wheel-disc" class="htr-wheel-disc" aria-label="İndirim çarkı">
           <div id="htr-wheel-labels" class="htr-wheel-labels"></div>
-          <div class="htr-wheel-center" aria-hidden="true"><span>H</span></div>
+          <div class="htr-wheel-center" aria-hidden="true">
+            <img src="https://emirhanyigit07.github.io/hesabimtr-widget/images/hesabimtr.jpeg" alt="" loading="eager">
+          </div>
         </div>
 
         <div class="htr-wheel-limit"><span>✓</span> Her cihaz 24 saatte bir kez çevirebilir.</div>
@@ -321,11 +323,13 @@
     transform: translate(-50%, -50%);
   }
 
-  .htr-wheel-center span {
-    margin-left: -3px;
-    font-size: 39px;
-    font-weight: 950;
-    font-style: italic;
+  .htr-wheel-center img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .htr-wheel-limit {
