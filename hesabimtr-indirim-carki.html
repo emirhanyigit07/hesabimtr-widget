@@ -37,13 +37,13 @@
         <div id="htr-wheel-result" class="htr-wheel-result" hidden>
           <div class="htr-wheel-success-icon">✓</div>
           <span class="htr-wheel-success-text">TEBRİKLER, KAZANDIN!</span>
-          <h3 id="htr-wheel-result-title">%10 İndirim</h3>
+          <h3 id="htr-wheel-result-title">%10 İNDİRİM KUPONU</h3>
           <p>Kupon kodunu kopyalayıp ödeme ekranındaki indirim kodu alanında kullanabilirsin.</p>
 
           <div class="htr-wheel-coupon">
             <div class="htr-wheel-coupon-code">
               <span>KUPON KODUN</span>
-              <strong id="htr-wheel-code">HESABIM10</strong>
+              <strong id="htr-wheel-code">hesabimtr10</strong>
             </div>
             <button id="htr-wheel-copy" type="button"><span>⧉</span> KOPYALA</button>
           </div>
@@ -69,7 +69,7 @@
                 <span class="htr-wheel-guide-icon">?</span>
                 <span>
                   <strong>Kuponu Nasıl Kullanırım?</strong>
-                  <small>İkas'ta adım adım kullanım tarifini görüntüle</small>
+                  <small>Adım adım kullanım tarifini görüntüle</small>
                 </span>
               </span>
               <span class="htr-wheel-guide-arrow">⌄</span>
@@ -98,7 +98,7 @@
 
               <div class="htr-wheel-guide-step">
                 <span class="htr-wheel-step-number">4</span>
-                <div><strong>İndirim Kodu Alanını Bul</strong><p>İkas ödeme ekranındaki <b>İndirim Kodu</b> veya <b>Kupon Kodu</b> alanına dokun.</p></div>
+                <div><strong>İndirim Kodu Alanını Bul</strong><p>Ödeme ekranındaki <b>İndirim Kodu</b> veya <b>Kupon Kodu</b> alanına dokun.</p></div>
               </div>
               <div class="htr-wheel-guide-line"></div>
 
@@ -880,20 +880,19 @@
       KUPON AYARLARI
       wheelLabel: Çarkta görünen yazı
       label: Sonuç ekranındaki açıklama
-      code: İkas panelinde oluşturacağın kupon kodu
+      code: Yönetim panelinde oluşturacağın kupon kodu
       weight: Çıkma ihtimali; yüksek sayı daha sık çıkar
       color: Çark diliminin rengi
     */
     var coupons = [
-      { wheelLabel: "%5", label: "%5 İndirim", code: "HESABIM5", weight: 30, color: "#6658f5", darkText: false },
-      { wheelLabel: "50 TL", label: "50 TL İndirim", code: "HESABIM50", weight: 25, color: "#ffd166", darkText: true },
-      { wheelLabel: "%7", label: "%7 İndirim", code: "HESABIM7", weight: 20, color: "#9254de", darkText: false },
-      { wheelLabel: "100 TL", label: "100 TL İndirim", code: "HESABIM100", weight: 13, color: "#36bffa", darkText: false },
-      { wheelLabel: "%10", label: "%10 İndirim", code: "HESABIM10", weight: 9, color: "#12b76a", darkText: false },
-      { wheelLabel: "150 TL", label: "150 TL İndirim", code: "HESABIM150", weight: 3, color: "#f97066", darkText: false }
+      { wheelLabel: "%5", label: "%5 İNDİRİM KUPONU", code: "hesabimtr5", weight: 30, color: "#6658f5", darkText: false },
+      { wheelLabel: "%7", label: "%7 İNDİRİM KUPONU", code: "hsmt7x", weight: 25, color: "#ffd166", darkText: true },
+      { wheelLabel: "%9", label: "%9 İNDİRİM KUPONU", code: "htr9ind", weight: 20, color: "#9254de", darkText: false },
+      { wheelLabel: "%10", label: "%10 İNDİRİM KUPONU", code: "hesabimtr10", weight: 13, color: "#12b76a", darkText: false },
+      { wheelLabel: "%15", label: "%15 İNDİRİM KUPONU", code: "hsmt15y", weight: 7, color: "#f97066", darkText: false }
     ];
 
-    var storageKey = "hesabimtr_indirim_carki_v3";
+    var storageKey = "hesabimtr_indirim_carki_v4";
     var couponDuration = 24 * 60 * 60 * 1000;
 
     var wheel = document.getElementById("htr-wheel-disc");
