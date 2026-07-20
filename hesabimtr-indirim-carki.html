@@ -915,6 +915,9 @@
     ];
 
     var storageKey = "hesabimtr_indirim_carki_v4";
+    var cookieKey = storageKey + "_cookie";
+    var databaseName = "hesabimtr_indirim_carki_db";
+    var databaseStore = "wheel_results";
     var couponDuration = 24 * 60 * 60 * 1000;
 
     var wheel = document.getElementById("htr-wheel-disc");
@@ -980,30 +983,207 @@
       return coupons.length - 1;
     }
 
-    function saveCoupon(data) {
+    function isValidCoupon(data) {
+      return !!(
+        data &&
+        typeof data === "object" &&
+        coupons[Number(data.index)] &&
+        data.code &&
+        data.label &&
+        Number(data.expiresAt) > Date.now()
+      );
+    }
+
+    function writeCookie(data) {
+      var encoded = encodeURIComponent(JSON.stringify(data));
+      var maxAge = Math.max(1, Math.ceil((Number(data.expiresAt) - Date.now()) / 1000));
+
       try {
-        localStorage.setItem(storageKey, JSON.stringify(data));
+        document.cookie = cookieKey + "=" + encoded + "; Max-Age=" + maxAge + "; Path=/; SameSite=None; Secure";
+      } catch (error) {}
+    }
+
+    function readCookie() {
+      try {
+        var parts = document.cookie ? document.cookie.split(";") : [];
+
+        for (var i = 0; i < parts.length; i++) {
+          var part = parts[i].trim();
+          if (part.indexOf(cookieKey + "=") === 0) {
+            return JSON.parse(decodeURIComponent(part.substring(cookieKey.length + 1)));
+          }
+        }
+      } catch (error) {}
+
+      return null;
+    }
+
+    function removeCookie() {
+      try {
+        document.cookie = cookieKey + "=; Max-Age=0; Path=/; SameSite=None; Secure";
+      } catch (error) {}
+    }
+
+    function openCouponDatabase(callback) {
+      if (!window.indexedDB) {
+        callback(null);
+        return;
+      }
+
+      try {
+        var request = window.indexedDB.open(databaseName, 1);
+
+        request.onupgradeneeded = function () {
+          var db = request.result;
+          if (!db.objectStoreNames.contains(databaseStore)) {
+            db.createObjectStore(databaseStore);
+          }
+        };
+
+        request.onsuccess = function () {
+          callback(request.result);
+        };
+
+        request.onerror = function () {
+          callback(null);
+        };
+
+        request.onblocked = function () {
+          callback(null);
+        };
       } catch (error) {
-        console.warn("Kupon bilgisi kaydedilemedi.");
+        callback(null);
       }
     }
 
-    function getSavedCoupon() {
-      try {
-        var saved = localStorage.getItem(storageKey);
-        if (!saved) return null;
+    function saveCouponToDatabase(data) {
+      openCouponDatabase(function (db) {
+        if (!db) return;
 
-        var data = JSON.parse(saved);
-        if (!data.expiresAt || Date.now() >= Number(data.expiresAt)) {
-          localStorage.removeItem(storageKey);
-          return null;
+        try {
+          var transaction = db.transaction(databaseStore, "readwrite");
+          transaction.objectStore(databaseStore).put(data, storageKey);
+          transaction.oncomplete = function () { db.close(); };
+          transaction.onerror = function () { db.close(); };
+        } catch (error) {
+          try { db.close(); } catch (closeError) {}
+        }
+      });
+    }
+
+    function getCouponFromDatabase(callback) {
+      openCouponDatabase(function (db) {
+        if (!db) {
+          callback(null);
+          return;
         }
 
-        return data;
-      } catch (error) {
-        try { localStorage.removeItem(storageKey); } catch (removeError) {}
-        return null;
+        try {
+          var transaction = db.transaction(databaseStore, "readonly");
+          var request = transaction.objectStore(databaseStore).get(storageKey);
+
+          request.onsuccess = function () {
+            var value = request.result || null;
+            db.close();
+            callback(value);
+          };
+
+          request.onerror = function () {
+            db.close();
+            callback(null);
+          };
+        } catch (error) {
+          try { db.close(); } catch (closeError) {}
+          callback(null);
+        }
+      });
+    }
+
+    function removeCouponFromDatabase() {
+      openCouponDatabase(function (db) {
+        if (!db) return;
+
+        try {
+          var transaction = db.transaction(databaseStore, "readwrite");
+          transaction.objectStore(databaseStore).delete(storageKey);
+          transaction.oncomplete = function () { db.close(); };
+          transaction.onerror = function () { db.close(); };
+        } catch (error) {
+          try { db.close(); } catch (closeError) {}
+        }
+      });
+    }
+
+    function saveCoupon(data) {
+      var serialized = JSON.stringify(data);
+      var savedSomewhere = false;
+
+      try {
+        localStorage.setItem(storageKey, serialized);
+        savedSomewhere = true;
+      } catch (error) {}
+
+      writeCookie(data);
+      saveCouponToDatabase(data);
+
+      try {
+        if (navigator.storage && navigator.storage.persist) {
+          navigator.storage.persist().catch(function () {});
+        }
+      } catch (error) {}
+
+      if (!savedSomewhere) {
+        console.warn("Safari yerel depolamayı engelledi; yedek kayıt yöntemleri kullanıldı.");
       }
+    }
+
+    function clearSavedCoupon() {
+      try { localStorage.removeItem(storageKey); } catch (error) {}
+      removeCookie();
+      removeCouponFromDatabase();
+    }
+
+    function getSavedCoupon() {
+      var candidates = [];
+
+      try {
+        var saved = localStorage.getItem(storageKey);
+        if (saved) candidates.push(JSON.parse(saved));
+      } catch (error) {}
+
+      var cookieCoupon = readCookie();
+      if (cookieCoupon) candidates.push(cookieCoupon);
+
+      for (var i = 0; i < candidates.length; i++) {
+        if (isValidCoupon(candidates[i])) {
+          return candidates[i];
+        }
+      }
+
+      return null;
+    }
+
+    function getSavedCouponAsync(callback) {
+      var synchronousCoupon = getSavedCoupon();
+      if (synchronousCoupon) {
+        callback(synchronousCoupon);
+        return;
+      }
+
+      getCouponFromDatabase(function (databaseCoupon) {
+        if (isValidCoupon(databaseCoupon)) {
+          try { localStorage.setItem(storageKey, JSON.stringify(databaseCoupon)); } catch (error) {}
+          writeCookie(databaseCoupon);
+          callback(databaseCoupon);
+          return;
+        }
+
+        if (databaseCoupon && Number(databaseCoupon.expiresAt) <= Date.now()) {
+          clearSavedCoupon();
+        }
+
+        callback(null);
+      });
     }
 
     function positionWheel(index) {
@@ -1040,21 +1220,22 @@
       var extraSpins = 6 + Math.floor(Math.random() * 3);
       var normalizedRotation = ((currentRotation % 360) + 360) % 360;
       var destination = 360 - selectedCenter;
+      var now = Date.now();
+      var result = {
+        index: selectedIndex,
+        label: selectedCoupon.label,
+        code: selectedCoupon.code,
+        createdAt: now,
+        expiresAt: now + couponDuration
+      };
+
+      /* Safari çark dönerken kapatılsa bile ikinci hak vermesin diye anında kaydet. */
+      saveCoupon(result);
 
       currentRotation += extraSpins * 360 + ((destination - normalizedRotation + 360) % 360);
       wheel.style.transform = "rotate(" + currentRotation + "deg)";
 
       window.setTimeout(function () {
-        var now = Date.now();
-        var result = {
-          index: selectedIndex,
-          label: selectedCoupon.label,
-          code: selectedCoupon.code,
-          createdAt: now,
-          expiresAt: now + couponDuration
-        };
-
-        saveCoupon(result);
         showResult(result, false);
         createConfetti();
         isSpinning = false;
@@ -1089,7 +1270,7 @@
 
         if (remaining <= 0) {
           clearInterval(countdownInterval);
-          try { localStorage.removeItem(storageKey); } catch (error) {}
+          clearSavedCoupon();
 
           hoursElement.textContent = "00";
           minutesElement.textContent = "00";
@@ -1187,8 +1368,17 @@
 
     createWheel();
 
-    var savedCoupon = getSavedCoupon();
-    if (savedCoupon) showResult(savedCoupon);
+    spinButton.disabled = true;
+    spinButton.innerHTML = "<span>↻</span> KONTROL EDİLİYOR...";
+
+    getSavedCouponAsync(function (savedCoupon) {
+      if (savedCoupon) {
+        showResult(savedCoupon);
+      } else {
+        spinButton.disabled = false;
+        spinButton.innerHTML = "<span>↻</span> ÇARKI ÇEVİR";
+      }
+    });
 
     spinButton.addEventListener("click", spinWheel);
     copyButton.addEventListener("click", copyCode);
