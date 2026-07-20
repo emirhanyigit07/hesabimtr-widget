@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="HesabımTR gerçek sipariş teslimat ekran görüntüleri.">
+  <title>HesabımTR | Gerçek Teslimatlar</title>
+
+  <style>
+    :root{
+      --primary:#6658f5;
+      --primary-dark:#4f46c8;
+      --secondary:#9254de;
+      --green:#22c55e;
+      --ink:#101828;
+      --muted:#667085;
+      --line:rgba(16,24,40,.10);
+      --shadow:0 20px 55px rgba(16,24,40,.11);
+      --shadow-hover:0 28px 70px rgba(79,70,200,.20);
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      background:transparent!important;
+    }
+
+    body{
+      margin:0;
+      min-width:320px;
+      overflow-x:hidden;
+      color:var(--ink);
+      background:transparent!important;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+
+    .page{
+      position:relative;
+      isolation:isolate;
+      min-height:100vh;
+      padding-bottom:28px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 7% 7%,rgba(102,88,245,.13),transparent 27%),
+        radial-gradient(circle at 93% 18%,rgba(146,84,222,.11),transparent 25%),
+        linear-gradient(180deg,rgba(255,255,255,.94),rgba(248,247,255,.82));
+    }
+
+    .page::before{
+      content:"";
+      position:absolute;
+      z-index:-2;
+      inset:0;
+      pointer-events:none;
+      opacity:.32;
+      background-image:
+        linear-gradient(rgba(102,88,245,.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(102,88,245,.07) 1px,transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(to bottom,#000,transparent 72%);
+    }
+
+    .orb{
+      position:absolute;
+      z-index:-1;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(22px);
+      opacity:.14;
+      pointer-events:none;
+      animation:floatOrb 9s ease-in-out infinite alternate;
+    }
+
+    .orb-one{
+      top:110px;
+      left:-180px;
+      background:var(--primary);
+    }
+
+    .orb-two{
+      top:400px;
+      right:-190px;
+      background:var(--secondary);
+      animation-delay:-4s;
+    }
+
+    @keyframes floatOrb{
+      to{transform:translate3d(28px,38px,0) scale(1.08)}
+    }
+
+    .shell{
+      width:min(1280px,calc(100% - 28px));
+      margin-inline:auto;
+    }
+
+    .hero{
+      padding:clamp(30px,5vw,68px) 0 clamp(22px,4vw,42px);
+      text-align:center;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px 8px 8px;
+      border:1px solid rgba(102,88,245,.16);
+      border-radius:999px;
+      color:var(--primary-dark);
+      background:rgba(255,255,255,.82);
+      box-shadow:0 10px 28px rgba(16,24,40,.07);
+      backdrop-filter:blur(14px);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.075em;
+      animation:heroIn .65s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .brand-logo{
+      width:30px;
+      height:30px;
+      display:block;
+      object-fit:cover;
+      border-radius:50%;
+      box-shadow:0 5px 14px rgba(79,70,200,.22);
+    }
+
+    .live-dot{
+      width:9px;
+      height:9px;
+      flex:0 0 auto;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 0 rgba(34,197,94,.44);
+      animation:pulse 1.8s infinite;
+    }
+
+    @keyframes pulse{
+      70%{box-shadow:0 0 0 11px rgba(34,197,94,0)}
+      100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+    }
+
+    h1{
+      max-width:980px;
+      margin:18px auto 12px;
+      font-size:clamp(36px,6.2vw,72px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      text-wrap:balance;
+      background:linear-gradient(105deg,#101828 8%,#4f46c8 52%,#9254de 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:heroIn .75s .08s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .hero-text{
+      max-width:760px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:clamp(15px,1.55vw,18px);
+      line-height:1.65;
+      text-wrap:balance;
+      animation:heroIn .75s .16s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .trust-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:20px;
+      animation:heroIn .75s .24s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .trust-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      min-height:38px;
+      padding:0 12px;
+      border:1px solid rgba(16,24,40,.08);
+      border-radius:12px;
+      color:#344054;
+      background:rgba(255,255,255,.82);
+      box-shadow:0 8px 22px rgba(16,24,40,.05);
+      backdrop-filter:blur(12px);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .trust-chip svg{
+      width:17px;
+      height:17px;
+      color:var(--green);
+    }
+
+    .hero-button{
+      min-height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      margin-top:20px;
+      padding:0 18px;
+      border:0;
+      border-radius:15px;
+      color:#fff;
+      text-decoration:none;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      box-shadow:0 16px 38px rgba(102,88,245,.28);
+      font-weight:900;
+      transition:transform .22s ease,box-shadow .22s ease;
+      animation:heroIn .75s .32s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .hero-button:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 48px rgba(102,88,245,.34);
+    }
+
+    @keyframes heroIn{
+      from{opacity:0;transform:translateY(18px) scale(.985)}
+      to{opacity:1;transform:none}
+    }
+
+    .gallery-section{scroll-margin-top:18px}
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:15px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:clamp(26px,4vw,40px);
+      letter-spacing:-.045em;
+    }
+
+    .section-head p{
+      max-width:720px;
+      margin:7px 0 0;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .status{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:42px;
+      padding:0 13px;
+      border:1px solid rgba(34,197,94,.18);
+      border-radius:13px;
+      color:#15803d;
+      background:rgba(220,252,231,.78);
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .gallery{
+      columns:3;
+      column-gap:14px;
+    }
+
+    .delivery-card{
+      position:relative;
+      width:100%;
+      display:inline-block;
+      margin:0 0 14px;
+      padding:0;
+      overflow:hidden;
+      break-inside:avoid;
+      border:1px solid rgba(16,24,40,.10);
+      border-radius:21px;
+      color:inherit;
+      background:#fff;
+      box-shadow:var(--shadow);
+      cursor:zoom-in;
+      opacity:0;
+      transform:translateY(26px) scale(.98);
+      transition:
+        opacity .58s cubic-bezier(.2,.8,.2,1),
+        transform .58s cubic-bezier(.2,.8,.2,1),
+        border-color .24s ease,
+        box-shadow .24s ease;
+    }
+
+    .delivery-card.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    .delivery-card:hover{
+      transform:translateY(-7px) scale(1.008);
+      border-color:rgba(102,88,245,.40);
+      box-shadow:var(--shadow-hover);
+    }
+
+    .delivery-card::after{
+      content:"";
+      position:absolute;
+      z-index:3;
+      inset:0;
+      pointer-events:none;
+      opacity:0;
+      background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.38) 43%,transparent 63%);
+      transform:translateX(-115%);
+    }
+
+    .delivery-card:hover::after{
+      opacity:1;
+      animation:shine .9s ease;
+    }
+
+    @keyframes shine{
+      to{transform:translateX(115%)}
+    }
+
+    .media{
+      position:relative;
+      min-height:170px;
+      display:block;
+      overflow:hidden;
+      background:linear-gradient(110deg,#f2f1f8 8%,#e9e7ff 18%,#f2f1f8 33%);
+      background-size:200% 100%;
+      animation:shimmer 1.35s linear infinite;
+    }
+
+    @keyframes shimmer{
+      to{background-position-x:-200%}
+    }
+
+    .delivery-card img{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#f2f4f7;
+      transition:transform .45s ease,filter .3s ease;
+    }
+
+    .delivery-card:hover img{
+      transform:scale(1.025);
+      filter:brightness(.78);
+    }
+
+    .zoom-label{
+      position:absolute;
+      z-index:4;
+      left:50%;
+      top:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+      min-height:42px;
+      padding:0 13px;
+      border:1px solid rgba(255,255,255,.20);
+      border-radius:13px;
+      color:#fff;
+      background:rgba(16,24,40,.78);
+      box-shadow:0 12px 30px rgba(0,0,0,.22);
+      backdrop-filter:blur(10px);
+      opacity:0;
+      transform:translate(-50%,calc(-50% + 8px));
+      transition:opacity .22s ease,transform .22s ease;
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .delivery-card:hover .zoom-label,
+    .delivery-card:focus-visible .zoom-label{
+      opacity:1;
+      transform:translate(-50%,-50%);
+    }
+
+    .image-error{
+      min-height:230px;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      color:var(--muted);
+      text-align:center;
+      background:#f8fafc;
+      line-height:1.55;
+      font-size:13px;
+    }
+
+    .privacy-note{
+      display:flex;
+      align-items:flex-start;
+      gap:11px;
+      margin-top:18px;
+      padding:15px 16px;
+      border:1px solid rgba(102,88,245,.13);
+      border-radius:16px;
+      color:#475467;
+      background:rgba(255,255,255,.76);
+      box-shadow:0 10px 30px rgba(16,24,40,.05);
+      backdrop-filter:blur(12px);
+      line-height:1.55;
+      font-size:13px;
+    }
+
+    .privacy-note svg{
+      width:20px;
+      height:20px;
+      flex:0 0 auto;
+      color:var(--primary);
+    }
+
+    .cta{
+      position:relative;
+      margin-top:18px;
+      padding:clamp(22px,4vw,36px);
+      overflow:hidden;
+      border:1px solid rgba(102,88,245,.16);
+      border-radius:23px;
+      color:#fff;
+      text-align:center;
+      background:linear-gradient(135deg,#4f46c8,#7757e5 48%,#9254de);
+      box-shadow:0 22px 52px rgba(79,70,200,.23);
+    }
+
+    .cta::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      left:-100px;
+      top:-150px;
+      border-radius:50%;
+      background:rgba(255,255,255,.14);
+    }
+
+    .cta h3{
+      position:relative;
+      margin:0 0 8px;
+      font-size:clamp(24px,4vw,36px);
+      letter-spacing:-.04em;
+    }
+
+    .cta p{
+      position:relative;
+      max-width:700px;
+      margin:0 auto;
+      color:rgba(255,255,255,.82);
+      line-height:1.6;
+    }
+
+    .cta-actions{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .cta a{
+      position:relative;
+      min-height:46px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:0 17px;
+      border:1px solid transparent;
+      border-radius:14px;
+      text-decoration:none;
+      box-shadow:0 12px 30px rgba(16,24,40,.16);
+      font-weight:900;
+      transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+    }
+
+    .cta-products{
+      color:var(--primary-dark);
+      background:#fff;
+    }
+
+    .cta-whatsapp{
+      color:#fff;
+      border-color:rgba(255,255,255,.30)!important;
+      background:rgba(18,140,126,.96);
+    }
+
+    .cta a:hover{
+      transform:translateY(-3px);
+      box-shadow:0 17px 38px rgba(16,24,40,.22);
+    }
+
+    .cta-whatsapp:hover{
+      background:#128c7e;
+    }
+
+    footer{
+      padding:22px 0 2px;
+      color:#98a2b3;
+      text-align:center;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .lightbox{
+      position:fixed;
+      z-index:999999;
+      inset:0;
+      display:grid;
+      place-items:center;
+      padding:
+        max(14px,env(safe-area-inset-top))
+        max(14px,env(safe-area-inset-right))
+        max(14px,env(safe-area-inset-bottom))
+        max(14px,env(safe-area-inset-left));
+      visibility:hidden;
+      opacity:0;
+      background:rgba(9,12,20,.94);
+      backdrop-filter:blur(18px);
+      transition:opacity .25s ease,visibility .25s ease;
+    }
+
+    .lightbox.open{
+      visibility:visible;
+      opacity:1;
+    }
+
+    .lightbox-image-wrap{
+      position:relative;
+      width:min(1180px,100%);
+      height:min(90vh,920px);
+      display:grid;
+      place-items:center;
+    }
+
+    .lightbox img{
+      max-width:100%;
+      max-height:100%;
+      display:block;
+      border-radius:18px;
+      background:#fff;
+      box-shadow:0 34px 100px rgba(0,0,0,.55);
+      object-fit:contain;
+      transform:scale(.96);
+      transition:transform .25s ease;
+    }
+
+    .lightbox.open img{transform:scale(1)}
+
+    .lightbox-button{
+      position:fixed;
+      z-index:4;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.15);
+      color:#fff;
+      background:rgba(24,24,38,.78);
+      cursor:pointer;
+      backdrop-filter:blur(12px);
+      transition:transform .2s ease,background .2s ease;
+    }
+
+    .lightbox-button:hover{
+      background:rgba(102,88,245,.86);
+    }
+
+    .lightbox-close{
+      top:max(14px,env(safe-area-inset-top));
+      right:max(14px,env(safe-area-inset-right));
+      width:48px;
+      height:48px;
+      border-radius:15px;
+      font-size:28px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next{
+      top:50%;
+      width:48px;
+      height:64px;
+      border-radius:15px;
+      transform:translateY(-50%);
+      font-size:31px;
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover{
+      transform:translateY(-50%) scale(1.05);
+    }
+
+    .lightbox-prev{left:max(12px,env(safe-area-inset-left))}
+    .lightbox-next{right:max(12px,env(safe-area-inset-right))}
+
+    @media(max-width:980px){
+      .gallery{columns:2}
+    }
+
+    @media(max-width:660px){
+      .shell{width:min(100% - 18px,640px)}
+      .hero{padding-top:25px}
+      h1{font-size:clamp(34px,12vw,52px)}
+
+      .section-head{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .status{
+        width:100%;
+        justify-content:center;
+      }
+
+      .gallery{column-gap:9px}
+
+      .delivery-card{
+        margin-bottom:9px;
+        border-radius:16px;
+      }
+
+      .zoom-label{display:none}
+
+      .lightbox-prev,
+      .lightbox-next{
+        width:41px;
+        height:55px;
+      }
+    }
+
+    @media(max-width:430px){
+      .gallery{columns:1}
+
+      .trust-row{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+      }
+
+      .trust-chip{justify-content:center}
+      .hero-button{width:100%}
+
+      .cta-actions{
+        display:grid;
+        grid-template-columns:1fr;
+      }
+
+      .cta-actions a{
+        width:100%;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      *,
+      *::before,
+      *::after{
+        scroll-behavior:auto!important;
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+      }
+
+      .delivery-card{
+        opacity:1;
+        transform:none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <span class="orb orb-one" aria-hidden="true"></span>
+    <span class="orb orb-two" aria-hidden="true"></span>
+
+    <section class="hero">
+      <div class="shell">
+        <div class="brand">
+          <img
+            class="brand-logo"
+            src="https://raw.githubusercontent.com/emirhanyigit07/hesabimtr-widget/main/images/hesabimtr.jpeg"
+            alt=""
+            onerror="this.style.display='none'">
+          <span class="live-dot" aria-hidden="true"></span>
+          HESABIMTR TESLİMAT GÜVENCESİ
+        </div>
+
+        <h1>Gerçek teslimatlar, gerçek güven.</h1>
+
+        <p class="hero-text">
+          Sipariş sonrası tamamlanan teslimatlarımızdan ekran görüntülerini inceleyin.
+          Görsellere dokunarak tam ekran ve daha net görüntüleyebilirsiniz.
+        </p>
+
+        <div class="trust-row" aria-label="Hizmet özellikleri">
+          <span class="trust-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="m5 12 4 4L19 6"/>
+            </svg>
+            Gerçek teslimatlar
+          </span>
+
+          <span class="trust-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+            </svg>
+            Güvenli alışveriş
+          </span>
+
+          <span class="trust-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/>
+            </svg>
+            Hızlı teslimat
+          </span>
+        </div>
+
+        <a class="hero-button" href="#teslimatlar">
+          Teslimatları İncele
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="gallery-section shell" id="teslimatlar">
+      <div class="section-head">
+        <div>
+          <h2>Tamamlanan Teslimatlar</h2>
+          <p>Paylaşılan ekran görüntüleri doğrudan tamamlanan sipariş teslimatlarından alınmıştır.</p>
+        </div>
+
+        <div class="status">
+          <span class="live-dot" aria-hidden="true"></span>
+          Güncel teslimatlar
+        </div>
+      </div>
+
+      <div class="gallery" id="gallery" aria-live="polite"></div>
+
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="5" y="10" width="14" height="10" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        </svg>
+        <span><strong>Gizlilik notu:</strong> müşterilerimize ait kişisel bilgiler paylaşılmaz; gerekli alanlar gizlenerek yayınlanır.</span>
+      </div>
+
+      <section class="cta">
+        <h3>Siz de güvenle sipariş verin.</h3>
+        <p>Hesap, e-pin ve oyun ürünlerinde uygun fiyatlı seçenekleri inceleyin; sorularınız için WhatsApp üzerinden bize ulaşın.</p>
+        <div class="cta-actions">
+          <a class="cta-products"
+             href="https://hesabimtr.shop"
+             target="_blank"
+             rel="noopener">
+            Ürünleri İncele
+          </a>
+
+          <a class="cta-whatsapp"
+             href="https://wa.me/908503077784?text=Merhaba%2C%20teslimatlar%C4%B1n%C4%B1z%C4%B1%20inceledim.%20Bir%20%C3%BCr%C3%BCn%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+             target="_blank"
+             rel="noopener"
+             aria-label="WhatsApp üzerinden HesabımTR ile iletişime geç">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.52 3.48A11.78 11.78 0 0 0 12.11 0C5.59 0 .28 5.3.28 11.82c0 2.08.54 4.12 1.57 5.91L.18 23.82l6.24-1.64a11.8 11.8 0 0 0 5.68 1.45h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.22-6.13-3.42-8.33Zm-8.41 18.15h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.7.97.99-3.61-.23-.37a9.79 9.79 0 0 1-1.51-5.22c0-5.42 4.41-9.83 9.84-9.83 2.62 0 5.09 1.02 6.94 2.88a9.75 9.75 0 0 1 2.88 6.95c-.01 5.41-4.42 9.81-9.84 9.81Zm5.39-7.37c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47a8.94 8.94 0 0 1-1.65-2.06c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.36.19 1.87.12.57-.08 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35Z"/>
+            </svg>
+            WhatsApp’tan Ulaş
+          </a>
+        </div>
+      </section>
+
+      <footer>© HesabımTR — güvenli ve hızlı dijital teslimat</footer>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Büyütülmüş teslimat görüntüsü">
+    <button class="lightbox-button lightbox-close" id="lightboxClose" type="button" aria-label="Kapat">×</button>
+    <button class="lightbox-button lightbox-prev" id="lightboxPrev" type="button" aria-label="Önceki görsel">‹</button>
+
+    <div class="lightbox-image-wrap">
+      <img id="lightboxImage" alt="Büyütülmüş teslimat ekran görüntüsü">
+    </div>
+
+    <button class="lightbox-button lightbox-next" id="lightboxNext" type="button" aria-label="Sonraki görsel">›</button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const imageFiles = [
+        "ScreenShot_20260720104513.png",
+        "ScreenShot_20260720104451.png",
+        "ScreenShot_20260720104424.png",
+        "ScreenShot_20260720104358.png",
+        "ScreenShot_20260720104254.png",
+        "ScreenShot_20260720104239.png",
+        "ScreenShot_20260720104213.png",
+        "ScreenShot_20260720104154.png",
+        "ScreenShot_20260720104135.png",
+        "ScreenShot_20260720104102.png"
+      ];
+
+      const RAW_BASE =
+        "https://raw.githubusercontent.com/emirhanyigit07/hesabimtr-widget/main/teslimatresim/";
+
+      const images = imageFiles.map(file =>
+        RAW_BASE + encodeURIComponent(file) + "?v=20260720"
+      );
+      const gallery = document.getElementById("gallery");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const lightboxClose = document.getElementById("lightboxClose");
+      const lightboxPrev = document.getElementById("lightboxPrev");
+      const lightboxNext = document.getElementById("lightboxNext");
+
+      let activeIndex = 0;
+      let lastFocusedElement = null;
+      let touchStartX = 0;
+
+      const sendHeight = () => {
+        try {
+          window.parent.postMessage({
+            type: "hesabimtr-resize",
+            height: Math.ceil(document.documentElement.scrollHeight)
+          }, "*");
+        } catch (_) {}
+      };
+
+      const openLightbox = index => {
+        activeIndex = index;
+        lastFocusedElement = document.activeElement;
+        lightboxImage.src = images[activeIndex];
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+        lightboxClose.focus();
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+        lightboxImage.removeAttribute("src");
+
+        if (lastFocusedElement) {
+          lastFocusedElement.focus();
+        }
+      };
+
+      const showRelativeImage = direction => {
+        activeIndex = (activeIndex + direction + images.length) % images.length;
+        lightboxImage.src = images[activeIndex];
+      };
+
+      const buildGallery = () => {
+        const fragment = document.createDocumentFragment();
+
+        images.forEach((src, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "delivery-card";
+          button.setAttribute("aria-label", "Teslimat ekran görüntüsünü büyüt");
+
+          const media = document.createElement("span");
+          media.className = "media";
+
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = "HesabımTR tamamlanan sipariş teslimatı";
+          image.loading = index < 4 ? "eager" : "lazy";
+          image.decoding = "async";
+
+          image.addEventListener("load", () => {
+            media.style.animation = "none";
+            sendHeight();
+          }, { once: true });
+
+          image.addEventListener("error", () => {
+            media.style.animation = "none";
+            media.innerHTML = '<span class="image-error">Görsel şu anda yüklenemedi.<br>Sayfayı yenileyip tekrar deneyin.</span>';
+            sendHeight();
+          }, { once: true });
+
+          const zoomLabel = document.createElement("span");
+          zoomLabel.className = "zoom-label";
+          zoomLabel.innerHTML = '<span aria-hidden="true">⌕</span> Görseli Büyüt';
+
+          media.appendChild(image);
+          button.append(media, zoomLabel);
+          button.addEventListener("click", () => openLightbox(index));
+          fragment.appendChild(button);
+        });
+
+        gallery.appendChild(fragment);
+
+        const cards = [...document.querySelectorAll(".delivery-card")];
+
+        if (!("IntersectionObserver" in window)) {
+          cards.forEach(card => card.classList.add("visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          });
+        }, {
+          threshold: .08,
+          rootMargin: "0px 0px -20px 0px"
+        });
+
+        cards.forEach((card, index) => {
+          card.style.transitionDelay = `${Math.min(index * 45, 300)}ms`;
+          observer.observe(card);
+        });
+      };
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxPrev.addEventListener("click", () => showRelativeImage(-1));
+      lightboxNext.addEventListener("click", () => showRelativeImage(1));
+
+      lightbox.addEventListener("click", event => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener("keydown", event => {
+        if (!lightbox.classList.contains("open")) return;
+
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") showRelativeImage(-1);
+        if (event.key === "ArrowRight") showRelativeImage(1);
+      });
+
+      lightbox.addEventListener("touchstart", event => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+
+      lightbox.addEventListener("touchend", event => {
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(distance) < 45) return;
+        showRelativeImage(distance > 0 ? -1 : 1);
+      }, { passive: true });
+
+      buildGallery();
+
+      window.addEventListener("load", sendHeight);
+      window.addEventListener("resize", sendHeight);
+
+      if ("ResizeObserver" in window) {
+        const resizeObserver = new ResizeObserver(sendHeight);
+        resizeObserver.observe(document.body);
+      }
+    })();
+  </script>
+</body>
+</html>
