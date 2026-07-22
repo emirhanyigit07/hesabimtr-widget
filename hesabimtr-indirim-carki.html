@@ -1,4 +1,4 @@
-<!-- HESABIMTR İNDİRİM ÇARKI - SON SÜRÜM -->
+<!-- HESABIMTR İNDİRİM ÇARKI - SAFARİ KALICI KAYIT DÜZELTMESİ -->
 <section id="htr-wheel-widget" class="htr-wheel-widget">
   <div class="htr-wheel-shell">
     <header class="htr-wheel-header">
@@ -914,10 +914,28 @@
       { wheelLabel: "%15", label: "%15 İNDİRİM KUPONU", code: "hsmt15y", weight: 7, color: "#f97066", darkText: false }
     ];
 
-    var storageKey = "hesabimtr_indirim_carki_v4";
-    var cookieKey = storageKey + "_cookie";
+    /*
+      MOBİL SAFARİ / IFRAME KALICI HAK KORUMASI
+      - localStorage + sessionStorage
+      - iki farklı cookie biçimi
+      - IndexedDB
+      - Cache Storage
+      - aynı origin ise üst sayfanın localStorage alanı
+      - window.name ve sekmeler arası BroadcastChannel yedeği
+      - Safari Storage Access API ile tıklama anında ikinci kontrol
+    */
+    var storageKey = "hesabimtr_indirim_carki_v5";
+    var legacyStorageKeys = ["hesabimtr_indirim_carki_v4"];
+    var compactStorageKey = storageKey + "_compact";
+    var cookieKeyLax = storageKey + "_cookie_lax";
+    var cookieKeyNone = storageKey + "_cookie_none";
+    var legacyCookieKeys = ["hesabimtr_indirim_carki_v4_cookie"];
     var databaseName = "hesabimtr_indirim_carki_db";
     var databaseStore = "wheel_results";
+    var cacheName = "hesabimtr_indirim_carki_cache_v1";
+    var cacheEntryUrl = (window.location.origin && window.location.origin !== "null" ? window.location.origin : "https://wheel.local") +
+      window.location.pathname + "?htr-wheel-record=" + encodeURIComponent(storageKey);
+    var windowNameMarker = "__HTR_WHEEL_V5__";
     var couponDuration = 24 * 60 * 60 * 1000;
 
     var wheel = document.getElementById("htr-wheel-disc");
@@ -939,6 +957,14 @@
     var isSpinning = false;
     var currentRotation = 0;
     var countdownInterval = null;
+    var currentResultData = null;
+    var broadcastChannel = null;
+
+    try {
+      if (window.BroadcastChannel) {
+        broadcastChannel = new BroadcastChannel("hesabimtr_indirim_carki_channel_v5");
+      }
+    } catch (error) {}
 
     function createWheel() {
       var sectorAngle = 360 / coupons.length;
@@ -983,34 +1009,93 @@
       return coupons.length - 1;
     }
 
-    function isValidCoupon(data) {
-      return !!(
-        data &&
-        typeof data === "object" &&
-        coupons[Number(data.index)] &&
-        data.code &&
-        data.label &&
-        Number(data.expiresAt) > Date.now()
-      );
+    function normalizeCoupon(data) {
+      if (!data || typeof data !== "object") return null;
+
+      var index = Number(data.index);
+      var expiresAt = Number(data.expiresAt);
+      var createdAt = Number(data.createdAt) || Math.max(0, expiresAt - couponDuration);
+
+      if (!coupons[index] || !isFinite(expiresAt) || expiresAt <= Date.now()) return null;
+
+      return {
+        index: index,
+        label: coupons[index].label,
+        code: coupons[index].code,
+        createdAt: createdAt,
+        expiresAt: expiresAt
+      };
     }
 
-    function writeCookie(data) {
+    function isValidCoupon(data) {
+      return !!normalizeCoupon(data);
+    }
+
+    function parseJson(value) {
+      if (!value || typeof value !== "string") return null;
+      try { return JSON.parse(value); } catch (error) { return null; }
+    }
+
+    function parseCompact(value) {
+      if (!value || typeof value !== "string") return null;
+      var parts = value.split("|");
+      if (parts.length < 2) return null;
+
+      return normalizeCoupon({
+        index: Number(parts[0]),
+        expiresAt: Number(parts[1]),
+        createdAt: Number(parts[2]) || 0
+      });
+    }
+
+    function compactCoupon(data) {
+      return [Number(data.index), Number(data.expiresAt), Number(data.createdAt) || 0].join("|");
+    }
+
+    function chooseBestCoupon(candidates) {
+      var best = null;
+
+      for (var i = 0; i < candidates.length; i++) {
+        var normalized = normalizeCoupon(candidates[i]);
+        if (!normalized) continue;
+
+        if (!best || normalized.expiresAt > best.expiresAt) {
+          best = normalized;
+        }
+      }
+
+      return best;
+    }
+
+    function writeCookieByName(name, data, sameSite) {
       var encoded = encodeURIComponent(JSON.stringify(data));
       var maxAge = Math.max(1, Math.ceil((Number(data.expiresAt) - Date.now()) / 1000));
+      var expires = new Date(Number(data.expiresAt)).toUTCString();
+      var secure = window.location.protocol === "https:" ? "; Secure" : "";
 
       try {
-        document.cookie = cookieKey + "=" + encoded + "; Max-Age=" + maxAge + "; Path=/; SameSite=None; Secure";
+        document.cookie = name + "=" + encoded +
+          "; Max-Age=" + maxAge +
+          "; Expires=" + expires +
+          "; Path=/; SameSite=" + sameSite + secure;
       } catch (error) {}
     }
 
-    function readCookie() {
+    function writeCookies(data) {
+      writeCookieByName(cookieKeyLax, data, "Lax");
+      if (window.location.protocol === "https:") {
+        writeCookieByName(cookieKeyNone, data, "None");
+      }
+    }
+
+    function readCookieByName(name) {
       try {
         var parts = document.cookie ? document.cookie.split(";") : [];
 
         for (var i = 0; i < parts.length; i++) {
           var part = parts[i].trim();
-          if (part.indexOf(cookieKey + "=") === 0) {
-            return JSON.parse(decodeURIComponent(part.substring(cookieKey.length + 1)));
+          if (part.indexOf(name + "=") === 0) {
+            return parseJson(decodeURIComponent(part.substring(name.length + 1)));
           }
         }
       } catch (error) {}
@@ -1018,9 +1103,75 @@
       return null;
     }
 
-    function removeCookie() {
+    function readAllCookies() {
+      var values = [readCookieByName(cookieKeyLax), readCookieByName(cookieKeyNone)];
+      for (var i = 0; i < legacyCookieKeys.length; i++) {
+        values.push(readCookieByName(legacyCookieKeys[i]));
+      }
+      return values;
+    }
+
+    function expireCookie(name, sameSite) {
+      var secure = window.location.protocol === "https:" ? "; Secure" : "";
       try {
-        document.cookie = cookieKey + "=; Max-Age=0; Path=/; SameSite=None; Secure";
+        document.cookie = name + "=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/; SameSite=" + sameSite + secure;
+      } catch (error) {}
+    }
+
+    function removeCookies() {
+      expireCookie(cookieKeyLax, "Lax");
+      expireCookie(cookieKeyNone, "None");
+      for (var i = 0; i < legacyCookieKeys.length; i++) {
+        expireCookie(legacyCookieKeys[i], "None");
+        expireCookie(legacyCookieKeys[i], "Lax");
+      }
+    }
+
+    function getSameOriginParentStorages() {
+      var storages = [];
+      var windowsToTry = [];
+
+      try { if (window.parent && window.parent !== window) windowsToTry.push(window.parent); } catch (error) {}
+      try { if (window.top && window.top !== window && window.top !== window.parent) windowsToTry.push(window.top); } catch (error) {}
+
+      for (var i = 0; i < windowsToTry.length; i++) {
+        try {
+          var storage = windowsToTry[i].localStorage;
+          storage.getItem("__htr_storage_test__");
+          storages.push(storage);
+        } catch (error) {}
+      }
+
+      return storages;
+    }
+
+    function writeWindowName(data) {
+      try {
+        var encoded = encodeURIComponent(JSON.stringify(data));
+        var currentName = String(window.name || "");
+        var markerIndex = currentName.indexOf(windowNameMarker);
+
+        if (markerIndex >= 0) currentName = currentName.substring(0, markerIndex);
+        window.name = currentName + windowNameMarker + encoded;
+      } catch (error) {}
+    }
+
+    function readWindowName() {
+      try {
+        var currentName = String(window.name || "");
+        var markerIndex = currentName.indexOf(windowNameMarker);
+        if (markerIndex < 0) return null;
+        return parseJson(decodeURIComponent(currentName.substring(markerIndex + windowNameMarker.length)));
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function removeWindowNameRecord() {
+      try {
+        var currentName = String(window.name || "");
+        var markerIndex = currentName.indexOf(windowNameMarker);
+        if (markerIndex >= 0) window.name = currentName.substring(0, markerIndex);
       } catch (error) {}
     }
 
@@ -1040,17 +1191,9 @@
           }
         };
 
-        request.onsuccess = function () {
-          callback(request.result);
-        };
-
-        request.onerror = function () {
-          callback(null);
-        };
-
-        request.onblocked = function () {
-          callback(null);
-        };
+        request.onsuccess = function () { callback(request.result); };
+        request.onerror = function () { callback(null); };
+        request.onblocked = function () { callback(null); };
       } catch (error) {
         callback(null);
       }
@@ -1105,7 +1248,9 @@
 
         try {
           var transaction = db.transaction(databaseStore, "readwrite");
-          transaction.objectStore(databaseStore).delete(storageKey);
+          var store = transaction.objectStore(databaseStore);
+          store.delete(storageKey);
+          for (var i = 0; i < legacyStorageKeys.length; i++) store.delete(legacyStorageKeys[i]);
           transaction.oncomplete = function () { db.close(); };
           transaction.onerror = function () { db.close(); };
         } catch (error) {
@@ -1114,17 +1259,79 @@
       });
     }
 
-    function saveCoupon(data) {
-      var serialized = JSON.stringify(data);
-      var savedSomewhere = false;
+    function saveCouponToCache(data) {
+      if (!window.caches || !window.Response) return;
+
+      try {
+        window.caches.open(cacheName).then(function (cache) {
+          return cache.put(cacheEntryUrl, new Response(JSON.stringify(data), {
+            headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
+          }));
+        }).catch(function () {});
+      } catch (error) {}
+    }
+
+    function getCouponFromCache(callback) {
+      if (!window.caches) {
+        callback(null);
+        return;
+      }
+
+      try {
+        window.caches.open(cacheName).then(function (cache) {
+          return cache.match(cacheEntryUrl);
+        }).then(function (response) {
+          if (!response) return null;
+          return response.text();
+        }).then(function (value) {
+          callback(parseJson(value));
+        }).catch(function () {
+          callback(null);
+        });
+      } catch (error) {
+        callback(null);
+      }
+    }
+
+    function removeCouponFromCache() {
+      if (!window.caches) return;
+      try {
+        window.caches.open(cacheName).then(function (cache) {
+          return cache.delete(cacheEntryUrl);
+        }).catch(function () {});
+      } catch (error) {}
+    }
+
+    function saveCoupon(data, skipBroadcast) {
+      var normalized = normalizeCoupon(data);
+      if (!normalized) return;
+
+      currentResultData = normalized;
+      var serialized = JSON.stringify(normalized);
+      var compact = compactCoupon(normalized);
 
       try {
         localStorage.setItem(storageKey, serialized);
-        savedSomewhere = true;
+        localStorage.setItem(compactStorageKey, compact);
       } catch (error) {}
 
-      writeCookie(data);
-      saveCouponToDatabase(data);
+      try {
+        sessionStorage.setItem(storageKey, serialized);
+        sessionStorage.setItem(compactStorageKey, compact);
+      } catch (error) {}
+
+      var parentStorages = getSameOriginParentStorages();
+      for (var i = 0; i < parentStorages.length; i++) {
+        try {
+          parentStorages[i].setItem(storageKey, serialized);
+          parentStorages[i].setItem(compactStorageKey, compact);
+        } catch (error) {}
+      }
+
+      writeCookies(normalized);
+      writeWindowName(normalized);
+      saveCouponToDatabase(normalized);
+      saveCouponToCache(normalized);
 
       try {
         if (navigator.storage && navigator.storage.persist) {
@@ -1132,35 +1339,61 @@
         }
       } catch (error) {}
 
-      if (!savedSomewhere) {
-        console.warn("Safari yerel depolamayı engelledi; yedek kayıt yöntemleri kullanıldı.");
+      if (!skipBroadcast && broadcastChannel) {
+        try { broadcastChannel.postMessage({ type: "coupon", data: normalized }); } catch (error) {}
       }
     }
 
     function clearSavedCoupon() {
-      try { localStorage.removeItem(storageKey); } catch (error) {}
-      removeCookie();
+      var keys = [storageKey, compactStorageKey].concat(legacyStorageKeys);
+
+      for (var i = 0; i < keys.length; i++) {
+        try { localStorage.removeItem(keys[i]); } catch (error) {}
+        try { sessionStorage.removeItem(keys[i]); } catch (error) {}
+      }
+
+      var parentStorages = getSameOriginParentStorages();
+      for (var s = 0; s < parentStorages.length; s++) {
+        for (var k = 0; k < keys.length; k++) {
+          try { parentStorages[s].removeItem(keys[k]); } catch (error) {}
+        }
+      }
+
+      currentResultData = null;
+      removeCookies();
+      removeWindowNameRecord();
       removeCouponFromDatabase();
+      removeCouponFromCache();
+    }
+
+    function readStorageCandidates(storage, candidates) {
+      if (!storage) return;
+
+      try { candidates.push(parseJson(storage.getItem(storageKey))); } catch (error) {}
+      try { candidates.push(parseCompact(storage.getItem(compactStorageKey))); } catch (error) {}
+
+      for (var i = 0; i < legacyStorageKeys.length; i++) {
+        try { candidates.push(parseJson(storage.getItem(legacyStorageKeys[i]))); } catch (error) {}
+      }
     }
 
     function getSavedCoupon() {
       var candidates = [];
 
-      try {
-        var saved = localStorage.getItem(storageKey);
-        if (saved) candidates.push(JSON.parse(saved));
-      } catch (error) {}
+      try { readStorageCandidates(localStorage, candidates); } catch (error) {}
+      try { readStorageCandidates(sessionStorage, candidates); } catch (error) {}
 
-      var cookieCoupon = readCookie();
-      if (cookieCoupon) candidates.push(cookieCoupon);
-
-      for (var i = 0; i < candidates.length; i++) {
-        if (isValidCoupon(candidates[i])) {
-          return candidates[i];
-        }
+      var parentStorages = getSameOriginParentStorages();
+      for (var i = 0; i < parentStorages.length; i++) {
+        readStorageCandidates(parentStorages[i], candidates);
       }
 
-      return null;
+      candidates = candidates.concat(readAllCookies());
+      candidates.push(readWindowName());
+
+      var best = chooseBestCoupon(candidates);
+      if (best) saveCoupon(best, true);
+      return best;
     }
 
     function getSavedCouponAsync(callback) {
@@ -1170,20 +1403,63 @@
         return;
       }
 
-      getCouponFromDatabase(function (databaseCoupon) {
-        if (isValidCoupon(databaseCoupon)) {
-          try { localStorage.setItem(storageKey, JSON.stringify(databaseCoupon)); } catch (error) {}
-          writeCookie(databaseCoupon);
-          callback(databaseCoupon);
+      var candidates = [];
+      var pending = 2;
+      var finished = false;
+
+      function complete(value) {
+        if (value) candidates.push(value);
+        pending -= 1;
+        if (pending > 0 || finished) return;
+
+        finished = true;
+        var best = chooseBestCoupon(candidates);
+        if (best) {
+          saveCoupon(best, true);
+          callback(best);
+        } else {
+          callback(null);
+        }
+      }
+
+      getCouponFromDatabase(complete);
+      getCouponFromCache(complete);
+    }
+
+    function requestSafariStorageAccess(callback) {
+      var called = false;
+
+      function done() {
+        if (called) return;
+        called = true;
+        callback();
+      }
+
+      try {
+        if (window.top === window || typeof document.requestStorageAccess !== "function") {
+          done();
           return;
         }
 
-        if (databaseCoupon && Number(databaseCoupon.expiresAt) <= Date.now()) {
-          clearSavedCoupon();
-        }
+        if (typeof document.hasStorageAccess === "function") {
+          document.hasStorageAccess().then(function (hasAccess) {
+            if (hasAccess) {
+              done();
+              return;
+            }
 
-        callback(null);
-      });
+            document.requestStorageAccess().then(done).catch(done);
+          }).catch(function () {
+            document.requestStorageAccess().then(done).catch(done);
+          });
+        } else {
+          document.requestStorageAccess().then(done).catch(done);
+        }
+      } catch (error) {
+        done();
+      }
+
+      window.setTimeout(done, 1200);
     }
 
     function positionWheel(index) {
@@ -1200,19 +1476,7 @@
       wheel.style.transition = "transform 5.4s cubic-bezier(0.12,0.78,0.12,1)";
     }
 
-    function spinWheel() {
-      if (isSpinning) return;
-
-      var existingCoupon = getSavedCoupon();
-      if (existingCoupon) {
-        showResult(existingCoupon);
-        return;
-      }
-
-      isSpinning = true;
-      spinButton.disabled = true;
-      spinButton.innerHTML = "<span>↻</span> ÇEVRİLİYOR...";
-
+    function performSpin() {
       var selectedIndex = selectCouponIndex();
       var selectedCoupon = coupons[selectedIndex];
       var sectorAngle = 360 / coupons.length;
@@ -1229,9 +1493,10 @@
         expiresAt: now + couponDuration
       };
 
-      /* Safari çark dönerken kapatılsa bile ikinci hak vermesin diye anında kaydet. */
+      /* Çark hareket etmeden önce hak bütün kalıcı alanlara kaydedilir. */
       saveCoupon(result);
 
+      spinButton.innerHTML = "<span>↻</span> ÇEVRİLİYOR...";
       currentRotation += extraSpins * 360 + ((destination - normalizedRotation + 360) % 360);
       wheel.style.transform = "rotate(" + currentRotation + "deg)";
 
@@ -1242,7 +1507,37 @@
       }, 5600);
     }
 
+    function spinWheel() {
+      if (isSpinning) return;
+
+      isSpinning = true;
+      spinButton.disabled = true;
+      spinButton.innerHTML = "<span>↻</span> HAK KONTROL EDİLİYOR...";
+
+      /*
+        Safari iframe depolamasını ilk açılışta saklayabilir.
+        Kullanıcı tıklayınca izin istenir ve çark dönmeden önce kayıt tekrar aranır.
+      */
+      requestSafariStorageAccess(function () {
+        getSavedCouponAsync(function (existingCoupon) {
+          if (existingCoupon) {
+            isSpinning = false;
+            showResult(existingCoupon);
+            return;
+          }
+
+          performSpin();
+        });
+      });
+    }
+
     function showResult(data, reposition) {
+      var normalizedData = normalizeCoupon(data);
+      if (!normalizedData) return;
+      data = normalizedData;
+      currentResultData = data;
+      saveCoupon(data, true);
+
       startBox.hidden = true;
       resultBox.hidden = false;
       resultTitle.textContent = data.label;
@@ -1366,6 +1661,32 @@
       window.setTimeout(function () { confetti.innerHTML = ""; }, 5500);
     }
 
+    if (broadcastChannel) {
+      broadcastChannel.onmessage = function (event) {
+        var incoming = event && event.data && event.data.type === "coupon" ? event.data.data : null;
+        var normalized = normalizeCoupon(incoming);
+        if (!normalized) return;
+        saveCoupon(normalized, true);
+        if (!isSpinning) showResult(normalized);
+      };
+    }
+
+    window.addEventListener("storage", function (event) {
+      if (!event || (event.key !== storageKey && event.key !== compactStorageKey)) return;
+      var savedCoupon = getSavedCoupon();
+      if (savedCoupon && !isSpinning) showResult(savedCoupon);
+    });
+
+    window.addEventListener("pagehide", function () {
+      if (currentResultData && isValidCoupon(currentResultData)) saveCoupon(currentResultData, true);
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden" && currentResultData && isValidCoupon(currentResultData)) {
+        saveCoupon(currentResultData, true);
+      }
+    });
+
     createWheel();
 
     spinButton.disabled = true;
@@ -1384,4 +1705,4 @@
     copyButton.addEventListener("click", copyCode);
   })();
 </script>
-<!-- HESABIMTR İNDİRİM ÇARKI - SON -->
+<!-- HESABIMTR İNDİRİM ÇARKI - SAFARİ KALICI KAYIT DÜZELTMESİ SON -->
