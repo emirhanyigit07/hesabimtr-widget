@@ -133,6 +133,7 @@
     }
 
     .btn:hover{transform:translateY(-3px)}
+    .btn:disabled{opacity:.62;cursor:wait;transform:none}
 
     .btn-primary{
       color:#ffffff;
@@ -681,7 +682,8 @@
       const CONFIG = {
         manifest: "./whatsapp-images.json",
         itemsPerPage: 18,
-        cacheHours: 24
+        cacheFallbackDays: 7,
+        requestTimeoutMs: 12000
       };
 
       const gallery = document.getElementById("gallery");
@@ -704,7 +706,7 @@
       const lbPrev = document.getElementById("lbPrev");
       const lbNext = document.getElementById("lbNext");
 
-      const CACHE_KEY = "hesabimtr_whatsapp_manifest_v1";
+      const CACHE_KEY = "hesabimtr_whatsapp_manifest_v2";
       let images = [];
       let currentPage = 1;
       let currentImageIndex = 0;
@@ -740,7 +742,7 @@
           });
       };
 
-      const readCache = allowExpired => {
+      const readCache = () => {
         try {
           const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
           if (!cached || !Array.isArray(cached.images) || !cached.images.length) {
@@ -748,10 +750,10 @@
           }
 
           const age = Date.now() - Number(cached.time || 0);
-          const fresh = age <= CONFIG.cacheHours * 60 * 60 * 1000;
+          const valid =
+            age <= CONFIG.cacheFallbackDays * 24 * 60 * 60 * 1000;
 
-          if (!fresh && !allowExpired) return null;
-          return cached.images;
+          return valid ? cached.images : null;
         } catch {
           return null;
         }
@@ -788,17 +790,19 @@
 
       const loadImages = async forceRefresh => {
         setLoading();
+        refreshButton.disabled = true;
+        refreshButton.textContent = "Kontrol Ediliyor…";
 
-        if (!forceRefresh) {
-          const cached = readCache(false);
-          if (cached) {
-            images = cached;
-            finishLoading();
-            return;
-          }
+        if (forceRefresh) {
+          try { localStorage.removeItem(CACHE_KEY); } catch {}
         }
 
-        const oldCache = readCache(true);
+        const oldCache = readCache();
+        const controller = new AbortController();
+        const timeoutId = setTimeout(
+          () => controller.abort(),
+          CONFIG.requestTimeoutMs
+        );
 
         try {
           const separator = CONFIG.manifest.includes("?") ? "&" : "?";
@@ -806,10 +810,15 @@
             CONFIG.manifest +
             separator +
             "v=" +
-            (forceRefresh ? Date.now() : "1");
+            Date.now();
 
           const response = await fetch(manifestUrl, {
-            cache: "no-store"
+            cache: "no-store",
+            signal: controller.signal,
+            headers: {
+              "Cache-Control": "no-cache",
+              "Pragma": "no-cache"
+            }
           });
 
           if (!response.ok) {
@@ -833,7 +842,15 @@
             return;
           }
 
-          showError(error);
+          if (error?.name === "AbortError") {
+            showError(new Error("Görsel listesi zaman aşımına uğradı."));
+          } else {
+            showError(error);
+          }
+        } finally {
+          clearTimeout(timeoutId);
+          refreshButton.disabled = false;
+          refreshButton.textContent = "Yeni Görselleri Kontrol Et";
         }
       };
 
