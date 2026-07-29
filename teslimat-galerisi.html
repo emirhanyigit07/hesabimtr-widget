@@ -783,7 +783,7 @@
     (() => {
       "use strict";
 
-      const imageFiles = [
+      const FALLBACK_IMAGE_FILES = [
         "ScreenShot_20260720104513.png",
         "ScreenShot_20260720104451.png",
         "ScreenShot_20260720104424.png",
@@ -799,9 +799,12 @@
       const RAW_BASE =
         "https://raw.githubusercontent.com/emirhanyigit07/hesabimtr-widget/main/teslimatresim/";
 
-      const images = imageFiles.map(file =>
-        RAW_BASE + encodeURIComponent(file) + "?v=20260720"
-      );
+      const GITHUB_FOLDER_API =
+        "https://api.github.com/repos/emirhanyigit07/hesabimtr-widget/contents/teslimatresim?ref=main";
+
+      const IMAGE_CACHE_KEY = "hesabimtr-teslimat-gorselleri-v2";
+      const IMAGE_CACHE_DURATION = 60 * 60 * 1000;
+      let images = [];
       const gallery = document.getElementById("gallery");
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
@@ -846,7 +849,115 @@
         lightboxImage.src = images[activeIndex];
       };
 
+      const isImageFile = fileName =>
+        /\.(avif|gif|jpe?g|png|webp)$/i.test(fileName || "");
+
+      const fallbackImages = () =>
+        FALLBACK_IMAGE_FILES.map(file =>
+          RAW_BASE + encodeURIComponent(file) + "?v=20260729"
+        );
+
+      const readCachedImages = () => {
+        try {
+          const cached = JSON.parse(localStorage.getItem(IMAGE_CACHE_KEY));
+
+          if (
+            cached &&
+            Array.isArray(cached.images) &&
+            cached.images.length &&
+            Date.now() - Number(cached.savedAt) < IMAGE_CACHE_DURATION
+          ) {
+            return cached.images;
+          }
+        } catch (_) {}
+
+        return null;
+      };
+
+      const saveCachedImages = imageUrls => {
+        try {
+          localStorage.setItem(IMAGE_CACHE_KEY, JSON.stringify({
+            savedAt: Date.now(),
+            images: imageUrls
+          }));
+        } catch (_) {}
+      };
+
+      const orderGithubImages = entries => {
+        const fallbackOrder = new Map(
+          FALLBACK_IMAGE_FILES.map((file, index) => [file, index])
+        );
+
+        return [...entries].sort((first, second) => {
+          const firstKnown = fallbackOrder.has(first.name);
+          const secondKnown = fallbackOrder.has(second.name);
+
+          if (firstKnown !== secondKnown) return firstKnown ? 1 : -1;
+
+          if (!firstKnown && !secondKnown) {
+            return second.name.localeCompare(first.name, "tr", {
+              numeric: true,
+              sensitivity: "base"
+            });
+          }
+
+          return fallbackOrder.get(first.name) - fallbackOrder.get(second.name);
+        });
+      };
+
+      const loadGithubImages = async () => {
+        gallery.setAttribute("aria-busy", "true");
+
+        try {
+          const response = await fetch(GITHUB_FOLDER_API, {
+            cache: "no-store"
+          });
+
+          if (!response.ok) {
+            throw new Error(`GitHub API hatası: ${response.status}`);
+          }
+
+          const entries = await response.json();
+
+          if (!Array.isArray(entries)) {
+            throw new Error("GitHub klasör yanıtı geçersiz.");
+          }
+
+          const githubImages = orderGithubImages(
+            entries.filter(entry =>
+              entry && entry.type === "file" && isImageFile(entry.name)
+            )
+          ).map(entry => {
+            const source = entry.download_url ||
+              RAW_BASE + encodeURIComponent(entry.name);
+            const separator = source.includes("?") ? "&" : "?";
+            return source + separator + "v=" + encodeURIComponent(entry.sha || "latest");
+          });
+
+          if (!githubImages.length) {
+            throw new Error("Klasörde kullanılabilir görsel bulunamadı.");
+          }
+
+          images = githubImages;
+          saveCachedImages(images);
+        } catch (error) {
+          images = readCachedImages() || fallbackImages();
+          console.warn("Güncel teslimat görselleri alınamadı; yedek liste kullanıldı.", error);
+        } finally {
+          gallery.removeAttribute("aria-busy");
+          buildGallery();
+        }
+      };
+
       const buildGallery = () => {
+        gallery.replaceChildren();
+
+        if (!images.length) {
+          gallery.innerHTML = '<div class="image-error">Henüz görüntülenecek teslimat görseli bulunmuyor.</div>';
+          sendHeight();
+          return;
+        }
+
         const fragment = document.createDocumentFragment();
 
         images.forEach((src, index) => {
@@ -937,7 +1048,7 @@
         showRelativeImage(distance > 0 ? -1 : 1);
       }, { passive: true });
 
-      buildGallery();
+      loadGithubImages();
 
       window.addEventListener("load", sendHeight);
       window.addEventListener("resize", sendHeight);
